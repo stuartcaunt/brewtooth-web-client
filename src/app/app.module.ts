@@ -1,19 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpModule }    from '@angular/http';
 
 import { AppComponent } from './app.component';
 
 import { MaltListComponent} from 'components';
 
+import { MaltService } from 'services';
+
 @NgModule({
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpModule
   ],
   declarations: [
     AppComponent,
     MaltListComponent
   ],
-  providers: [],
+  providers: [MaltService],
   bootstrap: [AppComponent]
 })
 
