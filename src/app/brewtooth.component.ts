@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
+  selector: 'brewtooth-root',
   template: `
     <h1>{{title}}</h1>
     <bt-malt-list></bt-malt-list>
@@ -9,6 +9,6 @@ import { Component } from '@angular/core';
 })
 
 
-export class AppComponent {
+export class BrewtoothComponent {
   title = 'BrewTooth';
 }

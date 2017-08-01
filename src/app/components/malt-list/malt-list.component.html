@@ -5,3 +5,39 @@
     <span>{{malt.name}}</span>
   </li>
 </ul>
+
+
+<div class="data-table mat-elevation-z8">
+  <!--<div class="data-table-header">-->
+    <!--<md-input-container floatPlaceholder="never">-->
+      <!--<input mdInput #filter placeholder="Filter malts">-->
+    <!--</md-input-container>-->
+  <!--</div>-->
+
+
+  <md-table #table [dataSource]="dataSource">
+
+    <ng-container cdkColumnDef="maltName">
+      <md-header-cell *cdkHeaderCellDef> ID </md-header-cell>
+      <md-cell *cdkCellDef="let row"> {{row.name}} </md-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="grain">
+      <md-header-cell *cdkHeaderCellDef> Grain </md-header-cell>
+      <md-cell *cdkCellDef="let malt"> {{malt.grain}} </md-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="yield">
+      <md-header-cell *cdkHeaderCellDef> Yield </md-header-cell>
+      <md-cell *cdkCellDef="let malt"> {{malt.yield}} </md-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="ebc">
+      <md-header-cell *cdkHeaderCellDef> EBC </md-header-cell>
+      <md-cell *cdkCellDef="let malt"> {{malt.ebc}} </md-cell>
+    </ng-container>
+
+    <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
+    <md-row *cdkRowDef="let malt; columns: displayedColumns;"></md-row>
+  </md-table>
+</div>

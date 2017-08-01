@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { Malt } from 'models';
 import { MaltService } from 'services';
+import {DataSource} from '@angular/cdk';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {Observable} from 'rxjs/Rx';
 
 @Component({
   selector: 'bt-malt-list',
@@ -9,22 +12,42 @@ import { MaltService } from 'services';
 })
 
 export class MaltListComponent implements OnInit {
+  displayedColumns = ['maltName', 'grain', 'yield', 'ebc'];
 
-  malts: Malt[];
+  dataSource: MaltsDataSource | null;
 
   constructor (private maltService: MaltService) {
   }
 
-  getMalts(): void {
-    this.maltService.getMalts()
-      .then(malts => {
-        this.malts = malts;
-        console.log('got malts ' + malts);
-      });
-  }
-
   ngOnInit(): void {
-    this.getMalts();
+    this.dataSource = new MaltsDataSource(this.maltService);
+
+    this.dataSource.maltBehaviourSubject.subscribe((malts) => {
+      console.log(malts.length);
+    });
   }
 
+}
+
+export class MaltsDataSource extends DataSource<any> {
+  maltBehaviourSubject: BehaviorSubject<Malt[]> = new BehaviorSubject<Malt[]>([]);
+
+  constructor(private maltService: MaltService) {
+    super();
+
+    this.initialiseData();
+  }
+
+  initialiseData(): void {
+    this.maltService.getMalts().then(malts => {
+      this.maltBehaviourSubject.next(malts);
+    });
+  }
+
+  /** Connect function called by the table to retrieve one stream containing the data to render. */
+  connect(): Observable<Malt[]> {
+    return this.maltBehaviourSubject;
+  }
+
+  disconnect() {}
 }
