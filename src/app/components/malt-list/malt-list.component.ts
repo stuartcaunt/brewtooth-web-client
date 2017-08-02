@@ -22,31 +22,32 @@ export class MaltListComponent implements OnInit {
   ngOnInit(): void {
     this.dataSource = new MaltsDataSource(this.maltService);
 
-    this.dataSource.maltBehaviourSubject.subscribe((malts) => {
-      console.log(malts.length);
-    });
+    // this.dataSource.maltBehaviourSubject.subscribe((malts) => {
+    //   console.log(malts.length);
+    // });
   }
 
 }
 
 export class MaltsDataSource extends DataSource<any> {
-  maltBehaviourSubject: BehaviorSubject<Malt[]> = new BehaviorSubject<Malt[]>([]);
+  // maltBehaviourSubject: BehaviorSubject<Malt[]> = new BehaviorSubject<Malt[]>([]);
 
   constructor(private maltService: MaltService) {
     super();
 
-    this.initialiseData();
+    // this.initialiseData();
   }
 
-  initialiseData(): void {
-    this.maltService.getMalts().then(malts => {
-      this.maltBehaviourSubject.next(malts);
-    });
-  }
+  // initialiseData(): void {
+  //   this.maltService.getMalts().then(malts => {
+  //     this.maltBehaviourSubject.next(malts);
+  //   });
+  // }
 
   /** Connect function called by the table to retrieve one stream containing the data to render. */
   connect(): Observable<Malt[]> {
-    return this.maltBehaviourSubject;
+    return this.maltService.getMalts();
+    // return this.maltBehaviourSubject;
   }
 
   disconnect() {}
