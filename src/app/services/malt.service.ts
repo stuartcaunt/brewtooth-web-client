@@ -20,14 +20,6 @@ export class MaltService {
     return this.http
       .get(url, {headers: this.headers})
       .map(response => response.json() as Malt[]);
-      // .toPromise()
-      // .then(response => response.json() as Malt[])
-      // .catch(this.handleError);
-  }
-
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error);
-    return Promise.reject(error.message || error);
   }
 
 }
