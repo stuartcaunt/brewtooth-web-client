@@ -7,11 +7,14 @@
 </ul>
 
 
-<div class="data-table mat-elevation-z8">
+<div class="data-table-container mat-elevation-z8">
   <div class="data-table-header">
     <md-input-container floatPlaceholder="never">
       <input mdInput #filter placeholder="Filter malts">
     </md-input-container>
+    <div>
+      add
+    </div>
   </div>
 
   <md-table #table [dataSource]="dataSource">
