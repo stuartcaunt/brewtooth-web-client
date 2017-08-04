@@ -5,7 +5,7 @@ import {DataSource} from '@angular/cdk';
 import {Observable} from 'rxjs/Rx';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {MdDialog} from '@angular/material';
-import {DialogResultExampleDialog} from 'components';
+import {MaltCreateModalComponent} from 'components';
 
 @Component({
   selector: 'bt-malt-list',
@@ -16,7 +16,6 @@ import {DialogResultExampleDialog} from 'components';
 export class MaltListComponent implements OnInit {
   displayedColumns = ['maltName', 'grain', 'yield', 'ebc'];
   dataSource: MaltsDataSource | null;
-  selectedOption: string;
 
   @ViewChild('filter') filter: ElementRef;
 
@@ -37,11 +36,9 @@ export class MaltListComponent implements OnInit {
   }
 
   openCreateModal(): void {
-    console.log('click');
-    let dialogRef = this.dialog.open(DialogResultExampleDialog);
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-      this.selectedOption = result;
+    let dialogRef = this.dialog.open(MaltCreateModalComponent);
+    dialogRef.afterClosed().subscribe(malt => {
+      this.dataSource.reloadData();
     });
   }
 }
@@ -51,19 +48,25 @@ export class MaltsDataSource extends DataSource<any> {
   get filter(): string { return this._filterChange.value; }
   set filter(filter: string) { this._filterChange.next(filter); }
 
-  maltsObservable: Observable<Malt[]>;
+  maltsSubject: BehaviorSubject<Malt[]> = new BehaviorSubject<Malt[]>([]);
   malts: Malt[] = [];
 
   constructor(private maltService: MaltService) {
     super();
 
-    this.maltsObservable = this.maltService.getMalts();
-    this.maltsObservable.subscribe(malts => this.malts = malts);
+    this.reloadData();
+  }
+
+  reloadData(): void {
+    this.maltService.getMalts().subscribe(malts => {
+      this.malts = malts;
+      this.maltsSubject.next(malts);
+    });
   }
 
   connect(): Observable<Malt[]> {
     const displayDataChanges = [
-      this.maltsObservable,
+      this.maltsSubject,
       this._filterChange,
     ];
 
