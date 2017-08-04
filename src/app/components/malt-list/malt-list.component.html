@@ -1,18 +1,11 @@
 <h2>Malts</h2>
 
-<ul class="malts">
-  <li *ngFor="let malt of malts">
-    <span>{{malt.name}}</span>
-  </li>
-</ul>
-
-
 <div class="data-table-container mat-elevation-z8">
   <div class="data-table-header">
     <md-input-container floatPlaceholder="never">
       <input mdInput #filter placeholder="Filter malts">
     </md-input-container>
-    <div>
+    <div class="data-table-add-circle-outer">
       <i class="material-icons data-table-add-circle">add_circle</i>
     </div>
   </div>
