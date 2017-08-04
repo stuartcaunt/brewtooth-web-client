@@ -25,3 +25,8 @@
 .mat-table {
   overflow: auto;
 }
+
+.data-table-add-circle {
+  font-size: 48px;
+  color: #d34836;
+}
