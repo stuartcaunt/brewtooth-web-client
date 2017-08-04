@@ -5,7 +5,8 @@
     <md-input-container floatPlaceholder="never">
       <input mdInput #filter placeholder="Filter malts">
     </md-input-container>
-    <div class="data-table-add-circle-outer">
+
+    <div class="data-table-add-circle-outer" (click)="openCreateModal()">
       <i class="material-icons data-table-add-circle">add_circle</i>
     </div>
   </div>
@@ -14,7 +15,7 @@
 
     <ng-container cdkColumnDef="maltName">
       <md-header-cell *cdkHeaderCellDef> ID </md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{row.name}} </md-cell>
+      <md-cell *cdkCellDef="let malt"> {{malt.name}} </md-cell>
     </ng-container>
 
     <ng-container cdkColumnDef="grain">

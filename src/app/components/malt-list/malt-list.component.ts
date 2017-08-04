@@ -4,6 +4,8 @@ import { MaltService } from 'services';
 import {DataSource} from '@angular/cdk';
 import {Observable} from 'rxjs/Rx';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {MdDialog} from '@angular/material';
+import {DialogResultExampleDialog} from 'components';
 
 @Component({
   selector: 'bt-malt-list',
@@ -14,10 +16,11 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 export class MaltListComponent implements OnInit {
   displayedColumns = ['maltName', 'grain', 'yield', 'ebc'];
   dataSource: MaltsDataSource | null;
+  selectedOption: string;
 
   @ViewChild('filter') filter: ElementRef;
 
-  constructor (private maltService: MaltService) {
+  constructor (private maltService: MaltService, public dialog: MdDialog) {
   }
 
   ngOnInit(): void {
@@ -33,6 +36,14 @@ export class MaltListComponent implements OnInit {
       });
   }
 
+  openCreateModal(): void {
+    console.log('click');
+    let dialogRef = this.dialog.open(DialogResultExampleDialog);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      this.selectedOption = result;
+    });
+  }
 }
 
 export class MaltsDataSource extends DataSource<any> {

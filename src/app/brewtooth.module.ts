@@ -8,7 +8,7 @@ import { BrewtoothMaterialModule } from './brewtooth-material.module';
 
 import { BrewtoothComponent } from './brewtooth.component';
 
-import { MaltListComponent} from 'components';
+import { MaltListComponent, DialogResultExampleDialog} from 'components';
 
 import { MaltService } from 'services';
 
@@ -21,10 +21,12 @@ import { MaltService } from 'services';
   ],
   declarations: [
     BrewtoothComponent,
-    MaltListComponent
+    MaltListComponent,
+    DialogResultExampleDialog
   ],
   providers: [MaltService],
-  bootstrap: [BrewtoothComponent]
+  bootstrap: [BrewtoothComponent],
+  entryComponents: [DialogResultExampleDialog]
 })
 
 export class BrewtoothModule { }
