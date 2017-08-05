@@ -5,7 +5,8 @@ import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'malt-create-modal',
-  template: `<bt-malt-create #maltCreateComponent></bt-malt-create>`
+  template: `<div class="malt-create-modal-container"><bt-malt-create #maltCreateComponent></bt-malt-create></div>`,
+  styles: ['.malt-create-modal-container { width:500px}']
 })
 
 export class MaltCreateModalComponent implements OnInit {
