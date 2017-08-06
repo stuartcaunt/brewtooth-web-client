@@ -44,7 +44,7 @@
     <tr>
       <td>
         <md-input-container class="malt-edit-full-width">
-          <input mdInput placeholder="Description" type="text" value="{{malt.description}}" [(ngModel)]="malt.description"/>
+          <textarea mdInput placeholder="Description" type="text" [(ngModel)]="malt.description">{{malt.description}}</textarea>
         </md-input-container>
       </td>
     </tr>
@@ -52,7 +52,7 @@
     <tr>
       <td>
         <md-input-container class="malt-edit-full-width">
-          <input mdInput placeholder="URL" type="text" value="{{malt.url}}" [(ngModel)]="malt.url"/>
+          <textarea mdInput placeholder="URL" type="text"[(ngModel)]="malt.url">{{malt.url}}</textarea>
         </md-input-container>
       </td>
     </tr>

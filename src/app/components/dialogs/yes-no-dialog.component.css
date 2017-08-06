@@ -1,0 +1,12 @@
+.yes-no-dialog-container {
+  max-width: 400px;
+}
+
+.yes-no-dialog-cell-message {
+  padding-bottom: 16px;
+}
+
+.yes-no-dialog-cell-button {
+  margin-right: 10px;
+}
+

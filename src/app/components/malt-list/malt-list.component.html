@@ -33,6 +33,11 @@
       <md-cell class="data-table-cell" *cdkCellDef="let malt" (click)="openEditModal(malt)"> {{malt.ebc}} </md-cell>
     </ng-container>
 
+    <ng-container cdkColumnDef="delete">
+      <md-header-cell *cdkHeaderCellDef [ngClass]="'data-table-cell-small'"></md-header-cell>
+      <md-cell *cdkCellDef="let malt" [ngClass]="'data-table-cell-small'" (click)="deleteMaltWithConfirm(malt)"><i class="material-icons data-table-delete">delete</i></md-cell>
+    </ng-container>
+
     <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
     <md-row *cdkRowDef="let malt; columns: displayedColumns;"></md-row>
   </md-table>

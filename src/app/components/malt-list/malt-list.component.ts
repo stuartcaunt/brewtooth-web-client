@@ -6,6 +6,7 @@ import {Observable} from 'rxjs/Rx';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {MdDialog} from '@angular/material';
 import {MaltEditModalComponent} from 'components';
+import {YesNoDialogComponent} from '../dialogs/yes-no-dialog.component';
 
 @Component({
   selector: 'bt-malt-list',
@@ -14,7 +15,7 @@ import {MaltEditModalComponent} from 'components';
 })
 
 export class MaltListComponent implements OnInit {
-  displayedColumns = ['maltName', 'grain', 'yield', 'ebc'];
+  displayedColumns = ['maltName', 'grain', 'yield', 'ebc', 'delete'];
   dataSource: MaltsDataSource | null;
 
   @ViewChild('filter') filter: ElementRef;
@@ -47,6 +48,22 @@ export class MaltListComponent implements OnInit {
       malt = new Malt();
     }
     dialogRef.componentInstance.malt = malt;
+  }
+
+  deleteMaltWithConfirm(malt: Malt): void {
+    let dialogRef = this.dialog.open(YesNoDialogComponent);
+    dialogRef.componentInstance.message = ('Are you sure you want to delete the malt \"' + malt.name + '\"');
+    dialogRef.afterClosed().subscribe(doDelete => {
+      if (doDelete) {
+        this.deleteMalt(malt);
+      }
+    });
+  }
+
+  deleteMalt(malt: Malt): void {
+    this.maltService.delete(malt).then(() => {
+      this.dataSource.reloadData();
+    });
   }
 }
 
