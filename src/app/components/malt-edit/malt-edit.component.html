@@ -1,8 +1,8 @@
-<div class="malt-create-container">
-  <table class="malt-create-full-width" cellspacing="0">
+<div class="malt-edit-container">
+  <table class="malt-edit-full-width" cellspacing="0">
     <tr>
       <td>
-        <md-input-container class="malt-create-full-width">
+        <md-input-container class="malt-edit-full-width">
           <input mdInput placeholder="Name" type="text" required [formControl]="nameFormControl" [(ngModel)]="malt.name"/>
         </md-input-container>
       </td>
@@ -10,7 +10,7 @@
 
     <tr>
       <td>
-        <md-select class="malt-create-full-width malt-create-select-spacer" placeholder="Grain" required [formControl]="grainFormControl" [(ngModel)]="malt.grain">
+        <md-select class="malt-edit-full-width malt-edit-select-spacer" placeholder="Grain" required [formControl]="grainFormControl" [(ngModel)]="malt.grain">
           <md-option *ngFor="let grain of grains" [value]="grain.value" >{{ grain.viewValue }}</md-option>
         </md-select>
       </td>
@@ -18,7 +18,7 @@
 
     <tr>
       <td>
-        <md-input-container class="malt-create-full-width">
+        <md-input-container class="malt-edit-full-width">
           <input mdInput placeholder="Yield" type="number" step="0.1" required [formControl]="yieldFormControl" [(ngModel)]="malt.yield"/>
           <md-error *ngIf="yieldFormControl.hasError('min')">
             The yield must be above 0
@@ -32,7 +32,7 @@
 
     <tr>
       <td>
-        <md-input-container class="malt-create-full-width">
+        <md-input-container class="malt-edit-full-width">
           <input mdInput placeholder="EBC" type="number" step="1" required [formControl]="ebcFormControl" [(ngModel)]="malt.ebc"/>
           <md-error *ngIf="ebcFormControl.hasError('min')">
             The ebc must be above 0
@@ -43,7 +43,7 @@
 
     <tr>
       <td>
-        <md-input-container class="malt-create-full-width">
+        <md-input-container class="malt-edit-full-width">
           <input mdInput placeholder="Description" type="text" value="{{malt.description}}" [(ngModel)]="malt.description"/>
         </md-input-container>
       </td>
@@ -51,7 +51,7 @@
 
     <tr>
       <td>
-        <md-input-container class="malt-create-full-width">
+        <md-input-container class="malt-edit-full-width">
           <input mdInput placeholder="URL" type="text" value="{{malt.url}}" [(ngModel)]="malt.url"/>
         </md-input-container>
       </td>
@@ -60,5 +60,6 @@
   </table>
 
 
-  <button type="button" md-button (click)="save()">Save</button>
+  <button md-raised-button (click)="save()">Save</button>
+  <button md-raised-button (click)="cancel()">Cancel</button>
 </div>

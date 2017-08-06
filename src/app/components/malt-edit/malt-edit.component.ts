@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {Malt} from 'models';
 import {MaltService} from 'services';
@@ -6,15 +6,23 @@ import {Subject} from 'rxjs/Subject';
 import {FormControl, Validators} from '@angular/forms';
 
 @Component({
-  selector: 'bt-malt-create',
-  templateUrl: './malt-create.component.html',
-  styleUrls: [ './malt-create.component.css' ]
+  selector: 'bt-malt-edit',
+  templateUrl: './malt-edit.component.html',
+  styleUrls: [ './malt-edit.component.css' ]
 })
 
-export class MaltCreateComponent {
+export class MaltEditComponent {
 
   maltSubject: Subject<Malt> = new Subject<Malt>();
-  malt: Malt = new Malt();
+  private _malt: Malt = new Malt();
+
+  get malt(): Malt {
+    return this._malt;
+  }
+
+  set malt(malt: Malt) {
+    this._malt = new Malt().copy(malt);
+  }
 
   grains = [
     {value: 'BARLEY', viewValue: 'Barley'},
@@ -35,18 +43,27 @@ export class MaltCreateComponent {
 
   save() {
     if (this.nameFormControl.valid && this.grainFormControl.valid && this.yieldFormControl.valid && this.ebcFormControl.valid) {
-      // this.malt.name = this.nameFormControl.value;
-      // this.malt.grain = this.grainFormControl.value;
-      // this.malt.yield = this.yieldFormControl.value;
-      // this.malt.ebc = this.ebcFormControl.value;
 
       // Save malt
-      this.maltService.create(this.malt).then(malt => {
-        this.malt = malt;
+      let saveMaltPromise: Promise<Malt>;
+      if (this._malt.id != null) {
+        saveMaltPromise = this.maltService.update(this._malt);
+
+      } else {
+        saveMaltPromise = this.maltService.create(this._malt);
+      }
+
+      saveMaltPromise.then(malt => {
+        this._malt = malt;
 
         // Notify observers
-        this.maltSubject.next(this.malt);
+        this.maltSubject.next(this._malt);
       });
     }
+  }
+
+  cancel() {
+    // Notify observers - send null object
+    this.maltSubject.next(null);
   }
 }

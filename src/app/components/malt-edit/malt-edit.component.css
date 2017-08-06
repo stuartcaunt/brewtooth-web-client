@@ -1,12 +1,12 @@
-.malt-create-container {
+.malt-edit-container {
   width: 100%;
 }
 
-.malt-create-full-width {
+.malt-edit-full-width {
   width: 100%;
 }
 
-.malt-create-select-spacer {
+.malt-edit-select-spacer {
   margin-top: 20px;
   margin-bottom: 20px;
 }

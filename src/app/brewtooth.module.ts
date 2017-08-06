@@ -11,8 +11,8 @@ import { BrewtoothComponent } from './brewtooth.component';
 
 import {
   MaltListComponent,
-  MaltCreateComponent,
-  MaltCreateModalComponent
+  MaltEditComponent,
+  MaltEditModalComponent
 } from 'components';
 
 import { MaltService } from 'services';
@@ -29,12 +29,12 @@ import { MaltService } from 'services';
   declarations: [
     BrewtoothComponent,
     MaltListComponent,
-    MaltCreateComponent,
-    MaltCreateModalComponent
+    MaltEditComponent,
+    MaltEditModalComponent
   ],
   providers: [MaltService],
   bootstrap: [BrewtoothComponent],
-  entryComponents: [MaltCreateModalComponent]
+  entryComponents: [MaltEditModalComponent]
 })
 
 export class BrewtoothModule { }

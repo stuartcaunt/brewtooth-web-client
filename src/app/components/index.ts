@@ -1,2 +1,2 @@
 export * from './malt-list';
-export * from './malt-create';
+export * from './malt-edit';

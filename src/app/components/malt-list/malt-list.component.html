@@ -6,7 +6,7 @@
       <input mdInput #filter placeholder="Filter malts">
     </md-input-container>
 
-    <div class="data-table-add-circle-outer" (click)="openCreateModal()">
+    <div class="data-table-add-circle-outer" (click)="openEditModal()">
       <i class="material-icons data-table-add-circle">add_circle</i>
     </div>
   </div>
@@ -14,23 +14,23 @@
   <md-table #table [dataSource]="dataSource">
 
     <ng-container cdkColumnDef="maltName">
-      <md-header-cell *cdkHeaderCellDef> ID </md-header-cell>
-      <md-cell *cdkCellDef="let malt"> {{malt.name}} </md-cell>
+      <md-header-cell *cdkHeaderCellDef> Name </md-header-cell>
+      <md-cell class="data-table-cell" *cdkCellDef="let malt" (click)="openEditModal(malt)"> {{malt.name}} </md-cell>
     </ng-container>
 
     <ng-container cdkColumnDef="grain">
       <md-header-cell *cdkHeaderCellDef> Grain </md-header-cell>
-      <md-cell *cdkCellDef="let malt"> {{malt.grain}} </md-cell>
+      <md-cell class="data-table-cell" *cdkCellDef="let malt" (click)="openEditModal(malt)"> {{malt.grain}} </md-cell>
     </ng-container>
 
     <ng-container cdkColumnDef="yield">
       <md-header-cell *cdkHeaderCellDef> Yield </md-header-cell>
-      <md-cell *cdkCellDef="let malt"> {{malt.yield}} </md-cell>
+      <md-cell class="data-table-cell" *cdkCellDef="let malt" (click)="openEditModal(malt)"> {{malt.yield}} </md-cell>
     </ng-container>
 
     <ng-container cdkColumnDef="ebc">
       <md-header-cell *cdkHeaderCellDef> EBC </md-header-cell>
-      <md-cell *cdkCellDef="let malt"> {{malt.ebc}} </md-cell>
+      <md-cell class="data-table-cell" *cdkCellDef="let malt" (click)="openEditModal(malt)"> {{malt.ebc}} </md-cell>
     </ng-container>
 
     <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>

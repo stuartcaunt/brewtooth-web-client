@@ -5,7 +5,7 @@ import {DataSource} from '@angular/cdk';
 import {Observable} from 'rxjs/Rx';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {MdDialog} from '@angular/material';
-import {MaltCreateModalComponent} from 'components';
+import {MaltEditModalComponent} from 'components';
 
 @Component({
   selector: 'bt-malt-list',
@@ -35,11 +35,18 @@ export class MaltListComponent implements OnInit {
       });
   }
 
-  openCreateModal(): void {
-    let dialogRef = this.dialog.open(MaltCreateModalComponent);
-    dialogRef.afterClosed().subscribe(malt => {
-      this.dataSource.reloadData();
+  openEditModal(malt: Malt): void {
+    let dialogRef = this.dialog.open(MaltEditModalComponent);
+    dialogRef.afterClosed().subscribe(returnedMalt => {
+      if (returnedMalt != null) {
+        this.dataSource.reloadData();
+      }
     });
+
+    if (malt == null) {
+      malt = new Malt();
+    }
+    dialogRef.componentInstance.malt = malt;
   }
 }
 
@@ -49,7 +56,7 @@ export class MaltsDataSource extends DataSource<any> {
   set filter(filter: string) { this._filterChange.next(filter); }
 
   maltsSubject: BehaviorSubject<Malt[]> = new BehaviorSubject<Malt[]>([]);
-  malts: Malt[] = [];
+  malts: Malt[] = new Array<Malt>();
 
   constructor(private maltService: MaltService) {
     super();
