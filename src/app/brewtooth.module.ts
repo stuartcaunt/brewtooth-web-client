@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import 'hammerjs';
 
 import { BrewtoothMaterialModule } from './brewtooth-material.module';
+import { BrewtoothRoutingModule } from './brewtooth-routing.module';
 
 import { BrewtoothComponent } from './brewtooth.component';
 
@@ -24,8 +25,9 @@ import { MaltService } from 'services';
     HttpModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
     BrewtoothMaterialModule,
-    BrowserAnimationsModule
+    BrewtoothRoutingModule
   ],
   declarations: [
     BrewtoothComponent,

@@ -1,7 +1,8 @@
 import {NgModule} from '@angular/core';
 import {CdkTableModule} from '@angular/cdk';
 import {
-  MdButtonModule, MdCheckboxModule, MdInputModule, MdTableModule, MdDialogModule, MdSelectModule
+  MdButtonModule, MdCheckboxModule, MdInputModule, MdTableModule, MdDialogModule, MdSelectModule,
+  MdToolbarModule
 } from '@angular/material';
 
 @NgModule({
@@ -12,7 +13,8 @@ import {
     MdInputModule,
     CdkTableModule,
     MdDialogModule,
-    MdSelectModule
+    MdSelectModule,
+    MdToolbarModule
   ],
   exports: [
     MdButtonModule,
@@ -21,7 +23,8 @@ import {
     MdInputModule,
     CdkTableModule,
     MdDialogModule,
-    MdSelectModule
+    MdSelectModule,
+    MdToolbarModule
   ],
 })
 

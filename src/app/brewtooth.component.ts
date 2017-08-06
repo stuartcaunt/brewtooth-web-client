@@ -3,8 +3,10 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'brewtooth-root',
   template: `
-    <h1>{{title}}</h1>
-    <bt-malt-list></bt-malt-list>
+    <md-toolbar color="primary" class="mat-elevation-z6">
+      <h1>{{title}}</h1>
+    </md-toolbar>
+    <router-outlet></router-outlet>
   `
 })
 
