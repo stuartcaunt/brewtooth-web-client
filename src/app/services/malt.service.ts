@@ -22,6 +22,15 @@ export class MaltService {
       .map(response => response.json() as Malt[]);
   }
 
+  save(malt: Malt): Promise<Malt> {
+    if (malt.id == null) {
+      return this.create(malt);
+
+    } else {
+      return this.update(malt);
+    }
+  }
+
   create(malt: Malt): Promise<Malt> {
     const url = `${environment.apiUrl}/malts`;
     return this.http

@@ -45,15 +45,7 @@ export class MaltEditComponent {
     if (this.nameFormControl.valid && this.grainFormControl.valid && this.yieldFormControl.valid && this.ebcFormControl.valid) {
 
       // Save malt
-      let saveMaltPromise: Promise<Malt>;
-      if (this._malt.id != null) {
-        saveMaltPromise = this.maltService.update(this._malt);
-
-      } else {
-        saveMaltPromise = this.maltService.create(this._malt);
-      }
-
-      saveMaltPromise.then(malt => {
+      this.maltService.save(this._malt).then(malt => {
         this._malt = malt;
 
         // Notify observers
