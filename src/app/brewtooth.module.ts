@@ -14,7 +14,8 @@ import {
   MaltListComponent,
   MaltEditComponent,
   MaltEditModalComponent,
-  YesNoDialogComponent
+  YesNoDialogComponent,
+  IngredientsComponent
 } from 'components';
 
 import { MaltService } from 'services';
@@ -34,7 +35,8 @@ import { MaltService } from 'services';
     MaltListComponent,
     MaltEditComponent,
     MaltEditModalComponent,
-    YesNoDialogComponent
+    YesNoDialogComponent,
+    IngredientsComponent
   ],
   providers: [MaltService],
   bootstrap: [BrewtoothComponent],

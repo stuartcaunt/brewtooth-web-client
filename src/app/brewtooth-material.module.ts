@@ -1,30 +1,30 @@
 import {NgModule} from '@angular/core';
 import {CdkTableModule} from '@angular/cdk';
 import {
-  MdButtonModule, MdCheckboxModule, MdInputModule, MdTableModule, MdDialogModule, MdSelectModule,
-  MdToolbarModule
+  MdButtonModule, MdInputModule, MdTableModule, MdDialogModule, MdSelectModule,
+  MdToolbarModule, MdIconModule
 } from '@angular/material';
 
 @NgModule({
   imports: [
     MdButtonModule,
-    MdCheckboxModule,
     MdTableModule,
     MdInputModule,
     CdkTableModule,
     MdDialogModule,
     MdSelectModule,
-    MdToolbarModule
+    MdToolbarModule,
+    MdIconModule
   ],
   exports: [
     MdButtonModule,
-    MdCheckboxModule,
     MdTableModule,
     MdInputModule,
     CdkTableModule,
     MdDialogModule,
     MdSelectModule,
-    MdToolbarModule
+    MdToolbarModule,
+    MdIconModule
   ],
 })
 

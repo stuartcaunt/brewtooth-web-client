@@ -4,7 +4,7 @@ import {Malt} from 'models';
 import {Observable} from 'rxjs/Observable';
 
 @Component({
-  selector: 'malt-edit-modal',
+  selector: 'bt-malt-edit-modal',
   template: `<div class="malt-edit-modal-container"><bt-malt-edit #maltEditComponent></bt-malt-edit></div>`,
   styles: ['.malt-edit-modal-container { width:500px}']
 })

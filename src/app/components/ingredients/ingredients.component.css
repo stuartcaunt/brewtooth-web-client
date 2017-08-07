@@ -1,0 +1,25 @@
+.ingredients-container {
+}
+
+.ingredients-sidenav-container {
+  background-color: #0F0;
+  width: 500px;
+  height: 300px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.ingredients-sidenav-container md-sidenav {
+  max-width: 200px;
+}
+
+
+.ingredients-sidenav-container .mat-sidenav-content,
+.ingredients-sidenav-container md-sidenav {
+  display: flex;
+  overflow: visible;
+}
+
+
+.ingredients-sidenav {
+  background-color: #f00;
+}
