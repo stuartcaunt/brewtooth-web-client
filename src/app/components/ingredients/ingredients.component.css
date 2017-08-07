@@ -1,25 +1,14 @@
-.ingredients-container {
+
+.ingredients-sidenav-container md-sidenav {
+  min-width: 250px;
+  max-width: 400px;
+  box-shadow: 3px 0 6px rgba(0, 0, 0, 0.24);
 }
 
 .ingredients-sidenav-container {
-  background-color: #0F0;
-  width: 500px;
-  height: 300px;
-  border: 1px solid rgba(0, 0, 0, 0.5);
-}
-
-.ingredients-sidenav-container md-sidenav {
-  max-width: 200px;
-}
-
-
-.ingredients-sidenav-container .mat-sidenav-content,
-.ingredients-sidenav-container md-sidenav {
-  display: flex;
-  overflow: visible;
-}
-
-
-.ingredients-sidenav {
-  background-color: #f00;
+  position: fixed !important;
+  height: 100%;
+  min-height: 100%;
+  width: 100%;
+  min-width: 100%;
 }

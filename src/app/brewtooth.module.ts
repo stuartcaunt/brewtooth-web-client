@@ -8,9 +8,8 @@ import 'hammerjs';
 import { BrewtoothMaterialModule } from './brewtooth-material.module';
 import { BrewtoothRoutingModule } from './brewtooth-routing.module';
 
-import { BrewtoothComponent } from './brewtooth.component';
-
 import {
+  AppComponent,
   MaltListComponent,
   MaltEditComponent,
   MaltEditModalComponent,
@@ -31,7 +30,7 @@ import { MaltService } from 'services';
     BrewtoothRoutingModule
   ],
   declarations: [
-    BrewtoothComponent,
+    AppComponent,
     MaltListComponent,
     MaltEditComponent,
     MaltEditModalComponent,
@@ -39,7 +38,7 @@ import { MaltService } from 'services';
     IngredientsComponent
   ],
   providers: [MaltService],
-  bootstrap: [BrewtoothComponent],
+  bootstrap: [AppComponent],
   entryComponents: [MaltEditModalComponent, YesNoDialogComponent]
 })
 
