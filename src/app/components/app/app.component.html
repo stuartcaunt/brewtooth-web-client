@@ -1,7 +1,58 @@
-<div class="app-container">
-  <md-toolbar color="primary" class="mat-elevation-z6 app-toolbar-header">
+<div class="bt-container">
+  <md-toolbar color="primary" class="mat-elevation-z6 bt-toolbar-header">
     <h1>{{title}}</h1>
   </md-toolbar>
-  <router-outlet></router-outlet>
+
+  <div class="bt-container">
+
+    <md-sidenav-container class="bt-sidenav-container"  >
+      <md-sidenav #sidenav mode="side" opened="true" class="bt-sidenav" flex>
+
+        <div class="bt-sidenav">
+          <nav>
+            <h3>Recipes</h3>
+            <ul>
+              <li>
+                <a>Latest</a>
+              </li>
+              <li>
+                <a>Popular</a>
+              </li>
+              <li>
+                <a>All</a>
+              </li>
+            </ul>
+            <h3><a>Mashes</a></h3>
+            <ul>
+              <li>
+                <a>Latest</a>
+              </li>
+              <li>
+                <a>All</a>
+              </li>
+            </ul>
+            <a routerLink="/ingredients" routerLinkActive="bt-sidenav-selected"><h3>Raw ingredients</h3></a>
+            <ul>
+              <li>
+                <a routerLink="/malts" routerLinkActive="bt-sidenav-selected">Malts</a>
+              </li>
+              <li>
+                <a>Hops</a>
+              </li>
+              <li>
+                <a>Yeasts</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+      </md-sidenav>
+
+      <router-outlet></router-outlet>
+
+    </md-sidenav-container>
+
+  </div>
+
 </div>
-<div class="app-footer mat-toolbar mat-primary"></div>
+<div class="bt-footer mat-toolbar mat-primary"></div>

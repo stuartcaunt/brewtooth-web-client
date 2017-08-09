@@ -3,13 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 
 import {
   MaltListComponent,
+  AppComponent,
   IngredientsComponent
 } from 'components';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/malts', pathMatch: 'full' },
-  { path: 'malts',     component: MaltListComponent },
-  { path: 'ingredients',     component: IngredientsComponent }
+  { path: '', component: AppComponent },
+  { path: 'malts', component: MaltListComponent },
+  { path: 'ingredients', component: IngredientsComponent }
 ];
 
 @NgModule({
