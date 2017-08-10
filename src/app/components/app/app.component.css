@@ -1,16 +1,9 @@
 
 .bt-container {
-  position: relative;
-  height: auto !important;
-  min-height: 100%;
 }
 
 .bt-toolbar-header {
   z-index: 10;
-  position: relative
-}
-
-.bt-content {
 }
 
 .bt-sidenav-container md-sidenav {
@@ -26,6 +19,11 @@
   width: 100%;
   min-width: 100%;
 }
+
+.bt-sidenav {
+  padding-bottom: 72px;
+}
+
 
 .bt-sidenav h3 {
   background: #aaa;

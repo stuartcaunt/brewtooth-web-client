@@ -3,57 +3,56 @@
     <h1>{{title}}</h1>
   </md-toolbar>
 
-  <div class="bt-container">
+  <md-sidenav-container class="bt-sidenav-container">
+    <md-sidenav mode="side" opened="true" class="bt-sidenav">
 
-    <md-sidenav-container class="bt-sidenav-container"  >
-      <md-sidenav #sidenav mode="side" opened="true">
+      <nav>
+        <h3>Recipes</h3>
+        <ul>
+          <li>
+            <a>Latest</a>
+          </li>
+          <li>
+            <a>Popular</a>
+          </li>
+          <li>
+            <a>All</a>
+          </li>
+        </ul>
+      </nav>
+      <nav>
+        <h3><a>Mashes</a></h3>
+        <ul>
+          <li>
+            <a>Latest</a>
+          </li>
+          <li>
+            <a>All</a>
+          </li>
+        </ul>
+      </nav>
+      <nav>
+        <a routerLink="/ingredients" routerLinkActive="bt-sidenav-selected"><h3>Raw ingredients</h3></a>
+        <ul>
+          <li>
+            <a routerLink="/malts" routerLinkActive="bt-sidenav-selected">Malts</a>
+          </li>
+          <li>
+            <a>Hops</a>
+          </li>
+          <li>
+            <a>Yeasts</a>
+          </li>
+        </ul>
 
-        <div class="bt-sidenav bt-scrolling-content">
-          <nav>
-            <h3>Recipes</h3>
-            <ul>
-              <li>
-                <a>Latest</a>
-              </li>
-              <li>
-                <a>Popular</a>
-              </li>
-              <li>
-                <a>All</a>
-              </li>
-            </ul>
-            <h3><a>Mashes</a></h3>
-            <ul>
-              <li>
-                <a>Latest</a>
-              </li>
-              <li>
-                <a>All</a>
-              </li>
-            </ul>
-            <a routerLink="/ingredients" routerLinkActive="bt-sidenav-selected"><h3>Raw ingredients</h3></a>
-            <ul>
-              <li>
-                <a routerLink="/malts" routerLinkActive="bt-sidenav-selected">Malts</a>
-              </li>
-              <li>
-                <a>Hops</a>
-              </li>
-              <li>
-                <a>Yeasts</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
+      </nav>
 
-      </md-sidenav>
+    </md-sidenav>
 
-      <div class="bt-content bt-scrolling-content">
-        <router-outlet></router-outlet>
-      </div>
+    <div class="bt-content">
+      <router-outlet></router-outlet>
+    </div>
 
-    </md-sidenav-container>
-
-  </div>
+  </md-sidenav-container>
 
 </div>
