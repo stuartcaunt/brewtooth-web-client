@@ -4,6 +4,7 @@
   max-height: 500px;
   min-width: 300px;
   overflow: auto;
+  padding: 20px;
 }
 
 .data-table-header {

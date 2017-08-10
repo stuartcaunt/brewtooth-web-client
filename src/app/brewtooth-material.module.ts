@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {CdkTableModule} from '@angular/cdk';
 import {
   MdButtonModule, MdInputModule, MdTableModule, MdDialogModule, MdSelectModule,
-  MdToolbarModule, MdIconModule, MdSidenavModule
+  MdToolbarModule, MdIconModule, MdSidenavModule, MdCardModule
 } from '@angular/material';
 
 @NgModule({
@@ -15,7 +15,8 @@ import {
     MdSelectModule,
     MdToolbarModule,
     MdIconModule,
-    MdSidenavModule
+    MdSidenavModule,
+    MdCardModule
   ],
   exports: [
     MdButtonModule,
@@ -26,7 +27,8 @@ import {
     MdSelectModule,
     MdToolbarModule,
     MdIconModule,
-    MdSidenavModule
+    MdSidenavModule,
+    MdCardModule
   ],
 })
 

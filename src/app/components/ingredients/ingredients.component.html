@@ -1,4 +1,12 @@
 <div class="ingredients-container">
 
+  <md-card *ngFor="let card of cards" class="ingredient-card" (click)="navigateTo(card)">
+    <md-card-title>
+      {{card.title}}
+    </md-card-title>
+    <md-card-content>
+      {{card.description}};
+    </md-card-content>
+  </md-card>
 
 </div>
