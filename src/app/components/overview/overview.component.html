@@ -1,10 +1,10 @@
 <md-toolbar color="primary" class="">
-  <h1>Ingredients</h1>
+  <h1>Overview</h1>
 </md-toolbar>
 
-<div class="ingredients-container">
+<div class="overview-container">
 
-  <md-card *ngFor="let card of cards" class="ingredient-card" (click)="navigateTo(card)">
+  <md-card *ngFor="let card of cards" class="overview-card" (click)="navigateTo(card)">
     <md-card-title>
       {{card.title}}
     </md-card-title>

@@ -3,12 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 
 import {
   MaltListComponent,
-  AppComponent,
+  OverviewComponent,
   IngredientsComponent
 } from 'components';
 
 const routes: Routes = [
-  { path: '', component: AppComponent },
+  { path: '', component: OverviewComponent },
   { path: 'malts', component: MaltListComponent },
   { path: 'ingredients', component: IngredientsComponent }
 ];

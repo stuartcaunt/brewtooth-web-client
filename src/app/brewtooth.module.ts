@@ -10,6 +10,7 @@ import { BrewtoothRoutingModule } from './brewtooth-routing.module';
 
 import {
   AppComponent,
+  OverviewComponent,
   MaltListComponent,
   MaltEditComponent,
   MaltEditModalComponent,
@@ -31,6 +32,7 @@ import { MaltService } from 'services';
   ],
   declarations: [
     AppComponent,
+    OverviewComponent,
     MaltListComponent,
     MaltEditComponent,
     MaltEditModalComponent,

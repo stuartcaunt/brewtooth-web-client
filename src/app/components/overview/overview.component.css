@@ -1,0 +1,13 @@
+.overview-container {
+  padding: 40px;
+}
+
+.overview-card {
+  cursor: pointer;
+  display: inline-block;
+  margin: 30px;
+  vertical-align: top;
+  width: 320px;
+  min-height: 180px;
+}
+
