@@ -1,78 +1,21 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
-interface MenuItem {
-  title: string;
-  route: string;
-}
-
-interface MenuGroup extends MenuItem {
-  menuItems: MenuItem[];
-}
-
-
-let menu: MenuGroup[] = [
-  {
-    title: 'Recipes',
-    menuItems: [
-      {
-        title: 'Latest',
-        route: null
-      },
-      {
-        title: 'Popular',
-        route: null
-      },
-      {
-        title: 'All',
-        route: null
-      }
-    ],
-    route: null
-  },
-  {
-    title: 'Mashes',
-    menuItems: [
-      {
-        title: 'Latest',
-        route: null
-      },
-      {
-        title: 'All',
-        route: null
-      }
-    ],
-    route: null
-  },
-  {
-    title: 'Ingredients',
-    route: '/ingredients',
-    menuItems: [
-      {
-        title: 'Malts',
-        route: '/malts'
-      },
-      {
-        title: 'Hops',
-        route: null
-      },
-      {
-        title: 'Yeasts',
-        route: null
-      },
-      {
-        title: 'Other ingredients',
-        route: null
-      }
-    ]
-  }
-];
+import {MenuItem} from 'models';
+import {MenuService} from 'services';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'BrewTooth';
-  menu = menu;
+  menu: MenuItem;
+
+  constructor(private menuService: MenuService) {
+  }
+
+  ngOnInit(): void {
+    this.menu = this.menuService.getMainMenu();
+  }
 }

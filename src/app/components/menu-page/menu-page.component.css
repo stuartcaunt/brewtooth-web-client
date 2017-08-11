@@ -1,8 +1,8 @@
-.overview-container {
+.menu-page-container {
   padding: 40px;
 }
 
-.overview-card {
+.menu-page-card {
   cursor: pointer;
   display: inline-block;
   margin: 30px;

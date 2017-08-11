@@ -3,21 +3,21 @@ import { RouterModule, Routes } from '@angular/router';
 
 import {
   MaltListComponent,
-  OverviewComponent,
-  IngredientsComponent
+  MenuPageComponent
 } from 'components';
 
 const routes: Routes = [
-  { path: '', component: OverviewComponent },
+  { path: '', component: MenuPageComponent },
   { path: 'malts', component: MaltListComponent },
-  { path: 'ingredients', component: IngredientsComponent }
+  { path: 'recipes', component: MenuPageComponent },
+  { path: 'mashes', component: MenuPageComponent },
+  { path: 'ingredients', component: MenuPageComponent }
 ];
 
 @NgModule({
   imports: [ RouterModule.forRoot(routes) ],
   exports: [ RouterModule ]
 })
-
 export class BrewtoothRoutingModule {
 
 }

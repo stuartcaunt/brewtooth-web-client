@@ -76,6 +76,10 @@ a.bt-sidenav-selected h3 {
 
 .bt-sidenav li>a {
   cursor: pointer;
+}
+
+.bt-sidenav li>p, li>a  {
+  margin: 0px;
   box-sizing: border-box;
   display: block;
   font-size: 14px;

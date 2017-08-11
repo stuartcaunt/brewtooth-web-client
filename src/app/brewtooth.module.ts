@@ -10,15 +10,17 @@ import { BrewtoothRoutingModule } from './brewtooth-routing.module';
 
 import {
   AppComponent,
-  OverviewComponent,
+  MenuPageComponent,
   MaltListComponent,
   MaltEditComponent,
   MaltEditModalComponent,
-  YesNoDialogComponent,
-  IngredientsComponent
+  YesNoDialogComponent
 } from 'components';
 
-import { MaltService } from 'services';
+import {
+  MaltService,
+  MenuService
+} from 'services';
 
 @NgModule({
   imports: [
@@ -32,14 +34,13 @@ import { MaltService } from 'services';
   ],
   declarations: [
     AppComponent,
-    OverviewComponent,
+    MenuPageComponent,
     MaltListComponent,
     MaltEditComponent,
     MaltEditModalComponent,
-    YesNoDialogComponent,
-    IngredientsComponent
+    YesNoDialogComponent
   ],
-  providers: [MaltService],
+  providers: [MaltService, MenuService],
   bootstrap: [AppComponent],
   entryComponents: [MaltEditModalComponent, YesNoDialogComponent]
 })

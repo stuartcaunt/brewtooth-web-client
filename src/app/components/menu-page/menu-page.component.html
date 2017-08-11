@@ -1,0 +1,16 @@
+<md-toolbar color="primary" class="">
+  <h1>{{menu.title}}</h1>
+</md-toolbar>
+
+<div class="menu-page-container">
+
+  <md-card *ngFor="let menuItem of menu.children" class="menu-page-card" (click)="navigateTo(menuItem)">
+    <md-card-title>
+      {{menuItem.title}}
+    </md-card-title>
+    <md-card-content>
+      {{menuItem.description}}
+    </md-card-content>
+  </md-card>
+
+</div>

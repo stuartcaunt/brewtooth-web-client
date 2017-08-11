@@ -6,14 +6,14 @@
   <md-sidenav-container class="bt-sidenav-container">
     <md-sidenav mode="side" opened="true" class="bt-sidenav">
 
-      <nav *ngFor="let group of menu">
+      <nav *ngFor="let group of menu.children">
         <a *ngIf="group.route != null; else noLinkTitle" routerLink="{{group.route}}" routerLinkActive="bt-sidenav-selected"><h3>{{group.title}}</h3></a>
         <ng-template #noLinkTitle><h3>{{group.title}}</h3></ng-template>
 
         <ul>
-          <li *ngFor="let item of group.menuItems">
+          <li *ngFor="let item of group.children">
             <a *ngIf="item.route != null; else noLinkItem" routerLink="{{item.route}}" routerLinkActive="bt-sidenav-selected">{{item.title}}</a>
-            <ng-template #noLinkItem><a>{{item.title}}</a></ng-template>
+            <ng-template #noLinkItem><p>{{item.title}}</p></ng-template>
           </li>
 
         </ul>
