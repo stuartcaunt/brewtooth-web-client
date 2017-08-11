@@ -1,4 +1,9 @@
 
+.bt-toolbar-header a {
+  text-decoration: none;
+  color: #fff;
+}
+
 .bt-container {
 }
 
