@@ -1,8 +1,8 @@
 <div class="malt-edit-container">
-  <table class="malt-edit-full-width" cellspacing="0">
+  <table class="data-form-full-width" cellspacing="0">
     <tr>
       <td>
-        <md-input-container class="malt-edit-full-width">
+        <md-input-container class="data-form-full-width">
           <input mdInput placeholder="Name" type="text" required [formControl]="nameFormControl" [(ngModel)]="malt.name"/>
         </md-input-container>
       </td>
@@ -10,7 +10,7 @@
 
     <tr>
       <td>
-        <md-select class="malt-edit-full-width malt-edit-select-spacer" placeholder="Grain" required [formControl]="grainFormControl" [(ngModel)]="malt.grain">
+        <md-select class="data-form-full-width data-form-select-spacer" placeholder="Grain" required [formControl]="grainFormControl" [(ngModel)]="malt.grain">
           <md-option *ngFor="let grain of grains" [value]="grain.value" >{{ grain.viewValue }}</md-option>
         </md-select>
       </td>
@@ -18,7 +18,7 @@
 
     <tr>
       <td>
-        <md-input-container class="malt-edit-full-width">
+        <md-input-container class="data-form-full-width">
           <input mdInput placeholder="Yield" type="number" step="0.1" required [formControl]="yieldFormControl" [(ngModel)]="malt.yield"/>
           <md-error *ngIf="yieldFormControl.hasError('min')">
             The yield must be above 0
@@ -32,7 +32,7 @@
 
     <tr>
       <td>
-        <md-input-container class="malt-edit-full-width">
+        <md-input-container class="data-form-full-width">
           <input mdInput placeholder="EBC" type="number" step="1" required [formControl]="ebcFormControl" [(ngModel)]="malt.ebc"/>
           <md-error *ngIf="ebcFormControl.hasError('min')">
             The ebc must be above 0
@@ -43,7 +43,7 @@
 
     <tr>
       <td>
-        <md-input-container class="malt-edit-full-width">
+        <md-input-container class="data-form-full-width">
           <textarea mdInput placeholder="Description" type="text" [(ngModel)]="malt.description">{{malt.description}}</textarea>
         </md-input-container>
       </td>
@@ -51,7 +51,7 @@
 
     <tr>
       <td>
-        <md-input-container class="malt-edit-full-width">
+        <md-input-container class="data-form-full-width">
           <textarea mdInput placeholder="URL" type="text"[(ngModel)]="malt.url">{{malt.url}}</textarea>
         </md-input-container>
       </td>

@@ -44,7 +44,8 @@ let menu: MenuItem = {
           title: 'Malts',
           route: '/malts'
         }, {
-          title: 'Hops'
+          title: 'Hops',
+          route: '/hops'
         }, {
           title: 'Yeasts'
         }, {

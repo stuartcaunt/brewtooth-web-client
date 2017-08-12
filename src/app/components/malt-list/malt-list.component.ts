@@ -11,11 +11,11 @@ import {YesNoDialogComponent} from '../dialogs/yes-no-dialog.component';
 @Component({
   selector: 'bt-malt-list',
   templateUrl: './malt-list.component.html',
-  styleUrls: [ './malt-list.component.css' ]
+  styleUrls: [ './malt-list.component.css', '../stylesheets/data-table.css']
 })
 
 export class MaltListComponent implements OnInit {
-  displayedColumns = ['maltName', 'grain', 'yield', 'ebc', 'delete'];
+  displayedColumns = ['name', 'grain', 'yield', 'ebc', 'delete'];
   dataSource: MaltsDataSource | null;
 
   @ViewChild('filter') filter: ElementRef;

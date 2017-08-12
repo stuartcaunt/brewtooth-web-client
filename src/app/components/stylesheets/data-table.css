@@ -1,0 +1,35 @@
+.data-table-container {
+  display: flex;
+  flex-direction: column;
+  max-height: 500px;
+  min-width: 300px;
+  overflow: auto;
+  padding: 20px;
+}
+
+.data-table-header {
+  min-height: 64px;
+  display: flex;
+  align-items: baseline;
+  padding: 8px 24px 0;
+  font-size: 20px;
+  justify-content: space-between;
+}
+
+.data-table-cell {
+  cursor: pointer;
+}
+
+.mat-column-delete {
+  text-align:right;
+  width: 50px;
+}
+
+.data-table-cell-small {
+  flex: 0 0 75px;
+}
+
+.data-table-delete {
+  cursor: pointer;
+}
+

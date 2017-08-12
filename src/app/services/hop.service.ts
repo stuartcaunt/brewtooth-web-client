@@ -5,52 +5,52 @@ import { environment } from 'environments/environment';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 
-import { Malt } from 'models';
+import { Hop } from 'models';
 import {Observable} from 'rxjs/Observable';
 
 @Injectable()
-export class MaltService {
+export class HopService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
 
   constructor(private http: Http) { }
 
-  getMalts(): Observable<Malt[]> {
-    const url = `${environment.apiUrl}/malts`;
+  getHops(): Observable<Hop[]> {
+    const url = `${environment.apiUrl}/hops`;
     return this.http
       .get(url, {headers: this.headers})
-      .map(response => response.json() as Malt[]);
+      .map(response => response.json() as Hop[]);
   }
 
-  save(malt: Malt): Promise<Malt> {
-    if (malt.id == null) {
-      return this.create(malt);
+  save(hop: Hop): Promise<Hop> {
+    if (hop.id == null) {
+      return this.create(hop);
 
     } else {
-      return this.update(malt);
+      return this.update(hop);
     }
   }
 
-  create(malt: Malt): Promise<Malt> {
-    const url = `${environment.apiUrl}/malts`;
+  create(hop: Hop): Promise<Hop> {
+    const url = `${environment.apiUrl}/hops`;
     return this.http
-      .post(url, JSON.stringify(malt), {headers: this.headers})
+      .post(url, JSON.stringify(hop), {headers: this.headers})
       .toPromise()
-      .then(res => res.json() as Malt)
+      .then(res => res.json() as Hop)
       .catch(this.handleError);
   }
 
-  update(malt: Malt): Promise<Malt> {
-    const url = `${environment.apiUrl}/malts/${malt.id}`;
+  update(hop: Hop): Promise<Hop> {
+    const url = `${environment.apiUrl}/hops/${hop.id}`;
     return this.http
-      .put(url, JSON.stringify(malt), {headers: this.headers})
+      .put(url, JSON.stringify(hop), {headers: this.headers})
       .toPromise()
-      .then(res => res.json() as Malt)
+      .then(res => res.json() as Hop)
       .catch(this.handleError);
   }
 
-  delete(malt: Malt): Promise<Malt> {
-    const url = `${environment.apiUrl}/malts/${malt.id}`;
+  delete(hop: Hop): Promise<Hop> {
+    const url = `${environment.apiUrl}/hops/${hop.id}`;
     return this.http
       .delete(url, {headers: this.headers})
       .toPromise()

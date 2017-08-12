@@ -1,18 +1,16 @@
-export class Malt {
+export class Hop {
   id: number;
   name: string;
-  grain: string;
-  yield: number;
-  ebc: number;
+  alphaAcid: number;
+  isPellet: boolean;
   description?: string;
   url?: string;
 
-  copy(malt: Malt) {
+  copy(malt: Hop) {
     this.id = malt.id;
     this.name = malt.name;
-    this.grain = malt.grain;
-    this.yield = malt.yield;
-    this.ebc = malt.ebc;
+    this.alphaAcid = malt.alphaAcid;
+    this.isPellet = malt.isPellet;
     this.description = malt.description;
     this.url = malt.url;
 
