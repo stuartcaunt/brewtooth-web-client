@@ -6,7 +6,7 @@ import {MenuItem} from 'models';
 @Component({
   selector: 'bt-menu-page',
   templateUrl: './menu-page.component.html',
-  styleUrls: [ './menu-page.component.css' ]
+  styleUrls: [ './menu-page.component.scss' ]
 })
 export class MenuPageComponent implements OnInit {
   menu: MenuItem;

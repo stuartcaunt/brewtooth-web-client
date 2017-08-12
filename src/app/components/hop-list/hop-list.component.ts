@@ -11,7 +11,7 @@ import {HopEditModalComponent} from '../hop-edit/hop-edit-modal.component';
 @Component({
   selector: 'bt-hop-list',
   templateUrl: './hop-list.component.html',
-  styleUrls: ['./hop-list.component.css', '../stylesheets/data-table.css']
+  styleUrls: ['./hop-list.component.scss']
 })
 export class HopListComponent implements OnInit {
   displayedColumns = ['name', 'alphaAcid', 'isPellet', 'delete'];

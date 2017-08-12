@@ -8,7 +8,7 @@ import {FormControl, Validators} from '@angular/forms';
 @Component({
   selector: 'bt-hop-edit',
   templateUrl: './hop-edit.component.html',
-  styleUrls: ['./hop-edit.component.css', '../stylesheets/data-form.css']
+  styleUrls: ['./hop-edit.component.scss']
 })
 export class HopEditComponent {
 

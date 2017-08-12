@@ -11,7 +11,7 @@ import {YesNoDialogComponent} from '../dialogs/yes-no-dialog.component';
 @Component({
   selector: 'bt-malt-list',
   templateUrl: './malt-list.component.html',
-  styleUrls: [ './malt-list.component.css', '../stylesheets/data-table.css']
+  styleUrls: [ './malt-list.component.scss']
 })
 
 export class MaltListComponent implements OnInit {

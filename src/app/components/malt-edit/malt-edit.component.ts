@@ -8,7 +8,7 @@ import {FormControl, Validators} from '@angular/forms';
 @Component({
   selector: 'bt-malt-edit',
   templateUrl: './malt-edit.component.html',
-  styleUrls: ['./malt-edit.component.css', '../stylesheets/data-form.css']
+  styleUrls: ['./malt-edit.component.scss']
 })
 
 export class MaltEditComponent {

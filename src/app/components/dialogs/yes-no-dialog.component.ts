@@ -4,7 +4,7 @@ import {MdDialogRef} from '@angular/material';
 @Component({
   selector: 'yes-no-dialog',
   templateUrl: 'yes-no-dialog.component.html',
-  styleUrls: ['yes-no-dialog.component.css']
+  styleUrls: ['yes-no-dialog.component.scss']
 })
 
 export class YesNoDialogComponent {
