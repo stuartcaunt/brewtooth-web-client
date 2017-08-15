@@ -5,8 +5,8 @@ import {DataSource} from '@angular/cdk';
 import {Observable} from 'rxjs/Rx';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {MdDialog} from '@angular/material';
-import {YesNoDialogComponent} from '../dialogs/yes-no-dialog.component';
-import {SugarEditModalComponent} from '../sugar-edit/sugar-edit-modal.component';
+import {SugarEditModalComponent} from 'components';
+import {YesNoDialogComponent} from 'components';
 
 @Component({
   selector: 'bt-sugar-list',

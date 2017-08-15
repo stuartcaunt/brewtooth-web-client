@@ -5,8 +5,8 @@ import {DataSource} from '@angular/cdk';
 import {Observable} from 'rxjs/Rx';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {MdDialog} from '@angular/material';
-import {YesNoDialogComponent} from '../dialogs/yes-no-dialog.component';
-import {HopEditModalComponent} from '../hop-edit/hop-edit-modal.component';
+import {YesNoDialogComponent} from 'components';
+import {HopEditModalComponent} from 'components';
 
 @Component({
   selector: 'bt-hop-list',

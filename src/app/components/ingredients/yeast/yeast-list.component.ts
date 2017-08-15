@@ -6,7 +6,7 @@ import {Observable} from 'rxjs/Rx';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {MdDialog} from '@angular/material';
 import {YeastEditModalComponent} from 'components';
-import {YesNoDialogComponent} from '../dialogs/yes-no-dialog.component';
+import {YesNoDialogComponent} from 'components';
 
 @Component({
   selector: 'bt-yeast-list',

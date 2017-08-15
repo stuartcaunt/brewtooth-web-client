@@ -1,0 +1,32 @@
+<div class="other-ingredient-edit-container">
+  <table class="data-form-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <md-input-container class="data-form-full-width">
+          <input mdInput placeholder="Name" type="text" required [formControl]="nameFormControl" [(ngModel)]="otherIngredient.name"/>
+        </md-input-container>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <md-input-container class="data-form-full-width">
+          <textarea mdInput placeholder="Description" type="text" [(ngModel)]="otherIngredient.description">{{otherIngredient.description}}</textarea>
+        </md-input-container>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <md-input-container class="data-form-full-width">
+          <textarea mdInput placeholder="URL" type="text"[(ngModel)]="otherIngredient.url">{{otherIngredient.url}}</textarea>
+        </md-input-container>
+      </td>
+    </tr>
+
+  </table>
+
+
+  <button md-raised-button (click)="save()">Save</button>
+  <button md-raised-button (click)="cancel()">Cancel</button>
+</div>

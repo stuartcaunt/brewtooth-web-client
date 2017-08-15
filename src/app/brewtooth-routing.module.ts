@@ -6,6 +6,7 @@ import {
   HopListComponent,
   YeastListComponent,
   SugarListComponent,
+  OtherIngredientListComponent,
   MenuPageComponent
 } from 'components';
 
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'hops', component: HopListComponent },
   { path: 'yeasts', component: YeastListComponent },
   { path: 'sugars', component: SugarListComponent },
+  { path: 'otherIngredients', component: OtherIngredientListComponent },
   { path: 'recipes', component: MenuPageComponent },
   { path: 'mashes', component: MenuPageComponent },
   { path: 'ingredients', component: MenuPageComponent }

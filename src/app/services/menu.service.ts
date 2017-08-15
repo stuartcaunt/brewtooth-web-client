@@ -53,7 +53,8 @@ let menu: MenuItem = {
           title: 'Sugars',
           route: '/sugars'
         }, {
-          title: 'Other ingredients'
+          title: 'Other ingredients',
+          route: '/otherIngredients'
         }
       ]
     }
