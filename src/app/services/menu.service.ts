@@ -50,6 +50,9 @@ let menu: MenuItem = {
           title: 'Yeasts',
           route: '/yeasts'
         }, {
+          title: 'Sugars',
+          route: '/sugars'
+        }, {
           title: 'Other ingredients'
         }
       ]

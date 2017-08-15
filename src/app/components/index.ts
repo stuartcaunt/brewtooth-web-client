@@ -6,4 +6,6 @@ export * from './hop-list';
 export * from './hop-edit';
 export * from './yeast-list';
 export * from './yeast-edit';
+export * from './sugar-list';
+export * from './sugar-edit';
 export * from './menu-page';

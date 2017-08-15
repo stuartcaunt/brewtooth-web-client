@@ -20,6 +20,9 @@ import {
   YeastListComponent,
   YeastEditComponent,
   YeastEditModalComponent,
+  SugarListComponent,
+  SugarEditComponent,
+  SugarEditModalComponent,
   YesNoDialogComponent
 } from 'components';
 
@@ -27,6 +30,7 @@ import {
   MaltService,
   HopService,
   YeastService,
+  SugarService,
   MenuService
 } from 'services';
 
@@ -52,12 +56,16 @@ import {
     YeastListComponent,
     YeastEditComponent,
     YeastEditModalComponent,
+    SugarListComponent,
+    SugarEditComponent,
+    SugarEditModalComponent,
     YesNoDialogComponent
   ],
   providers: [
     MaltService,
     HopService,
     YeastService,
+    SugarService,
     MenuService
   ],
   bootstrap: [AppComponent],
@@ -65,6 +73,7 @@ import {
     MaltEditModalComponent,
     HopEditModalComponent,
     YeastEditModalComponent,
+    SugarEditModalComponent,
     YesNoDialogComponent
   ]
 })

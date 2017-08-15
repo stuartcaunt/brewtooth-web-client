@@ -6,13 +6,13 @@ export class Hop {
   description?: string;
   url?: string;
 
-  copy(malt: Hop) {
-    this.id = malt.id;
-    this.name = malt.name;
-    this.alphaAcid = malt.alphaAcid;
-    this.isPellet = malt.isPellet;
-    this.description = malt.description;
-    this.url = malt.url;
+  copy(hop: Hop) {
+    this.id = hop.id;
+    this.name = hop.name;
+    this.alphaAcid = hop.alphaAcid;
+    this.isPellet = hop.isPellet;
+    this.description = hop.description;
+    this.url = hop.url;
 
     return this;
   }
