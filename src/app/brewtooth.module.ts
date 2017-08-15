@@ -17,12 +17,16 @@ import {
   HopListComponent,
   HopEditComponent,
   HopEditModalComponent,
+  YeastListComponent,
+  YeastEditComponent,
+  YeastEditModalComponent,
   YesNoDialogComponent
 } from 'components';
 
 import {
   MaltService,
   HopService,
+  YeastService,
   MenuService
 } from 'services';
 
@@ -45,11 +49,24 @@ import {
     HopListComponent,
     HopEditComponent,
     HopEditModalComponent,
+    YeastListComponent,
+    YeastEditComponent,
+    YeastEditModalComponent,
     YesNoDialogComponent
   ],
-  providers: [MaltService, HopService, MenuService],
+  providers: [
+    MaltService,
+    HopService,
+    YeastService,
+    MenuService
+  ],
   bootstrap: [AppComponent],
-  entryComponents: [MaltEditModalComponent, HopEditModalComponent, YesNoDialogComponent]
+  entryComponents: [
+    MaltEditModalComponent,
+    HopEditModalComponent,
+    YeastEditModalComponent,
+    YesNoDialogComponent
+  ]
 })
 
 export class BrewtoothModule { }

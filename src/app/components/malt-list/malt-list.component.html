@@ -16,22 +16,22 @@
   <md-table #table [dataSource]="dataSource">
 
     <ng-container cdkColumnDef="name">
-      <md-header-cell *cdkHeaderCellDef> Name </md-header-cell>
+      <md-header-cell *cdkHeaderCellDef>Name</md-header-cell>
       <md-cell class="data-table-cell" *cdkCellDef="let malt" (click)="openEditModal(malt)"> {{malt.name}} </md-cell>
     </ng-container>
 
     <ng-container cdkColumnDef="grain">
-      <md-header-cell *cdkHeaderCellDef> Grain </md-header-cell>
+      <md-header-cell *cdkHeaderCellDef>Grain</md-header-cell>
       <md-cell class="data-table-cell" *cdkCellDef="let malt" (click)="openEditModal(malt)"> {{malt.grain}} </md-cell>
     </ng-container>
 
     <ng-container cdkColumnDef="yield">
-      <md-header-cell *cdkHeaderCellDef> Yield </md-header-cell>
+      <md-header-cell *cdkHeaderCellDef>Yield</md-header-cell>
       <md-cell class="data-table-cell" *cdkCellDef="let malt" (click)="openEditModal(malt)"> {{malt.yield}} </md-cell>
     </ng-container>
 
     <ng-container cdkColumnDef="ebc">
-      <md-header-cell *cdkHeaderCellDef> EBC </md-header-cell>
+      <md-header-cell *cdkHeaderCellDef>EBC</md-header-cell>
       <md-cell class="data-table-cell" *cdkCellDef="let malt" (click)="openEditModal(malt)"> {{malt.ebc}} </md-cell>
     </ng-container>
 

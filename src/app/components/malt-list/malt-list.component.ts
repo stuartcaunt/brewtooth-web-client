@@ -1,6 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import { Malt } from 'models';
-import { MaltService } from 'services';
+import {Malt} from 'models';
+import {MaltService} from 'services';
 import {DataSource} from '@angular/cdk';
 import {Observable} from 'rxjs/Rx';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
@@ -13,7 +13,6 @@ import {YesNoDialogComponent} from '../dialogs/yes-no-dialog.component';
   templateUrl: './malt-list.component.html',
   styleUrls: [ './malt-list.component.scss']
 })
-
 export class MaltListComponent implements OnInit {
   displayedColumns = ['name', 'grain', 'yield', 'ebc', 'delete'];
   dataSource: MaltsDataSource | null;

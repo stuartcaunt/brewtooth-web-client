@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {
   MaltListComponent,
   HopListComponent,
+  YeastListComponent,
   MenuPageComponent
 } from 'components';
 
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: '', component: MenuPageComponent },
   { path: 'malts', component: MaltListComponent },
   { path: 'hops', component: HopListComponent },
+  { path: 'yeasts', component: YeastListComponent },
   { path: 'recipes', component: MenuPageComponent },
   { path: 'mashes', component: MenuPageComponent },
   { path: 'ingredients', component: MenuPageComponent }

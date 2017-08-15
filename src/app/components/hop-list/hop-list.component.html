@@ -20,17 +20,17 @@
   <md-table #table [dataSource]="dataSource">
 
     <ng-container cdkColumnDef="name">
-      <md-header-cell *cdkHeaderCellDef> Name </md-header-cell>
+      <md-header-cell *cdkHeaderCellDef>Name</md-header-cell>
       <md-cell class="data-table-cell" *cdkCellDef="let hop" (click)="openEditModal(hop)"> {{hop.name}} </md-cell>
     </ng-container>
 
     <ng-container cdkColumnDef="alphaAcid">
-      <md-header-cell *cdkHeaderCellDef> Alpha Acid </md-header-cell>
+      <md-header-cell *cdkHeaderCellDef>Alpha Acid</md-header-cell>
       <md-cell class="data-table-cell" *cdkCellDef="let hop" (click)="openEditModal(hop)"> {{hop.alphaAcid}} </md-cell>
     </ng-container>
 
     <ng-container cdkColumnDef="isPellet">
-      <md-header-cell *cdkHeaderCellDef> Pellet </md-header-cell>
+      <md-header-cell *cdkHeaderCellDef>Pellet</md-header-cell>
       <md-cell class="data-table-cell" *cdkCellDef="let hop" (click)="openEditModal(hop)"> {{hop.isPellet ? 'Yes' : 'No'}} </md-cell>
     </ng-container>
 
