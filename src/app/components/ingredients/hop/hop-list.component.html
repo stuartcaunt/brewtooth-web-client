@@ -11,17 +11,16 @@
     <button md-mini-fab (click)="openEditModal()">
       <md-icon>add</md-icon>
     </button>
-
-    <!--<div class="data-table-add-circle-outer" (click)="openEditModal()">-->
-      <!--<i class="material-icons data-table-add-circle">add_circle</i>-->
-    <!--</div>-->
   </div>
 
   <md-table #table [dataSource]="dataSource">
 
     <ng-container cdkColumnDef="name">
       <md-header-cell *cdkHeaderCellDef>Name</md-header-cell>
-      <md-cell class="data-table-cell" *cdkCellDef="let hop" (click)="openEditModal(hop)"> {{hop.name}} </md-cell>
+      <md-cell class="data-table-cell" *cdkCellDef="let hop" (click)="openEditModal(hop)">
+        <a *ngIf="hop.url != null; else noLinkName" (click)="$event.stopPropagation()" class="data-table-link" caca target="_blank" href="{{hop.url}}">{{hop.name}}</a>
+        <ng-template #noLinkName>{{hop.name}}</ng-template>
+      </md-cell>
     </ng-container>
 
     <ng-container cdkColumnDef="alphaAcid">
