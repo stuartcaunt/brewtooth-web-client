@@ -26,6 +26,7 @@ import {
   OtherIngredientListComponent,
   OtherIngredientEditComponent,
   OtherIngredientEditModalComponent,
+  MashControllerComponent,
   YesNoDialogComponent
 } from 'components';
 
@@ -35,7 +36,8 @@ import {
   YeastService,
   SugarService,
   OtherIngredientService,
-  MenuService
+  MenuService,
+  MashControllerService
 } from 'services';
 
 @NgModule({
@@ -66,6 +68,7 @@ import {
     OtherIngredientListComponent,
     OtherIngredientEditComponent,
     OtherIngredientEditModalComponent,
+    MashControllerComponent,
     YesNoDialogComponent
   ],
   providers: [
@@ -74,7 +77,8 @@ import {
     YeastService,
     SugarService,
     OtherIngredientService,
-    MenuService
+    MenuService,
+    MashControllerService
   ],
   bootstrap: [AppComponent],
   entryComponents: [

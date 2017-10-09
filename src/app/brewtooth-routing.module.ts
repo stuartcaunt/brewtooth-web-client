@@ -7,7 +7,8 @@ import {
   YeastListComponent,
   SugarListComponent,
   OtherIngredientListComponent,
-  MenuPageComponent
+  MenuPageComponent,
+  MashControllerComponent
 } from 'components';
 
 const routes: Routes = [
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: 'otherIngredients', component: OtherIngredientListComponent },
   { path: 'recipes', component: MenuPageComponent },
   { path: 'mashes', component: MenuPageComponent },
-  { path: 'ingredients', component: MenuPageComponent }
+  { path: 'ingredients', component: MenuPageComponent },
+  { path: 'controller', component: MashControllerComponent}
 ];
 
 @NgModule({
