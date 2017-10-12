@@ -13,9 +13,7 @@ import {MashControllerState} from '../../models/mash-controller-state.model';
 export class MashControllerComponent implements OnInit {
 
   history: MashControllerHistory[];
-  temperatureC: number;
-  setpointC: number;
-  currentControllerOutput: number;
+  state: MashControllerState;
 
   constructor (private mashControllerService: MashControllerService) {
   }
@@ -25,19 +23,9 @@ export class MashControllerComponent implements OnInit {
       this.history = history;
     });
 
-    let timer = Observable.timer(5000, 5000);
-    timer.subscribe(t => this.updateState());
-  }
-
-  updateState(): void {
-    this.mashControllerService.getState().subscribe(state => {
-      let history: MashControllerHistory = MashControllerHistory.createFromState(state);
-      this.history.push(history);
-
-      this.temperatureC = state.temperatureC;
-      this.setpointC = state.setpointC;
-      this.currentControllerOutput = history.controllerOutputPercent;
-    });
+    this.mashControllerService.getStateObservable().subscribe(state => {
+      this.state = state;
+    })
   }
 
 }
