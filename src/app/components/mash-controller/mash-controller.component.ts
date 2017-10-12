@@ -10,23 +10,7 @@ import {MashControllerState} from '../../models/mash-controller-state.model';
   templateUrl: './mash-controller.component.html',
   styleUrls: ['./mash-controller.component.scss']
 })
-export class MashControllerComponent implements OnInit {
-
-  history: MashControllerHistory[];
-  state: MashControllerState;
-
-  constructor (private mashControllerService: MashControllerService) {
-  }
-
-  ngOnInit(): void {
-    this.mashControllerService.getHistory().subscribe(history => {
-      this.history = history;
-    });
-
-    this.mashControllerService.getStateObservable().subscribe(state => {
-      this.state = state;
-    })
-  }
+export class MashControllerComponent {
 
 }
 

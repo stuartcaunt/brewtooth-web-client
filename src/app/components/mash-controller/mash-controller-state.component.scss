@@ -1,0 +1,44 @@
+@import 'data-table.scss';
+@import 'data-form.scss';
+
+.controller-state-content {
+    width: 100%
+}
+
+.pid-widget-cell {
+    vertical-align: top;
+    padding: 0px;
+    margin: 0px;
+}
+
+.pid-widget {
+    width: 100%;
+    padding:16px;
+    font-size: 1.0em;
+    vertical-align: top;
+}
+
+.temperature-widget-cell {
+    vertical-align: top;
+    padding: 0px;
+    margin: 0px;
+}
+
+.temperature-widget {
+    width: 100%;
+    font-size: 1.5em;
+    text-align: right;
+}
+
+.temperature-widget-temperature {
+    font-size: 2.5em;
+    margin: 8px;
+}
+
+.temperature-widget-setpoint {
+    margin: 8px;
+}
+
+.temperature-widget-power {
+    margin: 8px;
+}

@@ -1,16 +1,17 @@
 export class MashControllerState {
-  running: boolean;
-  currentTimeS: number;
-  runTimeS: number;
-  temperatureC: number;
-  controlType: string;
-  setpointC: number;
-  controllerOutput: number;
-  heaterActive: boolean;
-  agitatorActive: boolean;
-  autoControl: boolean;
-  kp: number;
-  ki: number;
-  kd: number;
-  outputMax: number;
+  running: boolean = false;
+  currentTimeS: number = 0.0;
+  runTimeS: number = 0.0;
+  temperatureC: number = 0.0;
+  controlType: string = 'SETPOINT';
+  setpointC: number = 0.0;
+  controllerOutput: number = 0.0;
+  heaterActive: boolean = false;
+  agitatorActive: boolean = false;
+  autoControl: boolean = false;
+  kp: number = 1.0;
+  ki: number = 1.0;
+  kd: number = 1.0;
+  outputMax: number = 0.0;
+  outputPercent: number = this.outputMax == 0 ? 0 : this.controllerOutput / this.outputMax;
 }

@@ -27,6 +27,7 @@ import {
   OtherIngredientEditComponent,
   OtherIngredientEditModalComponent,
   MashControllerComponent,
+  MashControllerStateComponent,
   YesNoDialogComponent
 } from 'components';
 
@@ -69,6 +70,7 @@ import {
     OtherIngredientEditComponent,
     OtherIngredientEditModalComponent,
     MashControllerComponent,
+    MashControllerStateComponent,
     YesNoDialogComponent
   ],
   providers: [
