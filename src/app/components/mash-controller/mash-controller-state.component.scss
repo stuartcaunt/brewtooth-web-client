@@ -12,10 +12,13 @@
 }
 
 .pid-widget {
-    width: 100%;
+    width: 60%;
     padding:16px;
     font-size: 1.0em;
     vertical-align: top;
+}
+.pid-widget-form-input {
+    padding: 0px;
 }
 
 .temperature-widget-cell {
@@ -26,6 +29,7 @@
 
 .temperature-widget {
     width: 100%;
+    padding:0 16px 16px 0px;
     font-size: 1.5em;
     text-align: right;
 }

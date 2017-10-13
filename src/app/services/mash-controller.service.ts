@@ -31,14 +31,17 @@ export class MashControllerService {
 
   updateState(): void {
     const url = `${environment.mashControllerApiUrl}/state`;
+    let that = this;
     this.http
       .get(url)
       .map(response => response.json() as MashControllerState)
       .subscribe(state => {
         let history: MashControllerHistory = MashControllerHistory.createFromState(state);
-        this.history.push(history);
+        that.history.push(history);
 
-        this.stateObservable.next(state);
+        state.outputPercent = state.outputMax == 0 ? 0 : state.controllerOutput / state.outputMax;
+        
+        that.stateObservable.next(state);
       });
   }
 
