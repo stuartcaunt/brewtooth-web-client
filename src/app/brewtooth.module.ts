@@ -28,6 +28,7 @@ import {
   OtherIngredientEditModalComponent,
   MashControllerComponent,
   MashControllerStateComponent,
+  TemperatureProfileComponent,
   YesNoDialogComponent
 } from 'components';
 
@@ -71,6 +72,7 @@ import {
     OtherIngredientEditModalComponent,
     MashControllerComponent,
     MashControllerStateComponent,
+    TemperatureProfileComponent,
     YesNoDialogComponent
   ],
   providers: [

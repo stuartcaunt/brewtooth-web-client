@@ -1,8 +1,25 @@
 @import 'data-table.scss';
 @import 'data-form.scss';
 
+
+.controller-state-content-outer {
+    width: 100%;
+    background-color: lightcoral;
+    height: 100%;
+}
+
 .controller-state-content {
-    width: 100%
+    padding: 16px 32px 0px 32px;
+    height: calc(100% - 16px);
+}
+
+.controller-state-buttons {
+    margin: 8px;
+}
+
+.controller-state-button {
+    margin-right: 16px;
+    margin-top: 8px;
 }
 
 .pid-widget-cell {

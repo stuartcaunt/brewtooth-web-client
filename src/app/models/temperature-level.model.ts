@@ -1,7 +1,7 @@
 export class TemperatureLevel {
   name: string;
-  setpointC: number;
-  durationS: number;
+  setpointC: number = 20;
+  durationS: number = 60;
   timerS: number;
-  state: String;
+  state: string;
 }

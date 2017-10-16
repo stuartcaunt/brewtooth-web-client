@@ -1,48 +1,55 @@
-<div class="controller-state-content">
-  <table width="100%">
-    <tr>
-      <td width="50%" class="pid-widget-cell">
-        <div class="pid-widget">
-          <table width="100%" cellspacing="0">
-              <tr>
-                <td>
-                  <md-input-container class="data-form-full-width">
-                    <input mdInput placeholder="P" type="number" required [(ngModel)]="state.kp" class="pid-widget-form-input"/>
-                  </md-input-container>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <md-input-container class="data-form-full-width">
-                    <input mdInput placeholder="I" type="number" required [(ngModel)]="state.ki"/>
-                  </md-input-container>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <md-input-container class="data-form-full-width">
-                    <input mdInput placeholder="D" type="number" required [(ngModel)]="state.kd"/>
-                  </md-input-container>
-                </td>
-              </tr>
-          </table>
-        </div>
-      </td>
-      <td width="50%" class="pid-widget-cell">
-        <div class="temperature-widget">
-          <div class="temperature-widget-temperature">
-            {{state.temperatureC | number:'1.1-1'}}°c
+<div class="controller-state-content-outer">
+  <div class="controller-state-content">
+    <table width="100%">
+      <tr>
+        <td width="50%" class="pid-widget-cell">
+          <div class="pid-widget">
+            <table width="100%" cellspacing="0">
+                <tr>
+                  <td>
+                    <md-input-container class="data-form-full-width">
+                      <input mdInput placeholder="P" type="number" required [(ngModel)]="state.kp" class="pid-widget-form-input"/>
+                    </md-input-container>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <md-input-container class="data-form-full-width">
+                      <input mdInput placeholder="I" type="number" required [(ngModel)]="state.ki"/>
+                    </md-input-container>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <md-input-container class="data-form-full-width">
+                      <input mdInput placeholder="D" type="number" required [(ngModel)]="state.kd"/>
+                    </md-input-container>
+                  </td>
+                </tr>
+            </table>
           </div>
-          <div class="temperature-widget-setpoint">
-            {{state.setpointC | number:'1.1-1'}}°c
+        </td>
+        <td width="50%" class="pid-widget-cell">
+          <div class="temperature-widget">
+            <div class="temperature-widget-temperature">
+              {{state.temperatureC | number:'1.1-1'}}°c
+            </div>
+            <div class="temperature-widget-setpoint">
+              {{state.setpointC | number:'1.1-1'}}°c
+            </div>
+            <div class="temperature-widget-power">
+              {{state.outputPercent | number:'1.0-0'}}%
+            </div>
           </div>
-          <div class="temperature-widget-power">
-            {{state.outputPercent | number:'1.0-0'}}%
-          </div>
-        </div>
-      </td>
-    </tr>
-  </table>
-
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="controller-state-buttons">
+    <md-slide-toggle (click)="enableAutoControl()" class="controller-state-button">Auto</md-slide-toggle>
+    <md-slide-toggle (click)="toggleHeater()" class="controller-state-button">Heater</md-slide-toggle>
+    <md-slide-toggle (click)="toggleAgitator()" class="controller-state-button">Agitator</md-slide-toggle>
+  </div>
+  
 </div>
 

@@ -14,7 +14,7 @@ export class MashControllerService {
 
   private static UPDATE_PERIOD: number = 2000;
 
-  private history: MashControllerHistory[];
+  private history: MashControllerHistory[] = new Array<MashControllerHistory>();
   
   private lastUpdateTime: number = 0;
   private stateObservable: BehaviorSubject<MashControllerState> = new BehaviorSubject<MashControllerState>(new MashControllerState());
@@ -53,6 +53,9 @@ export class MashControllerService {
     const url = `${environment.mashControllerApiUrl}/history`;
     return this.http
       .get(url)
-      .map(response => response.json() as MashControllerHistory[]);
+      .map(response => {
+        let history = response.json() as MashControllerHistory[];
+        return history;
+      });
   }
 }

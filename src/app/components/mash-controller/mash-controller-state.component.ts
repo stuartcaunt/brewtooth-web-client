@@ -2,8 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 
 import {MashControllerService} from 'services';
-import {MashControllerHistory} from 'models';
-import {MashControllerState} from '../../models/mash-controller-state.model';
+import {MashControllerHistory, MashControllerState} from 'models';
 
 @Component({
   selector: 'bt-mash-controller-state',
