@@ -21,6 +21,18 @@ export class MashControllerStateComponent implements OnInit {
       this.state = state;
     })
   }
+
+  toggleAutoControl(): void {
+    this.mashControllerService.enableAutoControl(!this.state.autoControl);
+  }
+
+  toggleHeater(): void {
+    this.mashControllerService.enableHeater(!this.state.heaterActive);
+  }
+
+  toggleAgitator(): void {
+    this.mashControllerService.enableAgitator(!this.state.agitatorActive);
+  }
 }
 
 

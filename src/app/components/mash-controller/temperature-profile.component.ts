@@ -59,9 +59,12 @@ export class TemperatureProfileComponent implements OnInit {
     }
 
     if (valid) {
-      
+      this.mashControllerService.startControlWithTemperatureProfile(this.profile);
     }
-      
+  }
+
+  stopControl(): void {
+    this.mashControllerService.stopControl();
   }
 }
 

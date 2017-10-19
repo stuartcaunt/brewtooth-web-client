@@ -5,7 +5,7 @@ import { environment } from 'environments/environment';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 
-import { MashControllerState, MashControllerHistory } from 'models';
+import { MashControllerState, MashControllerHistory, TemperatureProfile } from 'models';
 import {Observable} from 'rxjs/Observable';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
@@ -13,7 +13,8 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 export class MashControllerService {
 
   private static UPDATE_PERIOD: number = 2000;
-
+  private headers = new Headers({'Content-Type': 'application/json'});
+  
   private history: MashControllerHistory[] = new Array<MashControllerHistory>();
   
   private lastUpdateTime: number = 0;
@@ -29,19 +30,22 @@ export class MashControllerService {
     this.timer.subscribe(t => this.updateState());
   }
 
+  private setState(state: MashControllerState): void {
+    let history: MashControllerHistory = MashControllerHistory.createFromState(state);
+    this.history.push(history);
+
+    state.outputPercent = state.outputMax == 0 ? 0 : state.controllerOutput / state.outputMax;
+    
+    this.stateObservable.next(state);
+  }
+
   updateState(): void {
     const url = `${environment.mashControllerApiUrl}/state`;
-    let that = this;
     this.http
       .get(url)
       .map(response => response.json() as MashControllerState)
       .subscribe(state => {
-        let history: MashControllerHistory = MashControllerHistory.createFromState(state);
-        that.history.push(history);
-
-        state.outputPercent = state.outputMax == 0 ? 0 : state.controllerOutput / state.outputMax;
-        
-        that.stateObservable.next(state);
+        this.setState(state);
       });
   }
 
@@ -57,5 +61,55 @@ export class MashControllerService {
         let history = response.json() as MashControllerHistory[];
         return history;
       });
+  }
+
+  enableAutoControl(enabled: boolean): void {
+    const url = `${environment.mashControllerApiUrl}/` + (enabled ? 'automatic' : 'manual');
+    this.http
+      .get(url)
+      .map(response => response.json() as MashControllerState)
+      .subscribe(state => {
+        this.setState(state);
+      });
+  }
+
+  enableHeater(enabled: boolean): void {
+    const url = `${environment.mashControllerApiUrl}/heater/` + (enabled ? 'start' : 'stop');
+    this.http
+      .get(url)
+      .map(response => response.json() as MashControllerState)
+      .subscribe(state => {
+        this.setState(state);
+      });
+  }
+
+  enableAgitator(enabled: boolean): void {
+    const url = `${environment.mashControllerApiUrl}/agitator/` + (enabled ? 'start' : 'stop');
+    this.http
+      .get(url)
+      .map(response => response.json() as MashControllerState)
+      .subscribe(state => {
+        this.setState(state);
+      });
+  }
+
+  startControlWithTemperatureProfile(temperatureProfile: TemperatureProfile): void {
+    const url = `${environment.mashControllerApiUrl}/start`;
+    this.http
+      .post(url, JSON.stringify(temperatureProfile))
+      .map(response => response.json() as MashControllerState)
+      .subscribe(state => {
+        this.setState(state);
+      });    
+  }
+
+  stopControl(): void {
+    const url = `${environment.mashControllerApiUrl}/stop`;
+    this.http
+      .get(url)
+      .map(response => response.json() as MashControllerState)
+      .subscribe(state => {
+        this.setState(state);
+      });    
   }
 }

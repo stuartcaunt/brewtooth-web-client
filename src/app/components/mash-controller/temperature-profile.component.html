@@ -1,41 +1,62 @@
 <div class="temperature-profile-content-outer">
   <div class="temperature-profile-content">
-    <table width="100%">
-      <tr *ngFor='let level of profile.levels; let i = index'>
-        <td class="temperature-profile-cell">
-          <md-input-container class="data-form-full-width">
-            <input mdInput placeholder="Name" type="text" [(ngModel)]="level.name" />
-          </md-input-container>
-        </td>
-        <td class="temperature-profile-cell">
-          <md-input-container class="data-form-full-width">
-            <input mdInput placeholder="Setpoint °c" type="number" required [(ngModel)]="level.setpointC" [formControl]="temperatureFormControls[i]"/>
-            <md-error *ngIf="temperatureFormControls[i].hasError('min')">
-              The setpoint must be above 0
-            </md-error>
-          </md-input-container>
-        </td>
-        <td class="temperature-profile-cell">
-          <md-input-container class="data-form-full-width">
-            <input mdInput placeholder="Duration s" type="number" required [(ngModel)]="level.durationS" [formControl]="durationFormControls[i]"/>
-            <md-error *ngIf="durationFormControls[i].hasError('min')">
-              The duration must be above 0
-            </md-error>
-          </md-input-container>
-        </td>
-        <td *ngIf="(profile.levels.length != 1)">
-          <div (click)="deleteLevel(i)">
-            <i class="material-icons data-table-delete">delete</i>
-          </div>
-        </td>
-      </tr>
-    </table>
-    <button md-mini-fab (click)="addLevel()" class="add-level-button">
-      <md-icon>add</md-icon>
-    </button>
+    <div *ngIf="!state.running" class="temperature-profile-edit">
+      <table width="100%">
+        <tr *ngFor='let level of profile.levels; let i = index'>
+          <td class="temperature-profile-cell">
+            <md-input-container class="data-form-full-width">
+              <input mdInput placeholder="Name" type="text" [(ngModel)]="level.name" />
+            </md-input-container>
+          </td>
+          <td class="temperature-profile-cell">
+            <md-input-container class="data-form-full-width">
+              <input mdInput placeholder="Setpoint °c" type="number" required [(ngModel)]="level.setpointC" [formControl]="temperatureFormControls[i]"/>
+              <md-error *ngIf="temperatureFormControls[i].hasError('min')">
+                The setpoint must be above 0
+              </md-error>
+            </md-input-container>
+          </td>
+          <td class="temperature-profile-cell">
+            <md-input-container class="data-form-full-width">
+              <input mdInput placeholder="Duration s" type="number" required [(ngModel)]="level.durationS" [formControl]="durationFormControls[i]"/>
+              <md-error *ngIf="durationFormControls[i].hasError('min')">
+                The duration must be above 0
+              </md-error>
+            </md-input-container>
+          </td>
+          <td *ngIf="(profile.levels.length != 1)">
+            <div (click)="deleteLevel(i)">
+              <i class="material-icons data-table-delete">delete</i>
+            </div>
+          </td>
+        </tr>
+      </table>
+      <button md-mini-fab (click)="addLevel()" class="add-level-button">
+        <md-icon>add</md-icon>
+      </button>
+    </div>
+
+    <div *ngIf="state.running" class="temperature-profile-view">
+      <table width="100%">
+        <tr *ngFor='let level of profile.levels; let i = index'>
+          <td class="temperature-profile-cell">
+            {{level.name}}
+          </td>
+          <td class="temperature-profile-cell">
+            {{level.setpointC}}°c
+          </td>
+          <td class="temperature-profile-cell">
+            {{level.durationS}}s
+          </td>
+        </tr>
+      </table>
+    </div>
+  
+
   </div>
   <div class="temperature-profile-buttons">
-    <button md-raised-button (click)="startControl()" class="start-control-button">Start</button>
+    <button *ngIf="!state.running" md-raised-button (click)="startControl()" class="start-control-button">Start</button>
+    <button *ngIf="state.running" md-raised-button (click)="stopControl()" class="stop-control-button">Stop</button>
   </div>
 </div>
 

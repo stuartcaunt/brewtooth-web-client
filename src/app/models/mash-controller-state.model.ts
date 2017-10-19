@@ -1,9 +1,12 @@
+import { TemperatureProfile } from '.';
+
 export class MashControllerState {
   running: boolean = false;
   currentTimeS: number = 0.0;
   runTimeS: number = 0.0;
   temperatureC: number = 0.0;
   controlType: string = 'SETPOINT';
+  temperatureProfile: TemperatureProfile;
   setpointC: number = 0.0;
   controllerOutput: number = 0.0;
   heaterActive: boolean = false;
