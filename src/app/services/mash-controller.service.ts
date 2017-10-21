@@ -26,7 +26,7 @@ export class MashControllerService {
       this.history = history;
     });
 
-    this.timer = Observable.timer(100, MashControllerService.UPDATE_PERIOD);
+    this.timer = Observable.timer(0, MashControllerService.UPDATE_PERIOD);
     this.timer.subscribe(t => this.updateState());
   }
 

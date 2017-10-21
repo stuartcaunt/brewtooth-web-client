@@ -37,22 +37,31 @@
     </div>
 
     <div *ngIf="state.running" class="temperature-profile-view">
-      <table width="100%">
-        <tr *ngFor='let level of profile.levels; let i = index'>
-          <td class="temperature-profile-cell">
+      <table width="100%" class="temperature-profile-view-table">
+        <tr *ngFor='let level of state.temperatureProfile.levels; let i = index' [ngClass]="getTemperatureLevelClass(level)">
+          <td class="temperature-profile-view-cell">
             {{level.name}}
           </td>
-          <td class="temperature-profile-cell">
-            {{level.setpointC}}°c
+          <td class="temperature-profile-view-cell">
+            <div *ngIf="level.state == 'Active' || level.state == 'Pending'" class="temperature-profile-view-element-active">
+                {{state.temperatureC | number:'1.1-1'}}°c / 
+            </div>
+            <div class="temperature-profile-view-element">
+                {{level.setpointC}}°c 
+            </div>
           </td>
-          <td class="temperature-profile-cell">
-            {{level.durationS}}s
+          <td class="temperature-profile-view-cell">
+            <div *ngIf="level.state == 'Active' || level.state == 'Pending'" class="temperature-profile-view-element-active">
+                {{level.timerS | number:'1.0-0'}}s /
+            </div>
+            <div class="temperature-profile-view-element">
+                {{level.durationS}}s
+            </div>
           </td>
         </tr>
       </table>
     </div>
   
-
   </div>
   <div class="temperature-profile-buttons">
     <button *ngIf="!state.running" md-raised-button (click)="startControl()" class="start-control-button">Start</button>

@@ -31,3 +31,38 @@
 .stop-control-button {
     float: right;
 }
+
+.temperature-profile-view-table {
+    border-spacing: 0px;
+}
+
+.temperature-level-inactive {
+}
+
+.temperature-level-active {
+    background-color: rgb(93, 172, 236);
+    outline: thin solid darkslategrey;
+}
+
+.temperature-level-pending {
+    background-color: rgb(243, 243, 184);
+    outline: thin solid darkslategrey;
+}
+
+.temperature-level-terminated {
+    background-color: #ddd;
+}
+
+.temperature-profile-view-cell {
+    padding: 16px 32px;
+}
+
+.temperature-profile-view-element-active {
+    display: inline-block;
+    font-size: 1.5em;
+}
+
+.temperature-profile-view-element {
+    display: inline-block;
+}
+    

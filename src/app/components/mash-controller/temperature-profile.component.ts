@@ -66,6 +66,26 @@ export class TemperatureProfileComponent implements OnInit {
   stopControl(): void {
     this.mashControllerService.stopControl();
   }
+
+  getTemperatureLevelClass(level: TemperatureLevel): string {
+    console.log("called");
+    var state = level.state;
+    if (state == 'Inactive') {
+      return 'temperature-level-inactive';
+
+    } else if (state == 'Active') {
+      return 'temperature-level-active';
+
+    } else if (state == 'Pending') {
+      return 'temperature-level-pending';
+
+    } else if (state == 'Terminated') {
+      return 'temperature-level-terminated';
+
+    } else {
+      return '';
+    }
+  }
 }
 
 
