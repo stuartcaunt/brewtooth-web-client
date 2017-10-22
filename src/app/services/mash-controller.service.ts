@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map';
 
 import { MashControllerState, MashControllerHistory, TemperatureProfile } from 'models';
 import {Observable} from 'rxjs/Observable';
+import {Subject} from 'rxjs/Subject';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 @Injectable()
@@ -16,6 +17,7 @@ export class MashControllerService {
   private headers = new Headers({'Content-Type': 'application/json'});
   
   private history: MashControllerHistory[] = new Array<MashControllerHistory>();
+  private historyObservable: Subject<MashControllerHistory[]> = new Subject<MashControllerHistory[]>();
   
   private lastUpdateTime: number = 0;
   private stateObservable: BehaviorSubject<MashControllerState> = new BehaviorSubject<MashControllerState>(new MashControllerState());
@@ -24,6 +26,7 @@ export class MashControllerService {
   constructor(private http: Http) { 
     this.getHistory().subscribe(history => {
       this.history = history;
+      this.historyObservable.next(this.history);
     });
 
     this.timer = Observable.timer(0, MashControllerService.UPDATE_PERIOD);
@@ -32,7 +35,11 @@ export class MashControllerService {
 
   private setState(state: MashControllerState): void {
     let history: MashControllerHistory = MashControllerHistory.createFromState(state);
-    this.history.push(history);
+
+    if (this.history.length > 0) {
+      this.history.push(history);
+      this.historyObservable.next(this.history);
+    }
 
     state.outputPercent = state.outputMax == 0 ? 0 : state.controllerOutput / state.outputMax;
     
@@ -51,6 +58,10 @@ export class MashControllerService {
 
   getStateObservable(): BehaviorSubject<MashControllerState> {
     return this.stateObservable;
+  }
+
+  getHistoryObservable(): Subject<MashControllerHistory[]> {
+    return this.historyObservable;
   }
 
   getHistory(): Observable<MashControllerHistory[]> {

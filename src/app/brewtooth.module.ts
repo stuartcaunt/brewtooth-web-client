@@ -8,6 +8,8 @@ import 'hammerjs';
 import { BrewtoothMaterialModule } from './brewtooth-material.module';
 import { BrewtoothRoutingModule } from './brewtooth-routing.module';
 
+import { ChartsModule } from 'ng2-charts/ng2-charts';
+
 import {
   AppComponent,
   MenuPageComponent,
@@ -29,6 +31,7 @@ import {
   MashControllerComponent,
   MashControllerStateComponent,
   TemperatureProfileComponent,
+  MashControlGraphComponent,
   YesNoDialogComponent
 } from 'components';
 
@@ -50,7 +53,8 @@ import {
     ReactiveFormsModule,
     BrowserAnimationsModule,
     BrewtoothMaterialModule,
-    BrewtoothRoutingModule
+    BrewtoothRoutingModule,
+    ChartsModule
   ],
   declarations: [
     AppComponent,
@@ -73,6 +77,7 @@ import {
     MashControllerComponent,
     MashControllerStateComponent,
     TemperatureProfileComponent,
+    MashControlGraphComponent,
     YesNoDialogComponent
   ],
   providers: [

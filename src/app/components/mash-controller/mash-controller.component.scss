@@ -1,5 +1,6 @@
 .controller-content {
-    width: 100%
+    //width: calc(100% - 64px);
+    width: 100%;
 }
 
 .controller-temperature-profile {
@@ -13,4 +14,8 @@
 
 .controller-top-part {
     height: 250px;
+}
+
+.controller-bottom-part {
+    height: 300px;
 }
