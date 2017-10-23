@@ -20,19 +20,46 @@ export class MashControlGraphComponent implements OnInit {
     maintainAspectRatio: false,
     scales: {
       xAxes: [{
-          type: 'time',
-          displayFormats: {
-            quarter: 'h:mm:ss'
+        type: 'time',
+        time: {
+          format: "HH:MM:SS"
         }
-      }]
+      }],
+      yAxes: [
+        {
+          id: 'temperature',
+          type: 'linear',
+          position: 'left',
+          scalePositionLeft: true
+        },
+        {
+          id: 'power',
+          type: 'linear',
+          position: 'right',
+          scalePositionLeft: false
+        }
+      ]
     }
   };
 
   private datasets: Array<any> = [{
-      label: "Temperature °c",
-      data: [],
-      pointRadius: 0,
-      fill: false
+    label: "Temperature °c",
+    yAxisID: 'temperature',
+    data: [],
+    pointRadius: 0,
+    fill: false
+  }, {
+    label: "Heater",
+    yAxisID: 'power',
+    data: [],
+    pointRadius: 0,
+    fill: false
+  }, {
+    label: "Controller",
+    yAxisID: 'power',
+    data: [],
+    pointRadius: 0,
+    fill: false
   }];
 
   private timeOffsetMs: number = 0;
@@ -50,45 +77,79 @@ export class MashControlGraphComponent implements OnInit {
   }
 
   private initGraphData(history: MashControllerHistory[]) {
-    let data = new Array<any>();
+    // Reset all arrays
+    this.datasets[0].data.length = 0;
+    this.datasets[1].data.length = 0;
+    this.datasets[2].data.length = 0;
+    
     history.forEach(historyValue => {
       let timeMs = historyValue.timeS * 1000;
-
+      let time = new Date(timeMs + this.timeOffsetMs);
+      
+      // Temperature
       this.datasets[0].data.push({
-          x: new Date(timeMs + this.timeOffsetMs),
-          y: historyValue.temperatureC
-        });
+        x: time,
+        y: historyValue.temperatureC
+      });
+      
+      // Heater state
+      this.datasets[1].data.push({
+        x: time,
+        y: historyValue.heaterActive ? 100 : 0
+      });
+
+      // Controller output
+      this.datasets[2].data.push({
+        x: time,
+        y: historyValue.controllerOutputPercent
+      });
     });
 
     this.chart.chart.update();
   }
 
   private updateGraphData(state: MashControllerState) {
+    // Ignore bad data
     if (state.currentTimeS == 0) {
       return;
     }
 
     let timeMs = state.currentTimeS * 1000;
 
+    // Calculate time offset
     if (this.timeOffsetMs == 0) {
       let now = new Date().getTime();
 
       this.timeOffsetMs = now - timeMs;
 
-      for (let i = 0; i < this.datasets[0].data.length; i++) {
-        let value = this.datasets[0].data[i];
-        let timeMs = value.x.getTime() + this.timeOffsetMs;
-        value.x = new Date(timeMs);
+      // Update all existing data to apply date offset
+      for (let j = 0; j < 3; j++) {
+        for (let i = 0; i < this.datasets[j].data.length; i++) {
+          let value = this.datasets[j].data[i];
+          let timeMs = value.x.getTime() + this.timeOffsetMs;
+          value.x = new Date(timeMs);
+        }
       }
     }
 
-    if (this.datasets[0].data.length == 0) {
-      return;
-    }
+    let time = new Date(timeMs + this.timeOffsetMs);
 
+    // Temperature
     this.datasets[0].data.push({
-      x: new Date(timeMs + this.timeOffsetMs),
+      x: time,
       y: state.temperatureC
+    });
+
+    // Heater state
+    this.datasets[1].data.push({
+      x: time,
+      y: state.heaterActive ? 100 : 0
+    });
+
+    // Controller output
+    this.datasets[2].data.push({
+      x: time,
+      y: state.outputPercent
     });
 
     this.chart.chart.update();

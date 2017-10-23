@@ -40,7 +40,7 @@
       <table width="100%" class="temperature-profile-view-table">
         <tr *ngFor='let level of state.temperatureProfile.levels; let i = index' [ngClass]="getTemperatureLevelClass(level)">
           <td class="temperature-profile-view-cell">
-            {{level.name}}
+            {{profile.levels[i].name}}
           </td>
           <td class="temperature-profile-view-cell">
             <div *ngIf="level.state == 'Active' || level.state == 'Pending'" class="temperature-profile-view-element-active">
