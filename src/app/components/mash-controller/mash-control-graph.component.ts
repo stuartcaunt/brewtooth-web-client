@@ -21,8 +21,8 @@ export class MashControlGraphComponent implements OnInit {
     scales: {
       xAxes: [{
         type: 'time',
-        time: {
-          format: "HH:MM:SS"
+        displayFormats: {
+          quarter: 'HH:mm:ss'
         }
       }],
       yAxes: [
@@ -53,7 +53,7 @@ export class MashControlGraphComponent implements OnInit {
     yAxisID: 'power',
     data: [],
     pointRadius: 0,
-    fill: false
+    fill: true
   }, {
     label: "Controller",
     yAxisID: 'power',
