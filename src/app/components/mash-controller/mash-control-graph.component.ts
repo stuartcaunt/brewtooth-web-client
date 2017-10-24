@@ -36,7 +36,12 @@ export class MashControlGraphComponent implements OnInit {
           id: 'power',
           type: 'linear',
           position: 'right',
-          scalePositionLeft: false
+          scalePositionLeft: false,
+          beginAtZero: true,
+          ticks: {
+            min: 0,
+            max: 100
+          }
         }
       ]
     }
