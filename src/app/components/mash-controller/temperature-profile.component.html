@@ -51,9 +51,12 @@
             </div>
           </td>
           <td class="temperature-profile-view-cell">
-            <div *ngIf="level.state == 'Active' || level.state == 'Pending'" class="temperature-profile-view-element-active">
+            <div *ngIf="level.state == 'Active' || level.state == 'Pending'; else notActiveTime" class="temperature-profile-view-element-active">
                 {{level.timerS | number:'1.0-0'}}s /
             </div>
+            <ng-template #notActiveTime class="temperature-profile-view-element">
+                {{level.timerS | number:'1.0-0'}}s /
+            </ng-template>
             <div class="temperature-profile-view-element">
                 {{level.durationS}}s
             </div>
