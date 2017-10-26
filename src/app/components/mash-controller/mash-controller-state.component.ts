@@ -12,6 +12,10 @@ import {MashControllerHistory, MashControllerState} from 'models';
 export class MashControllerStateComponent implements OnInit {
 
   state: MashControllerState;
+  kp: number = 0.0;
+  ki: number = 0.0;
+  kd: number = 0.0;
+  firstState: boolean = true;
 
   constructor (private mashControllerService: MashControllerService) {
   }
@@ -19,7 +23,17 @@ export class MashControllerStateComponent implements OnInit {
   ngOnInit(): void {
     this.mashControllerService.getStateObservable().subscribe(state => {
       this.state = state;
+      if (this.firstState && this.state.currentTimeS != 0) {
+        this.kp = state.kp;
+        this.ki = state.ki;
+        this.kd = state.kd;
+        this.firstState = false;
+      }
     })
+  }
+  
+  setPID(): void {
+    this.mashControllerService.setPID(this.kp, this.ki, this.kd);
   }
 
   toggleAutoControl(): void {

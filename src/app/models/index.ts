@@ -8,3 +8,4 @@ export * from './mash-controller-history.model';
 export * from './mash-controller-state.model';
 export * from './temperature-level.model';
 export * from './temperature-profile.model';
+export * from './pid-params.model';

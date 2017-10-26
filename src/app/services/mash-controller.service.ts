@@ -5,7 +5,7 @@ import { environment } from 'environments/environment';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 
-import { MashControllerState, MashControllerHistory, TemperatureProfile } from 'models';
+import { MashControllerState, MashControllerHistory, TemperatureProfile, PIDParams } from 'models';
 import {Observable} from 'rxjs/Observable';
 import {Subject} from 'rxjs/Subject';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
@@ -71,6 +71,19 @@ export class MashControllerService {
       .map(response => {
         let history = response.json() as MashControllerHistory[];
         return history;
+      });
+  }
+
+  setPID(kp: number, ki: number, kd: number): void {
+    let pidParams: PIDParams = new PIDParams();
+    pidParams.kp = kp;
+    pidParams.ki = ki;
+    pidParams.kd = kd;
+    const url = `${environment.mashControllerApiUrl}/pid`;
+    this.http
+      .post(url, JSON.stringify(pidParams))
+      .map(response => response.json() as PIDParams)
+      .subscribe(pidParams => {
       });
   }
 

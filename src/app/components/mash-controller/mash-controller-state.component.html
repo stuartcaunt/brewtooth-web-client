@@ -8,21 +8,21 @@
                 <tr>
                   <td>
                     <md-input-container class="data-form-full-width">
-                      <input mdInput placeholder="P" type="number" required [(ngModel)]="state.kp"/>
+                      <input mdInput placeholder="P" type="number" required [(ngModel)]="kp" (change)="setPID()"/>
                     </md-input-container>
                   </td>
                 </tr>
                 <tr>
                   <td>
                     <md-input-container class="data-form-full-width">
-                      <input mdInput placeholder="I" type="number" required [(ngModel)]="state.ki"/>
+                      <input mdInput placeholder="I" type="number" required [(ngModel)]="ki"/>
                     </md-input-container>
                   </td>
                 </tr>
                 <tr>
                   <td>
                     <md-input-container class="data-form-full-width">
-                      <input mdInput placeholder="D" type="number" required [(ngModel)]="state.kd"/>
+                      <input mdInput placeholder="D" type="number" required [(ngModel)]="kd"/>
                     </md-input-container>
                   </td>
                 </tr>

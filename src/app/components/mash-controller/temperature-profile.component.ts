@@ -80,7 +80,6 @@ export class TemperatureProfileComponent implements OnInit {
   }
 
   getTemperatureLevelClass(level: TemperatureLevel): string {
-    console.log("called");
     var state = level.state;
     if (state == 'Inactive') {
       return 'temperature-level-inactive';
