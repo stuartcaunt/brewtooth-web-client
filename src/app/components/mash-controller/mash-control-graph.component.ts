@@ -22,8 +22,8 @@ export class MashControlGraphComponent implements OnInit {
       xAxes: [{
         type: 'time',
         displayFormats: {
-          quarter: 'HH:mm:ss'
-        }
+          minute: 'h:mm'
+        } 
       }],
       yAxes: [
         {
