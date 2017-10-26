@@ -58,6 +58,18 @@
                 {{level.durationS}}s
             </div>
           </td>
+          <td class="temperature-profile-view-cell">
+            <div *ngIf="level.state == 'Pending'" class="temperature-profile-view-element-active temperature-profile-button">
+              <div (click)="startLevel()">
+                <i class="material-icons data-table-button">play_arrow</i>
+              </div>
+            </div>
+            <div *ngIf="level.state == 'Active'" class="temperature-profile-view-element-active temperature-profile-button">
+              <div (click)="skipLevel()">
+                <i class="material-icons data-table-button">fast_forward</i>
+              </div>
+            </div>
+          </td>
         </tr>
       </table>
     </div>

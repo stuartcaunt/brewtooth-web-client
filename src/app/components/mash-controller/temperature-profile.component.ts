@@ -28,7 +28,11 @@ export class TemperatureProfileComponent implements OnInit {
 
     this.mashControllerService.getStateObservable().subscribe(state => {
       this.state = state;
-    })
+
+      if (state.running) {
+        this.profile = state.temperatureProfile;
+      }
+    });
   }
 
   addLevel(): void {
@@ -43,6 +47,14 @@ export class TemperatureProfileComponent implements OnInit {
     this.profile.levels.splice(index, 1);
     this.temperatureFormControls.splice(index, 1);
     this.durationFormControls.splice(index, 1);
+  }
+
+  startLevel(): void {
+    this.mashControllerService.startTemperatureControlProfileLevel();
+  }
+
+  skipLevel(): void {
+    this.mashControllerService.skipTemperatureControlProfileLevel();
   }
 
   startControl(): void {

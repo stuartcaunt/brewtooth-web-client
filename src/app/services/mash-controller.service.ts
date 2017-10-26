@@ -114,6 +114,28 @@ export class MashControllerService {
       });    
   }
 
+  startTemperatureControlProfileLevel(): void {
+    const url = `${environment.mashControllerApiUrl}/profile/start`;
+    this.http
+    .get(url)
+    .map(response => response.json() as MashControllerState)
+    .subscribe(state => {
+      this.setState(state);
+    });
+
+  }
+
+  skipTemperatureControlProfileLevel(): void {
+    const url = `${environment.mashControllerApiUrl}/profile/skip`;
+    this.http
+    .get(url)
+    .map(response => response.json() as MashControllerState)
+    .subscribe(state => {
+      this.setState(state);
+    });
+
+  }
+
   stopControl(): void {
     const url = `${environment.mashControllerApiUrl}/stop`;
     this.http
