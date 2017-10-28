@@ -41,7 +41,7 @@ export class MashControllerService {
       this.historyObservable.next(this.history);
     }
 
-    state.outputPercent = state.outputMax == 0 ? 0 : state.controllerOutput / state.outputMax;
+    state.outputPercent = state.outputMax == 0 ? 0 : state.controllerOutput / state.outputMax * 100;
     
     this.stateObservable.next(state);
   }
