@@ -6,7 +6,7 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Malt} from 'models';
 import {MaltService} from 'services';
 import {DataSource} from '@angular/cdk';
-import {MdDialog} from '@angular/material';
+import {MatDialog} from '@angular/material/dialog';
 import {MaltEditModalComponent} from 'components';
 import {YesNoDialogComponent} from 'components';
 
@@ -21,7 +21,7 @@ export class MaltListComponent implements OnInit {
 
   @ViewChild('filter') filter: ElementRef;
 
-  constructor (private maltService: MaltService, public dialog: MdDialog) {
+  constructor (private maltService: MaltService, public dialog: MatDialog) {
   }
 
   ngOnInit(): void {

@@ -6,7 +6,7 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { Yeast } from 'models';
 import { YeastService } from 'services';
 import {DataSource} from '@angular/cdk';
-import {MdDialog} from '@angular/material';
+import {MatDialog} from '@angular/material/dialog';
 import {YeastEditModalComponent} from 'components';
 import {YesNoDialogComponent} from 'components';
 
@@ -21,7 +21,7 @@ export class YeastListComponent implements OnInit {
 
   @ViewChild('filter') filter: ElementRef;
 
-  constructor (private yeastService: YeastService, public dialog: MdDialog) {
+  constructor (private yeastService: YeastService, public dialog: MatDialog) {
   }
 
   ngOnInit(): void {

@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MdDialogRef} from '@angular/material';
+import {MatDialogRef} from '@angular/material/dialog';
 import {Yeast} from 'models';
 import {Observable} from 'rxjs';
 
@@ -15,7 +15,7 @@ export class YeastEditModalComponent implements OnInit {
 
   @ViewChild('yeastEditComponent') yeastEditComponent;
 
-  constructor(public dialogRef: MdDialogRef<YeastEditModalComponent>) {
+  constructor(public dialogRef: MatDialogRef<YeastEditModalComponent>) {
   }
 
   ngOnInit(): void {

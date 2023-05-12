@@ -6,7 +6,7 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { Sugar } from 'models';
 import { SugarService } from 'services';
 import {DataSource} from '@angular/cdk';
-import {MdDialog} from '@angular/material';
+import {MatDialog} from '@angular/material/dialog';
 import {SugarEditModalComponent} from 'components';
 import {YesNoDialogComponent} from 'components';
 
@@ -21,7 +21,7 @@ export class SugarListComponent implements OnInit {
 
   @ViewChild('filter') filter: ElementRef;
 
-  constructor (private sugarService: SugarService, public dialog: MdDialog) {
+  constructor (private sugarService: SugarService, public dialog: MatDialog) {
   }
 
   ngOnInit(): void {

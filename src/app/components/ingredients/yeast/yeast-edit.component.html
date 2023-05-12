@@ -2,47 +2,47 @@
   <table class="data-form-full-width" cellspacing="0">
     <tr>
       <td>
-        <md-input-container class="data-form-full-width">
-          <input mdInput placeholder="Manufacturer" type="text" required [formControl]="manufacturerFormControl" [(ngModel)]="yeast.manufacturer"/>
-        </md-input-container>
+        <mat-form-field class="data-form-full-width">
+          <input matInput placeholder="Manufacturer" type="text" required [formControl]="manufacturerFormControl" [(ngModel)]="yeast.manufacturer"/>
+        </mat-form-field>
       </td>
     </tr>
 
     <tr>
       <td>
-        <md-input-container class="data-form-full-width">
-          <input mdInput placeholder="Name" type="text" required [formControl]="nameFormControl" [(ngModel)]="yeast.name"/>
-        </md-input-container>
+        <mat-form-field class="data-form-full-width">
+          <input matInput placeholder="Name" type="text" required [formControl]="nameFormControl" [(ngModel)]="yeast.name"/>
+        </mat-form-field>
       </td>
     </tr>
 
     <tr>
       <td>
-        <md-input-container class="data-form-full-width">
-          <input mdInput placeholder="Attenuation" type="number" step="1" required [formControl]="attenuationFormControl" [(ngModel)]="yeast.attenuation"/>
+        <mat-form-field class="data-form-full-width">
+          <input matInput placeholder="Attenuation" type="number" step="1" required [formControl]="attenuationFormControl" [(ngModel)]="yeast.attenuation"/>
           <md-error *ngIf="attenuationFormControl.hasError('min')">
             The attenuation must be above 0
           </md-error>
           <md-error *ngIf="attenuationFormControl.hasError('max')">
             The attenuation must be below 1
           </md-error>
-        </md-input-container>
+        </mat-form-field>
       </td>
     </tr>
 
     <tr>
       <td>
-        <md-input-container class="data-form-full-width">
-          <textarea mdInput placeholder="Description" type="text" [(ngModel)]="yeast.description">{{yeast.description}}</textarea>
-        </md-input-container>
+        <mat-form-field class="data-form-full-width">
+          <textarea matInput placeholder="Description" type="text" [(ngModel)]="yeast.description">{{yeast.description}}</textarea>
+        </mat-form-field>
       </td>
     </tr>
 
     <tr>
       <td>
-        <md-input-container class="data-form-full-width">
-          <textarea mdInput placeholder="URL" type="text"[(ngModel)]="yeast.url">{{yeast.url}}</textarea>
-        </md-input-container>
+        <mat-form-field class="data-form-full-width">
+          <textarea matInput placeholder="URL" type="text"[(ngModel)]="yeast.url">{{yeast.url}}</textarea>
+        </mat-form-field>
       </td>
     </tr>
 

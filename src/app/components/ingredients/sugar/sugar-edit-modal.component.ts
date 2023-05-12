@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MdDialogRef} from '@angular/material';
+import {MatDialogRef} from '@angular/material/dialog';
 import {Sugar} from 'models';
 import {Observable} from 'rxjs';
 
@@ -15,7 +15,7 @@ export class SugarEditModalComponent implements OnInit {
 
   @ViewChild('sugarEditComponent') sugarEditComponent;
 
-  constructor(public dialogRef: MdDialogRef<SugarEditModalComponent>) {
+  constructor(public dialogRef: MatDialogRef<SugarEditModalComponent>) {
   }
 
   ngOnInit(): void {

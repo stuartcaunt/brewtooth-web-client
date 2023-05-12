@@ -7,23 +7,23 @@
             <table width="100%" cellspacing="0">
                 <tr>
                   <td>
-                    <md-input-container class="data-form-full-width">
-                      <input mdInput placeholder="P" type="number" required [(ngModel)]="kp" (change)="setPID()"/>
-                    </md-input-container>
+                    <mat-form-field class="data-form-full-width">
+                      <input matInput placeholder="P" type="number" required [(ngModel)]="kp" (change)="setPID()"/>
+                    </mat-form-field>
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    <md-input-container class="data-form-full-width">
-                      <input mdInput placeholder="I" type="number" required [(ngModel)]="ki"/>
-                    </md-input-container>
+                    <mat-form-field class="data-form-full-width">
+                      <input matInput placeholder="I" type="number" required [(ngModel)]="ki"/>
+                    </mat-form-field>
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    <md-input-container class="data-form-full-width">
-                      <input mdInput placeholder="D" type="number" required [(ngModel)]="kd"/>
-                    </md-input-container>
+                    <mat-form-field class="data-form-full-width">
+                      <input matInput placeholder="D" type="number" required [(ngModel)]="kd"/>
+                    </mat-form-field>
                   </td>
                 </tr>
             </table>
@@ -50,6 +50,6 @@
     <md-slide-toggle (click)="toggleHeater()" class="controller-state-button" [checked]="state.heaterActive">Heater</md-slide-toggle>
     <md-slide-toggle (click)="toggleAgitator()" class="controller-state-button" [checked]="state.agitatorActive">Agitator</md-slide-toggle>
   </div>
-  
+
 </div>
 

@@ -2,25 +2,25 @@
   <table class="data-form-full-width" cellspacing="0">
     <tr>
       <td>
-        <md-input-container class="data-form-full-width">
-          <input mdInput placeholder="Name" type="text" required [formControl]="nameFormControl" [(ngModel)]="otherIngredient.name"/>
-        </md-input-container>
+        <mat-form-field class="data-form-full-width">
+          <input matInput placeholder="Name" type="text" required [formControl]="nameFormControl" [(ngModel)]="otherIngredient.name"/>
+        </mat-form-field>
       </td>
     </tr>
 
     <tr>
       <td>
-        <md-input-container class="data-form-full-width">
-          <textarea mdInput placeholder="Description" type="text" [(ngModel)]="otherIngredient.description">{{otherIngredient.description}}</textarea>
-        </md-input-container>
+        <mat-form-field class="data-form-full-width">
+          <textarea matInput placeholder="Description" type="text" [(ngModel)]="otherIngredient.description">{{otherIngredient.description}}</textarea>
+        </mat-form-field>
       </td>
     </tr>
 
     <tr>
       <td>
-        <md-input-container class="data-form-full-width">
-          <textarea mdInput placeholder="URL" type="text"[(ngModel)]="otherIngredient.url">{{otherIngredient.url}}</textarea>
-        </md-input-container>
+        <mat-form-field class="data-form-full-width">
+          <textarea matInput placeholder="URL" type="text"[(ngModel)]="otherIngredient.url">{{otherIngredient.url}}</textarea>
+        </mat-form-field>
       </td>
     </tr>
 

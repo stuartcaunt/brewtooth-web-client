@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MdDialogRef} from '@angular/material';
+import {MatDialogRef} from '@angular/material/dialog';
 import {Malt} from 'models';
 import {Observable} from 'rxjs';
 
@@ -15,7 +15,7 @@ export class MaltEditModalComponent implements OnInit {
 
   @ViewChild('maltEditComponent') maltEditComponent;
 
-  constructor(public dialogRef: MdDialogRef<MaltEditModalComponent>) {
+  constructor(public dialogRef: MatDialogRef<MaltEditModalComponent>) {
   }
 
   ngOnInit(): void {

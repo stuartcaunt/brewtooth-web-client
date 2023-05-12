@@ -4,25 +4,25 @@
       <table width="100%">
         <tr *ngFor='let level of profile.levels; let i = index'>
           <td class="temperature-profile-cell">
-            <md-input-container class="data-form-full-width">
-              <input mdInput placeholder="Name" type="text" [(ngModel)]="level.name" />
-            </md-input-container>
+            <mat-form-field class="data-form-full-width">
+              <input matInput placeholder="Name" type="text" [(ngModel)]="level.name" />
+            </mat-form-field>
           </td>
           <td class="temperature-profile-cell">
-            <md-input-container class="data-form-full-width">
-              <input mdInput placeholder="Setpoint °c" type="number" required [(ngModel)]="level.setpointC" [formControl]="temperatureFormControls[i]"/>
+            <mat-form-field class="data-form-full-width">
+              <input matInput placeholder="Setpoint °c" type="number" required [(ngModel)]="level.setpointC" [formControl]="temperatureFormControls[i]"/>
               <md-error *ngIf="temperatureFormControls[i].hasError('min')">
                 The setpoint must be above 0
               </md-error>
-            </md-input-container>
+            </mat-form-field>
           </td>
           <td class="temperature-profile-cell">
-            <md-input-container class="data-form-full-width">
-              <input mdInput placeholder="Duration s" type="number" required [(ngModel)]="level.durationS" [formControl]="durationFormControls[i]"/>
+            <mat-form-field class="data-form-full-width">
+              <input matInput placeholder="Duration s" type="number" required [(ngModel)]="level.durationS" [formControl]="durationFormControls[i]"/>
               <md-error *ngIf="durationFormControls[i].hasError('min')">
                 The duration must be above 0
               </md-error>
-            </md-input-container>
+            </mat-form-field>
           </td>
           <td *ngIf="(profile.levels.length != 1)">
             <div (click)="deleteLevel(i)">
@@ -31,8 +31,8 @@
           </td>
         </tr>
       </table>
-      <button md-mini-fab (click)="addLevel()" class="add-level-button">
-        <md-icon>add</md-icon>
+      <button mat-mini-fab (click)="addLevel()" class="add-level-button">
+        <mat-icon>add</mat-icon>
       </button>
     </div>
 
@@ -44,10 +44,10 @@
           </td>
           <td class="temperature-profile-view-cell">
             <div *ngIf="level.state == 'Active' || level.state == 'Pending'" class="temperature-profile-view-element-active">
-                {{state.temperatureC | number:'1.1-1'}}°c / 
+                {{state.temperatureC | number:'1.1-1'}}°c /
             </div>
             <div class="temperature-profile-view-element">
-                {{level.setpointC}}°c 
+                {{level.setpointC}}°c
             </div>
           </td>
           <td class="temperature-profile-view-cell">
@@ -76,7 +76,7 @@
         </tr>
       </table>
     </div>
-  
+
   </div>
   <div class="temperature-profile-buttons">
     <button *ngIf="!state.running" md-raised-button (click)="startControl()" class="start-control-button">Start</button>

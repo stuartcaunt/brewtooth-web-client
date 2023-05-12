@@ -1,12 +1,17 @@
 
-import {merge as observableMerge, fromEvent as observableFromEvent, Observable, BehaviorSubject} from 'rxjs';
+import {
+  Observable,
+  BehaviorSubject,
+  fromEvent,
+  merge
+} from 'rxjs';
 
 import {map, distinctUntilChanged, debounceTime} from 'rxjs/operators';
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { Hop } from 'models';
 import { HopService } from 'services';
-import {DataSource} from '@angular/cdk';
-import {MdDialog} from '@angular/material';
+import {DataSource} from '@angular/cdk/table';
+import {MatDialog} from '@angular/material/dialog';
 import {YesNoDialogComponent} from 'components';
 import {HopEditModalComponent} from 'components';
 
@@ -21,14 +26,14 @@ export class HopListComponent implements OnInit {
 
   @ViewChild('filter') filter: ElementRef;
 
-  constructor (private hopService: HopService, public dialog: MdDialog) {
+  constructor (private hopService: HopService, public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
     this.dataSource = new HopsDataSource(this.hopService);
-    observableFromEvent(this.filter.nativeElement, 'keyup').pipe(
+    fromEvent(this.filter.nativeElement, 'keyup').pipe(
       debounceTime(100),
-      distinctUntilChanged(),)
+      distinctUntilChanged())
       .subscribe(() => {
         if (!this.dataSource) {
           return;
@@ -95,7 +100,7 @@ export class HopsDataSource extends DataSource<any> {
       this._filterChange,
     ];
 
-    return observableMerge(...displayDataChanges).pipe(map(() => {
+    return merge(...displayDataChanges).pipe(map(() => {
       return this.hops.slice().filter((hop: Hop) => {
         let searchStr = (hop.name).toLowerCase();
         return searchStr.indexOf(this.filter.toLowerCase()) !== -1;

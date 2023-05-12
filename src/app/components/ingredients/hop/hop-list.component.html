@@ -1,44 +1,44 @@
-<md-toolbar color="primary" class="bt-page-toolbar">
+<mat-toolbar color="primary" class="bt-page-toolbar">
   <h1>Hops</h1>
-</md-toolbar>
+</mat-toolbar>
 <div class="data-table-container mat-elevation-z4">
 
   <div class="data-table-header">
-    <md-input-container floatPlaceholder="never">
-      <input mdInput #filter placeholder="Filter hops">
-    </md-input-container>
+    <mat-form-field floatLabel="never">
+      <input matInput #filter placeholder="Filter hops">
+    </mat-form-field>
 
-    <button md-mini-fab (click)="openEditModal()">
-      <md-icon>add</md-icon>
+    <button mat-mini-fab (click)="openEditModal(null)">
+      <mat-icon>add</mat-icon>
     </button>
   </div>
 
-  <md-table #table [dataSource]="dataSource">
+  <table mat-table #table [dataSource]="dataSource">
 
     <ng-container cdkColumnDef="name">
-      <md-header-cell *cdkHeaderCellDef>Name</md-header-cell>
-      <md-cell class="data-table-cell" *cdkCellDef="let hop" (click)="openEditModal(hop)">
-        <a *ngIf="hop.url != null; else noLinkName" (click)="$event.stopPropagation()" class="data-table-link" caca target="_blank" href="{{hop.url}}">{{hop.name}}</a>
+      <th mat-header-cell *cdkHeaderCellDef>Name</th>
+      <td mat-cell class="data-table-cell" *cdkCellDef="let hop" (click)="openEditModal(hop)">
+        <a *ngIf="hop.url != null; else noLinkName" (click)="$event.stopPropagation()" class="data-table-link" target="_blank" href="{{hop.url}}">{{hop.name}}</a>
         <ng-template #noLinkName>{{hop.name}}</ng-template>
-      </md-cell>
+      </td>
     </ng-container>
 
     <ng-container cdkColumnDef="alphaAcid">
-      <md-header-cell *cdkHeaderCellDef>Alpha Acid</md-header-cell>
-      <md-cell class="data-table-cell" *cdkCellDef="let hop" (click)="openEditModal(hop)"> {{hop.alphaAcid}} </md-cell>
+      <th mat-header-cell *cdkHeaderCellDef>Alpha Acid</th>
+      <td mat-cell class="data-table-cell" *cdkCellDef="let hop" (click)="openEditModal(hop)"> {{hop.alphaAcid}} </td>
     </ng-container>
 
     <ng-container cdkColumnDef="isPellet">
-      <md-header-cell *cdkHeaderCellDef>Pellet</md-header-cell>
-      <md-cell class="data-table-cell" *cdkCellDef="let hop" (click)="openEditModal(hop)"> {{hop.isPellet ? 'Yes' : 'No'}} </md-cell>
+      <th mat-header-cell *cdkHeaderCellDef>Pellet</th>
+      <td mat-cell class="data-table-cell" *cdkCellDef="let hop" (click)="openEditModal(hop)"> {{hop.isPellet ? 'Yes' : 'No'}} </td>
     </ng-container>
 
     <ng-container cdkColumnDef="delete">
-      <md-header-cell *cdkHeaderCellDef [ngClass]="'data-table-cell-small'"></md-header-cell>
-      <md-cell *cdkCellDef="let hop" [ngClass]="'data-table-cell-small'" (click)="deleteHopWithConfirm(hop)"><i class="material-icons data-table-delete">delete</i></md-cell>
+      <th mat-header-cell *cdkHeaderCellDef [ngClass]="'data-table-cell-small'"></th>
+      <td mat-cell *cdkCellDef="let hop" [ngClass]="'data-table-cell-small'" (click)="deleteHopWithConfirm(hop)"><i class="material-icons data-table-delete">delete</i></td>
     </ng-container>
 
-    <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
-    <md-row *cdkRowDef="let hop; columns: displayedColumns;"></md-row>
-  </md-table>
+    <tr mat-header-row *cdkHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *cdkRowDef="let hop; columns: displayedColumns;"></tr>
+  </table>
 </div>

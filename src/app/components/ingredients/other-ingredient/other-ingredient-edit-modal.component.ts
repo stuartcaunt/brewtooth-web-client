@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MdDialogRef} from '@angular/material';
+import {MatDialogRef} from '@angular/material/dialog';
 import {OtherIngredient} from 'models';
 import {Observable} from 'rxjs';
 
@@ -17,7 +17,7 @@ export class OtherIngredientEditModalComponent implements OnInit {
 
   @ViewChild('otherIngredientEditComponent') otherIngredientEditComponent;
 
-  constructor(public dialogRef: MdDialogRef<OtherIngredientEditModalComponent>) {
+  constructor(public dialogRef: MatDialogRef<OtherIngredientEditModalComponent>) {
   }
 
   ngOnInit(): void {

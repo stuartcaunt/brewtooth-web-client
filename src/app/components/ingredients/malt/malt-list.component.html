@@ -1,46 +1,46 @@
-<md-toolbar color="primary" class="bt-page-toolbar">
+<mat-toolbar color="primary" class="bt-page-toolbar">
   <h1>Malts</h1>
-</md-toolbar>
+</mat-toolbar>
 <div class="data-table-container mat-elevation-z4">
 
   <div class="data-table-header">
-    <md-input-container floatPlaceholder="never">
-      <input mdInput #filter placeholder="Filter malts">
-    </md-input-container>
+    <mat-form-field floatLabel="never">
+      <input matInput #filter placeholder="Filter malts">
+    </mat-form-field>
 
-    <button md-mini-fab (click)="openEditModal()">
-      <md-icon>add</md-icon>
+    <button mat-mini-fab (click)="openEditModal(null)">
+      <mat-icon>add</mat-icon>
     </button>
   </div>
 
-  <md-table #table [dataSource]="dataSource">
+  <table mat-table #table [dataSource]="dataSource">
 
     <ng-container cdkColumnDef="name">
-      <md-header-cell *cdkHeaderCellDef>Name</md-header-cell>
-      <md-cell class="data-table-cell" *cdkCellDef="let malt" (click)="openEditModal(malt)"> {{malt.name}} </md-cell>
+      <th mat-header-cell *cdkHeaderCellDef>Name</th>
+      <td mat-cell class="data-table-cell" *cdkCellDef="let malt" (click)="openEditModal(malt)"> {{malt.name}} </td>
     </ng-container>
 
     <ng-container cdkColumnDef="grain">
-      <md-header-cell *cdkHeaderCellDef>Grain</md-header-cell>
-      <md-cell class="data-table-cell" *cdkCellDef="let malt" (click)="openEditModal(malt)"> {{malt.grain}} </md-cell>
+      <th mat-header-cell *cdkHeaderCellDef>Grain</th>
+      <td mat-cell class="data-table-cell" *cdkCellDef="let malt" (click)="openEditModal(malt)"> {{malt.grain}} </td>
     </ng-container>
 
     <ng-container cdkColumnDef="yield">
-      <md-header-cell *cdkHeaderCellDef>Yield</md-header-cell>
-      <md-cell class="data-table-cell" *cdkCellDef="let malt" (click)="openEditModal(malt)"> {{malt.yield}} </md-cell>
+      <th mat-header-cell *cdkHeaderCellDef>Yield</th>
+      <td mat-cell class="data-table-cell" *cdkCellDef="let malt" (click)="openEditModal(malt)"> {{malt.yield}} </td>
     </ng-container>
 
     <ng-container cdkColumnDef="ebc">
-      <md-header-cell *cdkHeaderCellDef>EBC</md-header-cell>
-      <md-cell class="data-table-cell" *cdkCellDef="let malt" (click)="openEditModal(malt)"> {{malt.ebc}} </md-cell>
+      <th mat-header-cell *cdkHeaderCellDef>EBC</th>
+      <td mat-cell class="data-table-cell" *cdkCellDef="let malt" (click)="openEditModal(malt)"> {{malt.ebc}} </td>
     </ng-container>
 
     <ng-container cdkColumnDef="delete">
-      <md-header-cell *cdkHeaderCellDef [ngClass]="'data-table-cell-small'"></md-header-cell>
-      <md-cell *cdkCellDef="let malt" [ngClass]="'data-table-cell-small'" (click)="deleteMaltWithConfirm(malt)"><i class="material-icons data-table-delete">delete</i></md-cell>
+      <th mat-header-cell *cdkHeaderCellDef [ngClass]="'data-table-cell-small'"></th>
+      <td mat-cell *cdkCellDef="let malt" [ngClass]="'data-table-cell-small'" (click)="deleteMaltWithConfirm(malt)"><i class="material-icons data-table-delete">delete</i></td>
     </ng-container>
 
-    <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
-    <md-row *cdkRowDef="let malt; columns: displayedColumns;"></md-row>
-  </md-table>
+    <tr mat-header-row *cdkHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *cdkRowDef="let malt; columns: displayedColumns;"></tr>
+  </table>
 </div>

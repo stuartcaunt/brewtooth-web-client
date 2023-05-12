@@ -1,11 +1,12 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { OtherIngredient } from 'models';
 import { OtherIngredientService } from 'services';
-import {DataSource} from '@angular/cdk';
-import {Observable, BehaviorSubject} from 'rxjs';
-import {MdDialog} from '@angular/material';
+import {Observable, BehaviorSubject, fromEvent, merge} from 'rxjs';
+import {MatDialog} from '@angular/material/dialog';
 import {OtherIngredientEditModalComponent} from 'components';
 import {YesNoDialogComponent} from 'components';
+import {DataSource} from '@angular/cdk/table';
+import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
 
 @Component({
   selector: 'bt-other-ingredient-list',
@@ -18,15 +19,15 @@ export class OtherIngredientListComponent implements OnInit {
 
   @ViewChild('filter') filter: ElementRef;
 
-  constructor (private otherIngredientService: OtherIngredientService, public dialog: MdDialog) {
+  constructor (private otherIngredientService: OtherIngredientService, public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
     this.dataSource = new OtherIngredientsDataSource(this.otherIngredientService);
-    Observable.fromEvent(this.filter.nativeElement, 'keyup')
-      .debounceTime(100)
-      .distinctUntilChanged()
-      .subscribe(() => {
+    fromEvent(this.filter.nativeElement, 'keyup').pipe(
+      debounceTime(100),
+      distinctUntilChanged()
+    ).subscribe(() => {
         if (!this.dataSource) {
           return;
         }
@@ -92,13 +93,15 @@ export class OtherIngredientsDataSource extends DataSource<any> {
       this._filterChange,
     ];
 
-    return Observable.merge(...displayDataChanges).map(() => {
+    return merge(...displayDataChanges).pipe(
+      map(() => {
       return this.otherIngredients.slice().filter((otherIngredient: OtherIngredient) => {
         let searchStr = (otherIngredient.name).toLowerCase();
         return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
       });
-    });
+    }));
   }
 
-  disconnect() {}
+  disconnect() {
+  }
 }

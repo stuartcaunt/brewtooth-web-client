@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MdDialogRef} from '@angular/material';
+import {MatDialogRef} from '@angular/material/dialog';
 import {Hop} from 'models';
 import {Observable} from 'rxjs';
 
@@ -15,7 +15,7 @@ export class HopEditModalComponent implements OnInit {
 
   @ViewChild('hopEditComponent') hopEditComponent;
 
-  constructor(public dialogRef: MdDialogRef<HopEditModalComponent>) {
+  constructor(public dialogRef: MatDialogRef<HopEditModalComponent>) {
   }
 
   ngOnInit(): void {

@@ -1,31 +1,31 @@
-<md-toolbar color="primary" class="bt-page-toolbar">
+<mat-toolbar color="primary" class="bt-page-toolbar">
   <h1>Sugars</h1>
-</md-toolbar>
+</mat-toolbar>
 <div class="data-table-container mat-elevation-z4">
 
   <div class="data-table-header">
-    <md-input-container floatPlaceholder="never">
-      <input mdInput #filter placeholder="Filter sugars">
-    </md-input-container>
+    <mat-form-field floatLabel="never">
+      <input matInput #filter placeholder="Filter sugars">
+    </mat-form-field>
 
-    <button md-mini-fab (click)="openEditModal()">
-      <md-icon>add</md-icon>
+    <button mat-mini-fab (click)="openEditModal(null)">
+      <mat-icon>add</mat-icon>
     </button>
   </div>
 
-  <md-table #table [dataSource]="dataSource">
+  <table mat-table #table [dataSource]="dataSource">
 
     <ng-container cdkColumnDef="name">
-      <md-header-cell *cdkHeaderCellDef>Name</md-header-cell>
-      <md-cell class="data-table-cell" *cdkCellDef="let sugar" (click)="openEditModal(sugar)"> {{sugar.name}} </md-cell>
+      <th mat-header-cell *cdkHeaderCellDef>Name</th>
+      <td mat-cell class="data-table-cell" *cdkCellDef="let sugar" (click)="openEditModal(sugar)"> {{sugar.name}} </td>
     </ng-container>
 
     <ng-container cdkColumnDef="delete">
-      <md-header-cell *cdkHeaderCellDef [ngClass]="'data-table-cell-small'"></md-header-cell>
-      <md-cell *cdkCellDef="let sugar" [ngClass]="'data-table-cell-small'" (click)="deleteSugarWithConfirm(sugar)"><i class="material-icons data-table-delete">delete</i></md-cell>
+      <th mat-header-cell *cdkHeaderCellDef [ngClass]="'data-table-cell-small'"></th>
+      <td mat-cell *cdkCellDef="let sugar" [ngClass]="'data-table-cell-small'" (click)="deleteSugarWithConfirm(sugar)"><i class="material-icons data-table-delete">delete</i></td>
     </ng-container>
 
-    <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
-    <md-row *cdkRowDef="let sugar; columns: displayedColumns;"></md-row>
-  </md-table>
+    <tr mat-header-row *cdkHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *cdkRowDef="let sugar; columns: displayedColumns;"></tr>
+  </table>
 </div>
