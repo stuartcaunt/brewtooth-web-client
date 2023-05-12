@@ -1,9 +1,11 @@
+
+import {merge as observableMerge, fromEvent as observableFromEvent, Observable, BehaviorSubject} from 'rxjs';
+
+import {map, distinctUntilChanged, debounceTime} from 'rxjs/operators';
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { Sugar } from 'models';
 import { SugarService } from 'services';
 import {DataSource} from '@angular/cdk';
-import {Observable} from 'rxjs/Rx';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {MdDialog} from '@angular/material';
 import {SugarEditModalComponent} from 'components';
 import {YesNoDialogComponent} from 'components';
@@ -24,9 +26,9 @@ export class SugarListComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataSource = new SugarsDataSource(this.sugarService);
-    Observable.fromEvent(this.filter.nativeElement, 'keyup')
-      .debounceTime(100)
-      .distinctUntilChanged()
+    observableFromEvent(this.filter.nativeElement, 'keyup').pipe(
+      debounceTime(100),
+      distinctUntilChanged(),)
       .subscribe(() => {
         if (!this.dataSource) {
           return;
@@ -93,12 +95,12 @@ export class SugarsDataSource extends DataSource<any> {
       this._filterChange,
     ];
 
-    return Observable.merge(...displayDataChanges).map(() => {
+    return observableMerge(...displayDataChanges).pipe(map(() => {
       return this.sugars.slice().filter((sugar: Sugar) => {
         let searchStr = (sugar.name).toLowerCase();
         return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
       });
-    });
+    }));
   }
 
   disconnect() {}

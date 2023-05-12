@@ -1,12 +1,14 @@
+
+import {map} from 'rxjs/operators';
 import { Injectable }    from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import { environment } from 'environments/environment';
 
-import 'rxjs/add/operator/toPromise';
-import 'rxjs/add/operator/map';
+
+
 
 import { Sugar } from 'models';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
 
 @Injectable()
 export class SugarService {
@@ -18,8 +20,8 @@ export class SugarService {
   getSugars(): Observable<Sugar[]> {
     const url = `${environment.apiUrl}/sugars`;
     return this.http
-      .get(url, {headers: this.headers})
-      .map(response => response.json() as Sugar[]);
+      .get(url, {headers: this.headers}).pipe(
+      map(response => response.json() as Sugar[]));
   }
 
   save(sugar: Sugar): Promise<Sugar> {

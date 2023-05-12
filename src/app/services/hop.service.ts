@@ -1,12 +1,14 @@
+
+import {map} from 'rxjs/operators';
 import { Injectable }    from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import { environment } from 'environments/environment';
 
-import 'rxjs/add/operator/toPromise';
-import 'rxjs/add/operator/map';
+
+
 
 import { Hop } from 'models';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
 
 @Injectable()
 export class HopService {
@@ -18,8 +20,8 @@ export class HopService {
   getHops(): Observable<Hop[]> {
     const url = `${environment.apiUrl}/hops`;
     return this.http
-      .get(url, {headers: this.headers})
-      .map(response => response.json() as Hop[]);
+      .get(url, {headers: this.headers}).pipe(
+      map(response => response.json() as Hop[]));
   }
 
   save(hop: Hop): Promise<Hop> {

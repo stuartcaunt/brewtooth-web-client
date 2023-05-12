@@ -1,9 +1,11 @@
+
+import {merge as observableMerge, fromEvent as observableFromEvent, Observable, BehaviorSubject} from 'rxjs';
+
+import {map, distinctUntilChanged, debounceTime} from 'rxjs/operators';
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { Yeast } from 'models';
 import { YeastService } from 'services';
 import {DataSource} from '@angular/cdk';
-import {Observable} from 'rxjs/Rx';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {MdDialog} from '@angular/material';
 import {YeastEditModalComponent} from 'components';
 import {YesNoDialogComponent} from 'components';
@@ -24,9 +26,9 @@ export class YeastListComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataSource = new YeastsDataSource(this.yeastService);
-    Observable.fromEvent(this.filter.nativeElement, 'keyup')
-      .debounceTime(100)
-      .distinctUntilChanged()
+    observableFromEvent(this.filter.nativeElement, 'keyup').pipe(
+      debounceTime(100),
+      distinctUntilChanged(),)
       .subscribe(() => {
         if (!this.dataSource) {
           return;
@@ -93,12 +95,12 @@ export class YeastsDataSource extends DataSource<any> {
       this._filterChange,
     ];
 
-    return Observable.merge(...displayDataChanges).map(() => {
+    return observableMerge(...displayDataChanges).pipe(map(() => {
       return this.yeasts.slice().filter((yeast: Yeast) => {
         let searchStr = (yeast.name + yeast.manufacturer).toLowerCase();
         return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
       });
-    });
+    }));
   }
 
   disconnect() {}

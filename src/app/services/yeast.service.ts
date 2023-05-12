@@ -1,12 +1,14 @@
+
+import {map} from 'rxjs/operators';
 import { Injectable }    from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import { environment } from 'environments/environment';
 
-import 'rxjs/add/operator/toPromise';
-import 'rxjs/add/operator/map';
+
+
 
 import { Yeast } from 'models';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
 
 @Injectable()
 export class YeastService {
@@ -18,8 +20,8 @@ export class YeastService {
   getYeasts(): Observable<Yeast[]> {
     const url = `${environment.apiUrl}/yeasts`;
     return this.http
-      .get(url, {headers: this.headers})
-      .map(response => response.json() as Yeast[]);
+      .get(url, {headers: this.headers}).pipe(
+      map(response => response.json() as Yeast[]));
   }
 
   save(yeast: Yeast): Promise<Yeast> {

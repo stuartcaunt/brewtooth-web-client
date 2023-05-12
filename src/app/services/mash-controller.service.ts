@@ -1,14 +1,15 @@
+
+import {timer as observableTimer, Observable, Subject, BehaviorSubject} from 'rxjs';
+
+import {map} from 'rxjs/operators';
 import { Injectable }    from '@angular/core';
 import { Http } from '@angular/http';
 import { environment } from 'environments/environment';
 
-import 'rxjs/add/operator/toPromise';
-import 'rxjs/add/operator/map';
+
+
 
 import { MashControllerState, MashControllerHistory, TemperatureProfile, PIDParams } from 'models';
-import {Observable} from 'rxjs/Observable';
-import {Subject} from 'rxjs/Subject';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class MashControllerService {
@@ -29,7 +30,7 @@ export class MashControllerService {
       this.historyObservable.next(this.history);
     });
 
-    this.timer = Observable.timer(0, MashControllerService.UPDATE_PERIOD);
+    this.timer = observableTimer(0, MashControllerService.UPDATE_PERIOD);
     this.timer.subscribe(t => this.updateState());
   }
 
@@ -49,8 +50,8 @@ export class MashControllerService {
   updateState(): void {
     const url = `${environment.mashControllerApiUrl}/state`;
     this.http
-      .get(url)
-      .map(response => response.json() as MashControllerState)
+      .get(url).pipe(
+      map(response => response.json() as MashControllerState))
       .subscribe(state => {
         this.setState(state);
       });
@@ -67,11 +68,11 @@ export class MashControllerService {
   getHistory(): Observable<MashControllerHistory[]> {
     const url = `${environment.mashControllerApiUrl}/history`;
     return this.http
-      .get(url)
-      .map(response => {
+      .get(url).pipe(
+      map(response => {
         let history = response.json() as MashControllerHistory[];
         return history;
-      });
+      }));
   }
 
   setPID(kp: number, ki: number, kd: number): void {
@@ -81,8 +82,8 @@ export class MashControllerService {
     pidParams.kd = kd;
     const url = `${environment.mashControllerApiUrl}/pid`;
     this.http
-      .post(url, JSON.stringify(pidParams))
-      .map(response => response.json() as PIDParams)
+      .post(url, JSON.stringify(pidParams)).pipe(
+      map(response => response.json() as PIDParams))
       .subscribe(pidParams => {
       });
   }
@@ -90,8 +91,8 @@ export class MashControllerService {
   enableAutoControl(enabled: boolean): void {
     const url = `${environment.mashControllerApiUrl}/` + (enabled ? 'automatic' : 'manual');
     this.http
-      .get(url)
-      .map(response => response.json() as MashControllerState)
+      .get(url).pipe(
+      map(response => response.json() as MashControllerState))
       .subscribe(state => {
         this.setState(state);
       });
@@ -100,8 +101,8 @@ export class MashControllerService {
   enableHeater(enabled: boolean): void {
     const url = `${environment.mashControllerApiUrl}/heater/` + (enabled ? 'start' : 'stop');
     this.http
-      .get(url)
-      .map(response => response.json() as MashControllerState)
+      .get(url).pipe(
+      map(response => response.json() as MashControllerState))
       .subscribe(state => {
         this.setState(state);
       });
@@ -110,8 +111,8 @@ export class MashControllerService {
   enableAgitator(enabled: boolean): void {
     const url = `${environment.mashControllerApiUrl}/agitator/` + (enabled ? 'start' : 'stop');
     this.http
-      .get(url)
-      .map(response => response.json() as MashControllerState)
+      .get(url).pipe(
+      map(response => response.json() as MashControllerState))
       .subscribe(state => {
         this.setState(state);
       });
@@ -120,8 +121,8 @@ export class MashControllerService {
   startControlWithTemperatureProfile(temperatureProfile: TemperatureProfile): void {
     const url = `${environment.mashControllerApiUrl}/start`;
     this.http
-      .post(url, JSON.stringify(temperatureProfile))
-      .map(response => response.json() as MashControllerState)
+      .post(url, JSON.stringify(temperatureProfile)).pipe(
+      map(response => response.json() as MashControllerState))
       .subscribe(state => {
         this.setState(state);
       });    
@@ -130,8 +131,8 @@ export class MashControllerService {
   startTemperatureControlProfileLevel(): void {
     const url = `${environment.mashControllerApiUrl}/profile/start`;
     this.http
-    .get(url)
-    .map(response => response.json() as MashControllerState)
+    .get(url).pipe(
+    map(response => response.json() as MashControllerState))
     .subscribe(state => {
       this.setState(state);
     });
@@ -141,8 +142,8 @@ export class MashControllerService {
   skipTemperatureControlProfileLevel(): void {
     const url = `${environment.mashControllerApiUrl}/profile/skip`;
     this.http
-    .get(url)
-    .map(response => response.json() as MashControllerState)
+    .get(url).pipe(
+    map(response => response.json() as MashControllerState))
     .subscribe(state => {
       this.setState(state);
     });
@@ -152,8 +153,8 @@ export class MashControllerService {
   stopControl(): void {
     const url = `${environment.mashControllerApiUrl}/stop`;
     this.http
-      .get(url)
-      .map(response => response.json() as MashControllerState)
+      .get(url).pipe(
+      map(response => response.json() as MashControllerState))
       .subscribe(state => {
         this.setState(state);
       });    

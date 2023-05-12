@@ -1,8 +1,7 @@
 import {Component} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
+import {Observable, Subject} from 'rxjs';
 import {Yeast} from 'models';
 import {YeastService} from 'services';
-import {Subject} from 'rxjs/Subject';
 import {FormControl, Validators} from '@angular/forms';
 
 @Component({
