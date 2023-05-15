@@ -5,7 +5,7 @@ import {map, distinctUntilChanged, debounceTime} from 'rxjs/operators';
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { Yeast } from 'models';
 import { YeastService } from 'services';
-import {DataSource} from '@angular/cdk';
+import {DataSource} from '@angular/cdk/table';
 import {MatDialog} from '@angular/material/dialog';
 import {YeastEditModalComponent} from 'components';
 import {YesNoDialogComponent} from 'components';
@@ -62,7 +62,7 @@ export class YeastListComponent implements OnInit {
   }
 
   deleteYeast(yeast: Yeast): void {
-    this.yeastService.delete(yeast).then(() => {
+    this.yeastService.delete(yeast).subscribe(() => {
       this.dataSource.reloadData();
     });
   }

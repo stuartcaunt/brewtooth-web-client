@@ -8,12 +8,18 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
+import {MatCardModule} from "@angular/material/card";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 
 @NgModule({
   imports: [
+    MatCardModule,
     MatDialogModule,
+    MatFormFieldModule,
     MatToolbarModule,
     MatSelectModule,
+    MatSlideToggleModule,
     MatSidenavModule,
     MatButtonModule,
     MatInputModule,
@@ -22,9 +28,12 @@ import {MatIconModule} from '@angular/material/icon';
     CdkTableModule,
   ],
   exports: [
+    MatCardModule,
     MatDialogModule,
+    MatFormFieldModule,
     MatToolbarModule,
     MatSelectModule,
+    MatSlideToggleModule,
     MatSidenavModule,
     MatButtonModule,
     MatInputModule,

@@ -35,7 +35,7 @@ export class SugarEditComponent {
     if (this.nameFormControl.valid) {
 
       // Save sugar
-      this.sugarService.save(this._sugar).then(sugar => {
+      this.sugarService.save(this._sugar).subscribe(sugar => {
         this._sugar = sugar;
 
         // Notify observers

@@ -1,30 +1,26 @@
 
-import {map} from 'rxjs/operators';
+import {catchError, map} from 'rxjs/operators';
 import { Injectable }    from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { environment } from 'environments/environment';
 
 
-
-
 import { OtherIngredient } from 'models';
-import {Observable} from 'rxjs';
+import {Observable, throwError} from 'rxjs';
 
 @Injectable()
 export class OtherIngredientService {
 
-  private headers = new Headers({'Content-Type': 'application/json'});
+  private headers = new HttpHeaders({'Content-Type': 'application/json'});
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
   getOtherIngredients(): Observable<OtherIngredient[]> {
     const url = `${environment.apiUrl}/otherIngredients`;
-    return this.http
-      .get(url, {headers: this.headers}).pipe(
-      map(response => response.json() as OtherIngredient[]));
+    return this.http.get<OtherIngredient[]>(url, {headers: this.headers});
   }
 
-  save(otherIngredient: OtherIngredient): Promise<OtherIngredient> {
+  save(otherIngredient: OtherIngredient): Observable<OtherIngredient> {
     if (otherIngredient.id == null) {
       return this.create(otherIngredient);
 
@@ -33,36 +29,33 @@ export class OtherIngredientService {
     }
   }
 
-  create(otherIngredient: OtherIngredient): Promise<OtherIngredient> {
+  create(otherIngredient: OtherIngredient): Observable<OtherIngredient> {
     const url = `${environment.apiUrl}/otherIngredients`;
-    return this.http
-      .post(url, JSON.stringify(otherIngredient), {headers: this.headers})
-      .toPromise()
-      .then(res => res.json() as OtherIngredient)
-      .catch(this.handleError);
+    return this.http.post<OtherIngredient>(url, JSON.stringify(otherIngredient), {headers: this.headers})
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
-  update(otherIngredient: OtherIngredient): Promise<OtherIngredient> {
+  update(otherIngredient: OtherIngredient): Observable<OtherIngredient> {
     const url = `${environment.apiUrl}/otherIngredients/${otherIngredient.id}`;
-    return this.http
-      .put(url, JSON.stringify(otherIngredient), {headers: this.headers})
-      .toPromise()
-      .then(res => res.json() as OtherIngredient)
-      .catch(this.handleError);
+    return this.http.put<OtherIngredient>(url, JSON.stringify(otherIngredient), {headers: this.headers})
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
-  delete(otherIngredient: OtherIngredient): Promise<OtherIngredient> {
+  delete(otherIngredient: OtherIngredient): Observable<OtherIngredient> {
     const url = `${environment.apiUrl}/otherIngredients/${otherIngredient.id}`;
-    return this.http
-      .delete(url, {headers: this.headers})
-      .toPromise()
-      .then(() => null)
-      .catch(this.handleError);
+    return this.http.delete<OtherIngredient>(url, {headers: this.headers})
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
-  private handleError(error: any): Promise<any> {
+  private handleError(error: any): Observable<OtherIngredient> {
     console.error('An error occurred', error);
-    return Promise.reject(error.message || error);
+    return throwError(() => new Error(error.message || error));
   }
 
 }

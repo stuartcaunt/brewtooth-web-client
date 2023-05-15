@@ -5,7 +5,7 @@ import {map, distinctUntilChanged, debounceTime} from 'rxjs/operators';
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { Sugar } from 'models';
 import { SugarService } from 'services';
-import {DataSource} from '@angular/cdk';
+import {DataSource} from '@angular/cdk/table';
 import {MatDialog} from '@angular/material/dialog';
 import {SugarEditModalComponent} from 'components';
 import {YesNoDialogComponent} from 'components';
@@ -62,7 +62,7 @@ export class SugarListComponent implements OnInit {
   }
 
   deleteSugar(sugar: Sugar): void {
-    this.sugarService.delete(sugar).then(() => {
+    this.sugarService.delete(sugar).subscribe(() => {
       this.dataSource.reloadData();
     });
   }

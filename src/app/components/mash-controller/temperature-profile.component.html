@@ -11,17 +11,17 @@
           <td class="temperature-profile-cell">
             <mat-form-field class="data-form-full-width">
               <input matInput placeholder="Setpoint °c" type="number" required [(ngModel)]="level.setpointC" [formControl]="temperatureFormControls[i]"/>
-              <md-error *ngIf="temperatureFormControls[i].hasError('min')">
+              <mat-error *ngIf="temperatureFormControls[i].hasError('min')">
                 The setpoint must be above 0
-              </md-error>
+              </mat-error>
             </mat-form-field>
           </td>
           <td class="temperature-profile-cell">
             <mat-form-field class="data-form-full-width">
               <input matInput placeholder="Duration s" type="number" required [(ngModel)]="level.durationS" [formControl]="durationFormControls[i]"/>
-              <md-error *ngIf="durationFormControls[i].hasError('min')">
+              <mat-error *ngIf="durationFormControls[i].hasError('min')">
                 The duration must be above 0
-              </md-error>
+              </mat-error>
             </mat-form-field>
           </td>
           <td *ngIf="(profile.levels.length != 1)">
@@ -79,8 +79,8 @@
 
   </div>
   <div class="temperature-profile-buttons">
-    <button *ngIf="!state.running" md-raised-button (click)="startControl()" class="start-control-button">Start</button>
-    <button *ngIf="state.running" md-raised-button (click)="stopControl()" class="stop-control-button">Stop</button>
+    <button *ngIf="!state.running" mat-raised-button (click)="startControl()" class="start-control-button">Start</button>
+    <button *ngIf="state.running" mat-raised-button (click)="stopControl()" class="stop-control-button">Stop</button>
   </div>
 </div>
 

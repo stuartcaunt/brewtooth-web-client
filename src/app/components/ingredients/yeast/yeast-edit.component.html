@@ -20,12 +20,12 @@
       <td>
         <mat-form-field class="data-form-full-width">
           <input matInput placeholder="Attenuation" type="number" step="1" required [formControl]="attenuationFormControl" [(ngModel)]="yeast.attenuation"/>
-          <md-error *ngIf="attenuationFormControl.hasError('min')">
+          <mat-error *ngIf="attenuationFormControl.hasError('min')">
             The attenuation must be above 0
-          </md-error>
-          <md-error *ngIf="attenuationFormControl.hasError('max')">
+          </mat-error>
+          <mat-error *ngIf="attenuationFormControl.hasError('max')">
             The attenuation must be below 1
-          </md-error>
+          </mat-error>
         </mat-form-field>
       </td>
     </tr>

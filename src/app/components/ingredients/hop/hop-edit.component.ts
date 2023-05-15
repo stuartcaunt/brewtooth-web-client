@@ -42,7 +42,7 @@ export class HopEditComponent {
     if (this.nameFormControl.valid && this.alphaAcidFormControl.valid && this.isPelletFormControl.valid) {
 
       // Save hop
-      this.hopService.save(this._hop).then(hop => {
+      this.hopService.save(this._hop).subscribe(hop => {
         this._hop = hop;
 
         // Notify observers

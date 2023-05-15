@@ -35,7 +35,7 @@ export class OtherIngredientEditComponent {
     if (this.nameFormControl.valid) {
 
       // Save otherIngredient
-      this.otherIngredientService.save(this._otherIngredient).then(otherIngredient => {
+      this.otherIngredientService.save(this._otherIngredient).subscribe(otherIngredient => {
         this._otherIngredient = otherIngredient;
 
         // Notify observers

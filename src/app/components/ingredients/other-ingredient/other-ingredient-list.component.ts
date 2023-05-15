@@ -60,7 +60,7 @@ export class OtherIngredientListComponent implements OnInit {
   }
 
   deleteOtherIngredient(otherIngredient: OtherIngredient): void {
-    this.otherIngredientService.delete(otherIngredient).then(() => {
+    this.otherIngredientService.delete(otherIngredient).subscribe(() => {
       this.dataSource.reloadData();
     });
   }

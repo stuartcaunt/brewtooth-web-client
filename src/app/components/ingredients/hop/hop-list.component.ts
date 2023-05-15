@@ -67,7 +67,7 @@ export class HopListComponent implements OnInit {
   }
 
   deleteHop(hop: Hop): void {
-    this.hopService.delete(hop).then(() => {
+    this.hopService.delete(hop).subscribe(() => {
       this.dataSource.reloadData();
     });
   }

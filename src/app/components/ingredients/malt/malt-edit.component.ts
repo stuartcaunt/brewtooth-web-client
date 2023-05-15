@@ -44,7 +44,7 @@ export class MaltEditComponent {
     if (this.nameFormControl.valid && this.grainFormControl.valid && this.yieldFormControl.valid && this.ebcFormControl.valid) {
 
       // Save malt
-      this.maltService.save(this._malt).then(malt => {
+      this.maltService.save(this._malt).subscribe(malt => {
         this._malt = malt;
 
         // Notify observers

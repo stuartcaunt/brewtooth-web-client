@@ -37,7 +37,7 @@ export class YeastEditComponent {
     if (this.nameFormControl.valid && this.manufacturerFormControl.valid && this.attenuationFormControl.valid) {
 
       // Save yeast
-      this.yeastService.save(this._yeast).then(yeast => {
+      this.yeastService.save(this._yeast).subscribe(yeast => {
         this._yeast = yeast;
 
         // Notify observers

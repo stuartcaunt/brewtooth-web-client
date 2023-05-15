@@ -1,30 +1,26 @@
 
-import {map} from 'rxjs/operators';
+import {catchError, map} from 'rxjs/operators';
 import { Injectable }    from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { environment } from 'environments/environment';
 
 
-
-
 import { Sugar } from 'models';
-import {Observable} from 'rxjs';
+import {Observable, throwError} from 'rxjs';
 
 @Injectable()
 export class SugarService {
 
-  private headers = new Headers({'Content-Type': 'application/json'});
+  private headers = new HttpHeaders({'Content-Type': 'application/json'});
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
   getSugars(): Observable<Sugar[]> {
     const url = `${environment.apiUrl}/sugars`;
-    return this.http
-      .get(url, {headers: this.headers}).pipe(
-      map(response => response.json() as Sugar[]));
+    return this.http.get<Sugar[]>(url, {headers: this.headers});
   }
 
-  save(sugar: Sugar): Promise<Sugar> {
+  save(sugar: Sugar): Observable<Sugar> {
     if (sugar.id == null) {
       return this.create(sugar);
 
@@ -33,36 +29,33 @@ export class SugarService {
     }
   }
 
-  create(sugar: Sugar): Promise<Sugar> {
+  create(sugar: Sugar): Observable<Sugar> {
     const url = `${environment.apiUrl}/sugars`;
-    return this.http
-      .post(url, JSON.stringify(sugar), {headers: this.headers})
-      .toPromise()
-      .then(res => res.json() as Sugar)
-      .catch(this.handleError);
+    return this.http.post<Sugar>(url, JSON.stringify(sugar), {headers: this.headers})
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
-  update(sugar: Sugar): Promise<Sugar> {
+  update(sugar: Sugar): Observable<Sugar> {
     const url = `${environment.apiUrl}/sugars/${sugar.id}`;
-    return this.http
-      .put(url, JSON.stringify(sugar), {headers: this.headers})
-      .toPromise()
-      .then(res => res.json() as Sugar)
-      .catch(this.handleError);
+    return this.http.put<Sugar>(url, JSON.stringify(sugar), {headers: this.headers})
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
-  delete(sugar: Sugar): Promise<Sugar> {
+  delete(sugar: Sugar): Observable<Sugar> {
     const url = `${environment.apiUrl}/sugars/${sugar.id}`;
-    return this.http
-      .delete(url, {headers: this.headers})
-      .toPromise()
-      .then(() => null)
-      .catch(this.handleError);
+    return this.http.delete<Sugar>(url, {headers: this.headers})
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
-  private handleError(error: any): Promise<any> {
+  private handleError(error: any): Observable<Sugar> {
     console.error('An error occurred', error);
-    return Promise.reject(error.message || error);
+    return throwError(() => new Error(error.message || error));
   }
 
 }

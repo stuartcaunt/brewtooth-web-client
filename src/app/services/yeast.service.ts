@@ -1,30 +1,26 @@
 
-import {map} from 'rxjs/operators';
+import {catchError, map} from 'rxjs/operators';
 import { Injectable }    from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { environment } from 'environments/environment';
 
 
-
-
 import { Yeast } from 'models';
-import {Observable} from 'rxjs';
+import {Observable, throwError} from 'rxjs';
 
 @Injectable()
 export class YeastService {
 
-  private headers = new Headers({'Content-Type': 'application/json'});
+  private headers = new HttpHeaders({'Content-Type': 'application/json'});
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
   getYeasts(): Observable<Yeast[]> {
     const url = `${environment.apiUrl}/yeasts`;
-    return this.http
-      .get(url, {headers: this.headers}).pipe(
-      map(response => response.json() as Yeast[]));
+    return this.http.get<Yeast[]>(url, {headers: this.headers});
   }
 
-  save(yeast: Yeast): Promise<Yeast> {
+  save(yeast: Yeast): Observable<Yeast> {
     if (yeast.id == null) {
       return this.create(yeast);
 
@@ -33,36 +29,33 @@ export class YeastService {
     }
   }
 
-  create(yeast: Yeast): Promise<Yeast> {
+  create(yeast: Yeast): Observable<Yeast> {
     const url = `${environment.apiUrl}/yeasts`;
-    return this.http
-      .post(url, JSON.stringify(yeast), {headers: this.headers})
-      .toPromise()
-      .then(res => res.json() as Yeast)
-      .catch(this.handleError);
+    return this.http.post<Yeast>(url, JSON.stringify(yeast), {headers: this.headers})
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
-  update(yeast: Yeast): Promise<Yeast> {
+  update(yeast: Yeast): Observable<Yeast> {
     const url = `${environment.apiUrl}/yeasts/${yeast.id}`;
-    return this.http
-      .put(url, JSON.stringify(yeast), {headers: this.headers})
-      .toPromise()
-      .then(res => res.json() as Yeast)
-      .catch(this.handleError);
+    return this.http.put<Yeast>(url, JSON.stringify(yeast), {headers: this.headers})
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
-  delete(yeast: Yeast): Promise<Yeast> {
+  delete(yeast: Yeast): Observable<Yeast> {
     const url = `${environment.apiUrl}/yeasts/${yeast.id}`;
-    return this.http
-      .delete(url, {headers: this.headers})
-      .toPromise()
-      .then(() => null)
-      .catch(this.handleError);
+    return this.http.delete<Yeast>(url, {headers: this.headers})
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
-  private handleError(error: any): Promise<any> {
+  private handleError(error: any): Observable<Yeast> {
     console.error('An error occurred', error);
-    return Promise.reject(error.message || error);
+    return throwError(() => new Error(error.message || error));
   }
 
 }

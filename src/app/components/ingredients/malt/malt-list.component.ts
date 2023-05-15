@@ -5,7 +5,7 @@ import {map, distinctUntilChanged, debounceTime} from 'rxjs/operators';
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Malt} from 'models';
 import {MaltService} from 'services';
-import {DataSource} from '@angular/cdk';
+import {DataSource} from '@angular/cdk/table';
 import {MatDialog} from '@angular/material/dialog';
 import {MaltEditModalComponent} from 'components';
 import {YesNoDialogComponent} from 'components';
@@ -62,7 +62,7 @@ export class MaltListComponent implements OnInit {
   }
 
   deleteMalt(malt: Malt): void {
-    this.maltService.delete(malt).then(() => {
+    this.maltService.delete(malt).subscribe(() => {
       this.dataSource.reloadData();
     });
   }

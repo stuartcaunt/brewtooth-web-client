@@ -1,14 +1,14 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import 'hammerjs';
+import { HttpClientModule } from '@angular/common/http';
+
+import { BrowserModule } from '@angular/platform-browser';
 
 import { BrewtoothMaterialModule } from './brewtooth-material.module';
-import { BrewtoothRoutingModule } from './brewtooth-routing.module';
 
-import { ChartsModule } from 'ng2-charts/ng2-charts';
+import { BrewtoothRoutingModule } from './brewtooth-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { NgChartsModule } from 'ng2-charts';
 
 import {
   AppComponent,
@@ -34,28 +34,18 @@ import {
   MashControlGraphComponent,
   YesNoDialogComponent
 } from 'components';
-
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {
-  MaltService,
   HopService,
-  YeastService,
-  SugarService,
-  OtherIngredientService,
+  MaltService,
+  MashControllerService,
   MenuService,
-  MashControllerService
-} from 'services';
+  OtherIngredientService,
+  SugarService,
+  YeastService
+} from "services";
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    HttpModule,
-    FormsModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    BrewtoothMaterialModule,
-    BrewtoothRoutingModule,
-    ChartsModule
-  ],
   declarations: [
     AppComponent,
     MenuPageComponent,
@@ -80,6 +70,16 @@ import {
     MashControlGraphComponent,
     YesNoDialogComponent
   ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    NgChartsModule,
+    BrewtoothRoutingModule,
+    BrowserAnimationsModule,
+    BrewtoothMaterialModule,
+  ],
   providers: [
     MaltService,
     HopService,
@@ -87,17 +87,8 @@ import {
     SugarService,
     OtherIngredientService,
     MenuService,
-    MashControllerService
+    MashControllerService,
   ],
-  bootstrap: [AppComponent],
-  entryComponents: [
-    MaltEditModalComponent,
-    HopEditModalComponent,
-    YeastEditModalComponent,
-    SugarEditModalComponent,
-    OtherIngredientEditModalComponent,
-    YesNoDialogComponent
-  ]
+  bootstrap: [AppComponent]
 })
-
 export class BrewtoothModule { }

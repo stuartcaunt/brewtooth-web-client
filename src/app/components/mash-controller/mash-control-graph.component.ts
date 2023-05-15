@@ -1,9 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {Observable} from 'rxjs';
 
 import {MashControllerHistory, MashControllerState} from 'models';
 import {MashControllerService} from 'services';
-import {BaseChartDirective} from 'ng2-charts/ng2-charts';
+import {BaseChartDirective} from 'ng2-charts';
+import {ChartOptions, ChartData} from 'chart.js';
 
 @Component({
   selector: 'bt-mash-control-graph',
@@ -14,40 +14,33 @@ export class MashControlGraphComponent implements OnInit {
 
   @ViewChild('chart') chart: BaseChartDirective;
 
-  private chartType = 'line';
-  private chartOptions  = {
+  public chartOptions: ChartOptions  = {
     responsive: true,
     maintainAspectRatio: false,
     scales: {
-      xAxes: [{
+      xAxis: {
         type: 'time',
-        displayFormats: {
-          minute: 'h:mm'
-        } 
-      }],
-      yAxes: [
-        {
-          id: 'temperature',
-          type: 'linear',
-          position: 'left',
-          scalePositionLeft: true
-        },
-        {
-          id: 'power',
-          type: 'linear',
-          position: 'right',
-          scalePositionLeft: false,
-          beginAtZero: true,
-          ticks: {
-            min: 0,
-            max: 100
+        time: {
+          displayFormats: {
+            minute: 'h:mm'
           }
         }
-      ]
+      },
+      temperature: {
+        type: 'linear',
+        position: 'left',
+      },
+      power: {
+        type: 'linear',
+        position: 'right',
+        beginAtZero: true,
+        min: 0,
+        max: 100,
+      }
     }
   };
 
-  private datasets: Array<any> = [{
+  private _datasets: Array<any> = [{
     label: "Temperature °c",
     yAxisID: 'temperature',
     data: [],
@@ -69,6 +62,10 @@ export class MashControlGraphComponent implements OnInit {
 
   private timeOffsetMs: number = 0;
 
+  get datasets(): Array<any> {
+    return this._datasets;
+  }
+
   constructor (private mashControllerService: MashControllerService) {
   }
 
@@ -86,17 +83,17 @@ export class MashControlGraphComponent implements OnInit {
     this.datasets[0].data.length = 0;
     this.datasets[1].data.length = 0;
     this.datasets[2].data.length = 0;
-    
+
     history.forEach(historyValue => {
       let timeMs = historyValue.timeS * 1000;
       let time = new Date(timeMs + this.timeOffsetMs);
-      
+
       // Temperature
       this.datasets[0].data.push({
         x: time,
         y: historyValue.temperatureC
       });
-      
+
       // Heater state
       this.datasets[1].data.push({
         x: time,

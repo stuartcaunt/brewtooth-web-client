@@ -1,30 +1,26 @@
 
-import {map} from 'rxjs/operators';
+import {catchError, map} from 'rxjs/operators';
 import { Injectable }    from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { environment } from 'environments/environment';
 
 
-
-
 import { Malt } from 'models';
-import {Observable} from 'rxjs';
+import {Observable, throwError} from 'rxjs';
 
 @Injectable()
 export class MaltService {
 
-  private headers = new Headers({'Content-Type': 'application/json'});
+  private headers = new HttpHeaders({'Content-Type': 'application/json'});
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
   getMalts(): Observable<Malt[]> {
     const url = `${environment.apiUrl}/malts`;
-    return this.http
-      .get(url, {headers: this.headers}).pipe(
-      map(response => response.json() as Malt[]));
+    return this.http.get<Malt[]>(url, {headers: this.headers});
   }
 
-  save(malt: Malt): Promise<Malt> {
+  save(malt: Malt): Observable<Malt> {
     if (malt.id == null) {
       return this.create(malt);
 
@@ -33,36 +29,33 @@ export class MaltService {
     }
   }
 
-  create(malt: Malt): Promise<Malt> {
+  create(malt: Malt): Observable<Malt> {
     const url = `${environment.apiUrl}/malts`;
-    return this.http
-      .post(url, JSON.stringify(malt), {headers: this.headers})
-      .toPromise()
-      .then(res => res.json() as Malt)
-      .catch(this.handleError);
+    return this.http.post<Malt>(url, JSON.stringify(malt), {headers: this.headers})
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
-  update(malt: Malt): Promise<Malt> {
+  update(malt: Malt): Observable<Malt> {
     const url = `${environment.apiUrl}/malts/${malt.id}`;
-    return this.http
-      .put(url, JSON.stringify(malt), {headers: this.headers})
-      .toPromise()
-      .then(res => res.json() as Malt)
-      .catch(this.handleError);
+    return this.http.put<Malt>(url, JSON.stringify(malt), {headers: this.headers})
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
-  delete(malt: Malt): Promise<Malt> {
+  delete(malt: Malt): Observable<Malt> {
     const url = `${environment.apiUrl}/malts/${malt.id}`;
-    return this.http
-      .delete(url, {headers: this.headers})
-      .toPromise()
-      .then(() => null)
-      .catch(this.handleError);
+    return this.http.delete<Malt>(url, {headers: this.headers})
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
-  private handleError(error: any): Promise<any> {
+  private handleError(error: any): Observable<Malt> {
     console.error('An error occurred', error);
-    return Promise.reject(error.message || error);
+    return throwError(() => new Error(error.message || error));
   }
 
 }

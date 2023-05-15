@@ -11,13 +11,29 @@ import {MashControllerState, TemperatureProfile, TemperatureLevel} from 'models'
   styleUrls: ['./temperature-profile.component.scss']
 })
 export class TemperatureProfileComponent implements OnInit {
+  get profile(): TemperatureProfile {
+    return this._profile;
+  }
 
-  private profile: TemperatureProfile = new TemperatureProfile();
-  private state: MashControllerState;
+  get state(): MashControllerState {
+    return this._state;
+  }
 
-  private temperatureFormControls: FormControl[] = new Array<FormControl>();
-  private durationFormControls: FormControl[] = new Array<FormControl>();
-  
+  get temperatureFormControls(): FormControl[] {
+    return this._temperatureFormControls;
+  }
+
+  get durationFormControls(): FormControl[] {
+    return this._durationFormControls;
+  }
+
+  private _profile: TemperatureProfile = new TemperatureProfile();
+  private _state: MashControllerState;
+
+  private _temperatureFormControls: FormControl[] = new Array<FormControl>();
+  private _durationFormControls: FormControl[] = new Array<FormControl>();
+
+
 
   constructor (private mashControllerService: MashControllerService) {
   }
@@ -27,26 +43,26 @@ export class TemperatureProfileComponent implements OnInit {
     this.addLevel();
 
     this.mashControllerService.getStateObservable().subscribe(state => {
-      this.state = state;
+      this._state = state;
 
       if (state.running) {
-        this.profile = state.temperatureProfile;
+        this._profile = state.temperatureProfile;
       }
     });
   }
 
   addLevel(): void {
     let level: TemperatureLevel = new TemperatureLevel();
-    this.profile.levels.push(level);
+    this._profile.levels.push(level);
 
-    this.temperatureFormControls.push(new FormControl('', [Validators.required, Validators.min(0.0)]));
-    this.durationFormControls.push(new FormControl('', [Validators.required, Validators.min(0.0)]));
+    this._temperatureFormControls.push(new FormControl('', [Validators.required, Validators.min(0.0)]));
+    this._durationFormControls.push(new FormControl('', [Validators.required, Validators.min(0.0)]));
   }
 
   deleteLevel(index: number): void {
-    this.profile.levels.splice(index, 1);
-    this.temperatureFormControls.splice(index, 1);
-    this.durationFormControls.splice(index, 1);
+    this._profile.levels.splice(index, 1);
+    this._temperatureFormControls.splice(index, 1);
+    this._durationFormControls.splice(index, 1);
   }
 
   startLevel(): void {
@@ -59,19 +75,19 @@ export class TemperatureProfileComponent implements OnInit {
 
   startControl(): void {
     let valid: boolean = true;
-    for (let temperatureFormControl of this.temperatureFormControls) {
+    for (let temperatureFormControl of this._temperatureFormControls) {
       if (!temperatureFormControl.valid) {
           valid = false;
       }
     }
-    for (let durationFormControl of this.durationFormControls) {
+    for (let durationFormControl of this._durationFormControls) {
       if (!durationFormControl.valid) {
           valid = false;
       }
     }
 
     if (valid) {
-      this.mashControllerService.startControlWithTemperatureProfile(this.profile);
+      this.mashControllerService.startControlWithTemperatureProfile(this._profile);
     }
   }
 

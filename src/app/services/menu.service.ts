@@ -13,7 +13,7 @@ let menu: MenuItem = {
       description: 'Explore, edit and create new recipes',
       children: [
         {
-          title: 'Latest'
+          title: 'Latest',
         }, {
           title: 'Popular'
         }, {
@@ -72,7 +72,7 @@ export class MenuService {
   }
 
   getMenuForRoute(route: ActivatedRoute): MenuItem {
-    let path: string;
+    let path = '';
     route.url.forEach((segments: UrlSegment[]) => {
       path = segments.join('/');
     });
@@ -82,7 +82,7 @@ export class MenuService {
       return menu;
     }
 
-    for (let child of menu.children) {
+    for (let child of menu.children || []) {
       if (child.route === path) {
         return child;
       }

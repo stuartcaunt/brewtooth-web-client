@@ -1,30 +1,26 @@
 
-import {map} from 'rxjs/operators';
+import {catchError, map} from 'rxjs/operators';
 import { Injectable }    from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { environment } from 'environments/environment';
 
 
-
-
 import { Hop } from 'models';
-import {Observable} from 'rxjs';
+import {Observable, throwError} from 'rxjs';
 
 @Injectable()
 export class HopService {
 
-  private headers = new Headers({'Content-Type': 'application/json'});
+  private headers = new HttpHeaders({'Content-Type': 'application/json'});
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
   getHops(): Observable<Hop[]> {
     const url = `${environment.apiUrl}/hops`;
-    return this.http
-      .get(url, {headers: this.headers}).pipe(
-      map(response => response.json() as Hop[]));
+    return this.http.get<Hop[]>(url, {headers: this.headers});
   }
 
-  save(hop: Hop): Promise<Hop> {
+  save(hop: Hop): Observable<Hop> {
     if (hop.id == null) {
       return this.create(hop);
 
@@ -33,36 +29,33 @@ export class HopService {
     }
   }
 
-  create(hop: Hop): Promise<Hop> {
+  create(hop: Hop): Observable<Hop> {
     const url = `${environment.apiUrl}/hops`;
-    return this.http
-      .post(url, JSON.stringify(hop), {headers: this.headers})
-      .toPromise()
-      .then(res => res.json() as Hop)
-      .catch(this.handleError);
+    return this.http.post<Hop>(url, JSON.stringify(hop), {headers: this.headers})
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
-  update(hop: Hop): Promise<Hop> {
+  update(hop: Hop): Observable<Hop> {
     const url = `${environment.apiUrl}/hops/${hop.id}`;
-    return this.http
-      .put(url, JSON.stringify(hop), {headers: this.headers})
-      .toPromise()
-      .then(res => res.json() as Hop)
-      .catch(this.handleError);
+    return this.http.put<Hop>(url, JSON.stringify(hop), {headers: this.headers})
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
-  delete(hop: Hop): Promise<Hop> {
+  delete(hop: Hop): Observable<Hop> {
     const url = `${environment.apiUrl}/hops/${hop.id}`;
-    return this.http
-      .delete(url, {headers: this.headers})
-      .toPromise()
-      .then(() => null)
-      .catch(this.handleError);
+    return this.http.delete<Hop>(url, {headers: this.headers})
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
-  private handleError(error: any): Promise<any> {
+  private handleError(error: any): Observable<Hop> {
     console.error('An error occurred', error);
-    return Promise.reject(error.message || error);
+    return throwError(() => new Error(error.message || error));
   }
 
 }

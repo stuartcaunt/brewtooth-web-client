@@ -4,13 +4,13 @@
 
 <div class="menu-page-container">
 
-  <md-card *ngFor="let menuItem of menu.children" class="menu-page-card" (click)="navigateTo(menuItem)">
-    <md-card-title>
+  <mat-card *ngFor="let menuItem of menu.children" class="menu-page-card" (click)="navigateTo(menuItem)">
+    <mat-card-title>
       {{menuItem.title}}
-    </md-card-title>
-    <md-card-content>
+    </mat-card-title>
+    <mat-card-content>
       {{menuItem.description}}
-    </md-card-content>
-  </md-card>
+    </mat-card-content>
+  </mat-card>
 
 </div>
