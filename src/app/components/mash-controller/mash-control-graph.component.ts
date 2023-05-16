@@ -9,7 +9,10 @@ import 'chartjs-adapter-moment';
 @Component({
   selector: 'bt-mash-control-graph',
   templateUrl: './mash-control-graph.component.html',
-  styleUrls: ['./mash-control-graph.component.scss']
+  styleUrls: ['./mash-control-graph.component.scss'],
+  host: {
+    class: 'bt-content-element'
+  }
 })
 export class MashControlGraphComponent implements OnInit {
 
