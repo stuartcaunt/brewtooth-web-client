@@ -13,7 +13,10 @@ import {YesNoDialogComponent} from 'components';
 @Component({
   selector: 'bt-sugar-list',
   templateUrl: './sugar-list.component.html',
-  styleUrls: ['./sugar-list.component.scss']
+  styleUrls: ['./sugar-list.component.scss'],
+  host: {
+    class: 'bt-content-element'
+  }
 })
 export class SugarListComponent implements OnInit {
   displayedColumns = ['name', 'delete'];

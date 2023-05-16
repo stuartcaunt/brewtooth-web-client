@@ -39,7 +39,10 @@
               "@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/assets/stylesheets/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "moment"
+            ]
           },
           "configurations": {
             "production": {

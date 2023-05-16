@@ -13,7 +13,10 @@ import {YesNoDialogComponent} from 'components';
 @Component({
   selector: 'bt-malt-list',
   templateUrl: './malt-list.component.html',
-  styleUrls: [ './malt-list.component.scss']
+  styleUrls: [ './malt-list.component.scss'],
+  host: {
+    class: 'bt-content-element'
+  }
 })
 export class MaltListComponent implements OnInit {
   displayedColumns = ['name', 'grain', 'yield', 'ebc', 'delete'];

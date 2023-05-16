@@ -13,7 +13,10 @@ import {YesNoDialogComponent} from 'components';
 @Component({
   selector: 'bt-yeast-list',
   templateUrl: './yeast-list.component.html',
-  styleUrls: [ './yeast-list.component.scss']
+  styleUrls: [ './yeast-list.component.scss'],
+  host: {
+    class: 'bt-content-element'
+  }
 })
 export class YeastListComponent implements OnInit {
   displayedColumns = ['manufacturer', 'name', 'attenuation', 'delete'];

@@ -11,7 +11,10 @@ import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
 @Component({
   selector: 'bt-other-ingredient-list',
   templateUrl: './other-ingredient-list.component.html',
-  styleUrls: ['./other-ingredient-list.component.scss']
+  styleUrls: ['./other-ingredient-list.component.scss'],
+  host: {
+    class: 'bt-content-element'
+  }
 })
 export class OtherIngredientListComponent implements OnInit {
   displayedColumns = ['name', 'delete'];

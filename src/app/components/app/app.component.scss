@@ -7,6 +7,13 @@
 .bt-container {
 }
 
+.bt-content {
+  height: 100%;
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
+
 .bt-toolbar-header {
   z-index: 10;
   position: relative
@@ -84,7 +91,7 @@ a.bt-sidenav-selected h3 {
 }
 
 .bt-sidenav li>p, li>a  {
-  margin: 0px;
+  margin: 0;
   box-sizing: border-box;
   display: block;
   font-size: 14px;
