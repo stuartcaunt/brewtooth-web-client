@@ -3,7 +3,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MashControllerHistory, MashControllerState} from 'models';
 import {MashControllerService} from 'services';
 import {BaseChartDirective} from 'ng2-charts';
-import {ChartOptions, ChartData} from 'chart.js';
+import {ChartOptions} from 'chart.js';
 import 'chartjs-adapter-moment';
 
 @Component({
