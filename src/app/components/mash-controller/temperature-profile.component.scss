@@ -2,18 +2,21 @@
 @import 'data-form.scss';
 
 .temperature-profile-content-outer {
-    // background-color: aquamarine;
-    height: 100%;
 }
 
 .temperature-profile-content {
-    padding: 16px 32px 0px 32px;
+    padding: 8px 8px 0 8px;
     overflow-y: auto;
-    height: calc(100% - 16px);
 }
 
-.temperature-profile-content mat-form-field  {
-    height: 48px;
+.temperature-profile-edit {
+}
+
+.temperature-profile-edit-entry {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  margin:4px;
 }
 
 .temperature-profile-buttons {
@@ -21,7 +24,8 @@
 }
 
 .temperature-profile-cell {
-    padding: 0 32px 0px 0px;
+  flex: 1;
+  margin: 0 4px;
 }
 
 .add-level-button {

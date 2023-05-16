@@ -6,25 +6,29 @@
 }
 
 .controller-content {
-    //width: calc(100% - 64px);
-    width: 100%;
+  width: 100%;
   min-height: calc(100% - 48px);
-  background-color: #555599;
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .controller-temperature-profile {
-    vertical-align: top;
+  flex: 3;
 }
 
 .controller-state {
-    vertical-align: top;
+  flex: 2;
 }
 
-
 .controller-top-part {
-    height: 220px;
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
 }
 
 .controller-bottom-part {
-    height: 330px;
+  flex: 1;
 }

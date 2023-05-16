@@ -5,36 +5,37 @@
 <div class="temperature-profile-content-outer">
   <div class="temperature-profile-content">
     <div *ngIf="!state.running" class="temperature-profile-edit">
-      <table width="100%">
-        <tr *ngFor='let level of profile.levels; let i = index'>
-          <td class="temperature-profile-cell">
-            <mat-form-field class="data-form-full-width" appearance="fill">
-              <input matInput placeholder="Name" type="text" [(ngModel)]="level.name" />
-            </mat-form-field>
-          </td>
-          <td class="temperature-profile-cell">
-            <mat-form-field class="data-form-full-width">
-              <input matInput placeholder="Setpoint °c" type="number" required [formControl]="temperatureFormControls[i]"/>
-              <mat-error *ngIf="temperatureFormControls[i].hasError('min')">
-                The setpoint must be above 0
-              </mat-error>
-            </mat-form-field>
-          </td>
-          <td class="temperature-profile-cell">
-            <mat-form-field class="data-form-full-width">
-              <input matInput placeholder="Duration s" type="number" required [formControl]="durationFormControls[i]"/>
-              <mat-error *ngIf="durationFormControls[i].hasError('min')">
-                The duration must be above 0
-              </mat-error>
-            </mat-form-field>
-          </td>
-          <td *ngIf="(profile.levels.length != 1)">
-            <div (click)="deleteLevel(i)">
-              <i class="material-icons data-table-delete">delete</i>
-            </div>
-          </td>
-        </tr>
-      </table>
+      <div  *ngFor='let level of profile.levels; let i = index' class="temperature-profile-edit-entry">
+        <div class="temperature-profile-cell">
+          <mat-form-field class="data-form-full-width" appearance="fill">
+            <input matInput placeholder="Name" type="text" [(ngModel)]="level.name" />
+          </mat-form-field>
+        </div>
+        <div class="temperature-profile-cell">
+          <mat-form-field class="data-form-full-width">
+            <input matInput placeholder="Setpoint °c" type="number" required [formControl]="temperatureFormControls[i]"/>
+            <mat-error *ngIf="temperatureFormControls[i].hasError('min')">
+              The setpoint must be above 0
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="temperature-profile-cell">
+          <mat-form-field class="data-form-full-width">
+            <input matInput placeholder="Duration s" type="number" required [formControl]="durationFormControls[i]"/>
+            <mat-error *ngIf="durationFormControls[i].hasError('min')">
+              The duration must be above 0
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div *ngIf="(profile.levels.length != 1)">
+          <div (click)="deleteLevel(i)">
+            <i class="material-icons data-table-delete">delete</i>
+          </div>
+        </div>
+
+      </div>
+
+
       <button mat-mini-fab (click)="addLevel()" class="add-level-button">
         <mat-icon>add</mat-icon>
       </button>
