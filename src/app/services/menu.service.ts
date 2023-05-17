@@ -26,7 +26,8 @@ let menu: MenuItem = {
       description: 'All previous and current brews',
       children: [
         {
-          title: 'Current'
+          title: 'Current',
+          route: '/controller'
         },
         {
           title: 'Latest'
