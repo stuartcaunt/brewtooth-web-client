@@ -7,21 +7,24 @@
             <table width="100%" cellspacing="0">
                 <tr>
                   <td>
-                    <mat-form-field class="data-form-full-width">
+                    <mat-form-field class="data-form-full-width" [hideRequiredMarker]="true">
+                      <mat-label>P</mat-label>
                       <input matInput placeholder="P" type="number" required [(ngModel)]="kp" (change)="setPID()"/>
                     </mat-form-field>
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    <mat-form-field class="data-form-full-width">
+                    <mat-form-field class="data-form-full-width" [hideRequiredMarker]="true">
+                      <mat-label>I</mat-label>
                       <input matInput placeholder="I" type="number" required [(ngModel)]="ki"/>
                     </mat-form-field>
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    <mat-form-field class="data-form-full-width">
+                    <mat-form-field class="data-form-full-width" [hideRequiredMarker]="true">
+                      <mat-label>D</mat-label>
                       <input matInput placeholder="D" type="number" required [(ngModel)]="kd"/>
                     </mat-form-field>
                   </td>
@@ -44,11 +47,12 @@
         </td>
       </tr>
     </table>
-  </div>
-  <div class="controller-state-buttons">
-    <mat-slide-toggle (click)="toggleAutoControl()" class="controller-state-button" [checked]="state.autoControl">Auto</mat-slide-toggle>
-    <mat-slide-toggle (click)="toggleHeater()" class="controller-state-button" [checked]="state.heaterActive">Heater</mat-slide-toggle>
-    <mat-slide-toggle (click)="toggleAgitator()" class="controller-state-button" [checked]="state.agitatorActive">Agitator</mat-slide-toggle>
+    <div class="controller-state-buttons">
+      <mat-slide-toggle (click)="toggleAutoControl()" class="controller-state-button" [checked]="state.autoControl">Auto</mat-slide-toggle>
+      <mat-slide-toggle (click)="toggleHeater()" class="controller-state-button" [checked]="state.heaterActive">Heater</mat-slide-toggle>
+      <mat-slide-toggle (click)="toggleAgitator()" class="controller-state-button" [checked]="state.agitatorActive">Agitator</mat-slide-toggle>
+    </div>
+
   </div>
 
 </div>

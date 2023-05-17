@@ -13,7 +13,14 @@ import {MashControllerState} from '../../models/mash-controller-state.model';
     class: 'bt-content-element'
   }
 })
-export class MashControllerComponent {
+export class MashControllerComponent implements OnInit{
+
+  constructor(private _mashControllerService: MashControllerService) {
+  }
+
+  ngOnInit(): void {
+    this._mashControllerService.updateState();
+  }
 
 }
 

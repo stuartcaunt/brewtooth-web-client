@@ -15,36 +15,23 @@ import {HttpClient} from "@angular/common/http";
 export class MashControllerService {
 
   private static UPDATE_PERIOD: number = 2000;
-  private headers = new Headers({'Content-Type': 'application/json'});
 
-  private history: MashControllerHistory[] = new Array<MashControllerHistory>();
-  private historyObservable: Subject<MashControllerHistory[]> = new Subject<MashControllerHistory[]>();
-
-  private lastUpdateTime: number = 0;
-  private stateObservable: BehaviorSubject<MashControllerState> = new BehaviorSubject<MashControllerState>(new MashControllerState());
+  private _state$: BehaviorSubject<MashControllerState> = new BehaviorSubject<MashControllerState>(null);
   private timer:Observable<number> = null;
 
-  constructor(private http: HttpClient) {
-    this.getHistory().subscribe(history => {
-      this.history = history;
-      this.historyObservable.next(this.history);
-    });
+  get state$(): BehaviorSubject<MashControllerState> {
+    return this._state$;
+  }
 
+  constructor(private http: HttpClient) {
     this.timer = observableTimer(0, MashControllerService.UPDATE_PERIOD);
     this.timer.subscribe(t => this.updateState());
   }
 
   private setState(state: MashControllerState): void {
-    let history: MashControllerHistory = MashControllerHistory.createFromState(state);
-
-    if (this.history.length > 0) {
-      this.history.push(history);
-      this.historyObservable.next(this.history);
-    }
-
     state.outputPercent = state.outputMax == 0 ? 0 : state.controllerOutput / state.outputMax * 100;
 
-    this.stateObservable.next(state);
+    this._state$.next(state);
   }
 
   updateState(): void {
@@ -52,14 +39,6 @@ export class MashControllerService {
     this.http.get<MashControllerState>(url).subscribe(state => {
       this.setState(state);
     });
-  }
-
-  getStateObservable(): BehaviorSubject<MashControllerState> {
-    return this.stateObservable;
-  }
-
-  getHistoryObservable(): Subject<MashControllerHistory[]> {
-    return this.historyObservable;
   }
 
   getHistory(): Observable<MashControllerHistory[]> {

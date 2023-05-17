@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Observable} from 'rxjs';
+import {filter, Observable} from 'rxjs';
 import {FormControl, Validators} from '@angular/forms';
 
 import {MashControllerService} from 'services';
@@ -28,7 +28,7 @@ export class TemperatureProfileComponent implements OnInit {
   }
 
   private _profile: TemperatureProfile = new TemperatureProfile();
-  private _state: MashControllerState;
+  private _state: MashControllerState = new MashControllerState();
 
   private _temperatureFormControls: FormControl[] = new Array<FormControl>();
   private _durationFormControls: FormControl[] = new Array<FormControl>();
@@ -42,13 +42,32 @@ export class TemperatureProfileComponent implements OnInit {
     // Add fist level to profile
     this.addLevel();
 
-    this.mashControllerService.getStateObservable().subscribe(state => {
-      this._state = state;
+    this.mashControllerService.state$.pipe(
+        filter(state => state != null)
+      ).subscribe(state => {
+        this._state = state;
 
-      if (state.running) {
-        this._profile = state.temperatureProfile;
-      }
-    });
+        while (this._profile.levels.length < state.temperatureProfile.levels.length) {
+          this.addLevel();
+        }
+
+        if (state.running) {
+          this._profile = state.temperatureProfile;
+        }
+
+        for (let i = 0; i < state.temperatureProfile.levels.length; i++) {
+          const deviceLevel = state.temperatureProfile.levels[i];
+          const level = this._profile.levels[i];
+          const temperatureFormControl = this._temperatureFormControls[i];
+          const durationFormControl = this._durationFormControls[i];
+
+          level.name = deviceLevel.name;
+          level.setpointC = deviceLevel.setpointC;
+          level.durationS = deviceLevel.durationS;
+          temperatureFormControl.setValue(level.setpointC);
+          durationFormControl.setValue(level.durationS);
+        }
+      });
   }
 
   addLevel(): void {
@@ -75,14 +94,23 @@ export class TemperatureProfileComponent implements OnInit {
 
   startControl(): void {
     let valid: boolean = true;
-    for (let temperatureFormControl of this._temperatureFormControls) {
+    for (let i = 0; i < this._temperatureFormControls.length; i++) {
+      const temperatureFormControl = this._temperatureFormControls[i];
       if (!temperatureFormControl.valid) {
           valid = false;
+      } else {
+        const profileLevel = this._profile.levels[i];
+        profileLevel.setpointC = temperatureFormControl.value;
       }
     }
-    for (let durationFormControl of this._durationFormControls) {
+
+    for (let i = 0; i < this._durationFormControls.length; i++) {
+      const durationFormControl = this._durationFormControls[i];
       if (!durationFormControl.valid) {
           valid = false;
+      } else {
+        const profileLevel = this._profile.levels[i];
+        profileLevel.durationS = durationFormControl.value;
       }
     }
 

@@ -5,6 +5,7 @@ import {MashControllerService} from 'services';
 import {BaseChartDirective} from 'ng2-charts';
 import {ChartOptions} from 'chart.js';
 import 'chartjs-adapter-moment';
+import {filter} from "rxjs";
 
 @Component({
   selector: 'bt-mash-control-graph',
@@ -77,9 +78,11 @@ export class MashControlGraphComponent implements OnInit {
     this.mashControllerService.getHistory().subscribe(history => {
       this.initGraphData(history);
     })
-    this.mashControllerService.getStateObservable().subscribe(state => {
-      this.updateGraphData(state);
-    })
+    this.mashControllerService.state$.pipe(
+        filter(state => state != null)
+      ).subscribe(state => {
+        this.updateGraphData(state);
+      });
   }
 
   private initGraphData(history: MashControllerHistory[]) {
@@ -129,7 +132,7 @@ export class MashControlGraphComponent implements OnInit {
       this.timeOffsetMs = now - timeMs;
 
       // Update all existing data to apply date offset
-      for (let j = 0; j < 3; j++) {
+      for (let j = 0; j < 3; j++) {
         for (let i = 0; i < this.datasets[j].data.length; i++) {
           let value = this.datasets[j].data[i];
           let timeMs = value.x.getTime() + this.timeOffsetMs;
@@ -158,7 +161,9 @@ export class MashControlGraphComponent implements OnInit {
       y: state.outputPercent
     });
 
-    this.chart.chart.update();
+    if (this.chart && this.chart.chart) {
+      this.chart.chart.update();
+    }
   }
 }
 
