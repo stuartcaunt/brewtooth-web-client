@@ -47,26 +47,30 @@ export class TemperatureProfileComponent implements OnInit {
       ).subscribe(state => {
         this._state = state;
 
-        while (this._profile.levels.length < state.temperatureProfile.levels.length) {
-          this.addLevel();
-        }
 
         if (state.running) {
           this._profile = state.temperatureProfile;
+
+        } else if (state.temperatureProfile) {
+          while (this._profile.levels.length < state.temperatureProfile.levels.length) {
+            this.addLevel();
+          }
+
+          for (let i = 0; i < state.temperatureProfile.levels.length; i++) {
+            const deviceLevel = state.temperatureProfile.levels[i];
+            const level = this._profile.levels[i];
+            const temperatureFormControl = this._temperatureFormControls[i];
+            const durationFormControl = this._durationFormControls[i];
+
+            level.name = deviceLevel.name;
+            level.setpointC = deviceLevel.setpointC;
+            level.durationS = deviceLevel.durationS;
+            temperatureFormControl.setValue(level.setpointC);
+            durationFormControl.setValue(level.durationS);
+          }
+
         }
 
-        for (let i = 0; i < state.temperatureProfile.levels.length; i++) {
-          const deviceLevel = state.temperatureProfile.levels[i];
-          const level = this._profile.levels[i];
-          const temperatureFormControl = this._temperatureFormControls[i];
-          const durationFormControl = this._durationFormControls[i];
-
-          level.name = deviceLevel.name;
-          level.setpointC = deviceLevel.setpointC;
-          level.durationS = deviceLevel.durationS;
-          temperatureFormControl.setValue(level.setpointC);
-          durationFormControl.setValue(level.durationS);
-        }
       });
   }
 

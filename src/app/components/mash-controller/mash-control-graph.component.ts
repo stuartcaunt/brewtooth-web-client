@@ -21,6 +21,7 @@ export class MashControlGraphComponent implements OnInit {
 
   public chartOptions: ChartOptions  = {
     responsive: true,
+    animation: false,
     maintainAspectRatio: false,
     scales: {
       xAxis: {
