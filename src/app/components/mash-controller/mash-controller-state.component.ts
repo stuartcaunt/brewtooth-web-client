@@ -39,7 +39,7 @@ export class MashControllerStateComponent implements OnInit {
   }
 
   toggleAutoControl(): void {
-    this.mashControllerService.enableAutoControl(!this.state.autoControl);
+    this.mashControllerService.enableAutoControl(!this.state.autoTemperatureControl);
   }
 
   toggleHeater(): void {

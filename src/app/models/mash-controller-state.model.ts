@@ -11,7 +11,7 @@ export class MashControllerState {
   controllerOutput: number = 0.0;
   heaterActive: boolean = false;
   agitatorActive: boolean = false;
-  autoControl: boolean = false;
+  autoTemperatureControl: boolean = false;
   kp: number = 1.0;
   ki: number = 1.0;
   kd: number = 1.0;

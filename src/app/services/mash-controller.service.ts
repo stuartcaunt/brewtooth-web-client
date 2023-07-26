@@ -1,13 +1,7 @@
 
 import {timer as observableTimer, Observable, Subject, BehaviorSubject} from 'rxjs';
-
-import {map} from 'rxjs/operators';
 import { Injectable }    from '@angular/core';
 import { environment } from 'environments/environment';
-
-
-
-
 import { MashControllerState, MashControllerHistory, TemperatureProfile, PIDParams } from 'models';
 import {HttpClient} from "@angular/common/http";
 
@@ -52,7 +46,7 @@ export class MashControllerService {
     pidParams.ki = ki;
     pidParams.kd = kd;
     const url = `${environment.mashControllerApiUrl}/pid`;
-    this.http.post<PIDParams>(url, JSON.stringify(pidParams)).subscribe(pidParams => {});
+    this.http.post<PIDParams>(url, pidParams).subscribe(pidParams => {});
   }
 
   enableAutoControl(enabled: boolean): void {
@@ -78,7 +72,7 @@ export class MashControllerService {
 
   startControlWithTemperatureProfile(temperatureProfile: TemperatureProfile): void {
     const url = `${environment.mashControllerApiUrl}/start`;
-    this.http.post<MashControllerState>(url, JSON.stringify(temperatureProfile)).subscribe(state => {
+    this.http.post<MashControllerState>(url, temperatureProfile).subscribe(state => {
       this.setState(state);
     });
   }
