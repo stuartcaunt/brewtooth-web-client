@@ -8,7 +8,7 @@ import {HttpClient} from "@angular/common/http";
 @Injectable()
 export class MashControllerService {
 
-  private static UPDATE_PERIOD: number = 2000;
+  private static UPDATE_PERIOD: number = 1000;
 
   private _state$: BehaviorSubject<MashControllerState> = new BehaviorSubject<MashControllerState>(null);
   private timer:Observable<number> = null;
@@ -51,21 +51,21 @@ export class MashControllerService {
 
   enableAutoControl(enabled: boolean): void {
     const url = `${environment.mashControllerApiUrl}/` + (enabled ? 'automatic' : 'manual');
-    this.http.get<MashControllerState>(url).subscribe(state => {
+    this.http.post<MashControllerState>(url, null).subscribe(state => {
       this.setState(state);
     });
   }
 
   enableHeater(enabled: boolean): void {
     const url = `${environment.mashControllerApiUrl}/heater/` + (enabled ? 'start' : 'stop');
-    this.http.get<MashControllerState>(url).subscribe(state => {
+    this.http.post<MashControllerState>(url, null).subscribe(state => {
       this.setState(state);
     });
   }
 
   enableAgitator(enabled: boolean): void {
     const url = `${environment.mashControllerApiUrl}/agitator/` + (enabled ? 'start' : 'stop');
-    this.http.get<MashControllerState>(url).subscribe(state => {
+    this.http.post<MashControllerState>(url, null).subscribe(state => {
       this.setState(state);
     });
   }
@@ -79,7 +79,7 @@ export class MashControllerService {
 
   startTemperatureControlProfileLevel(): void {
     const url = `${environment.mashControllerApiUrl}/profile/start`;
-    this.http.get<MashControllerState>(url).subscribe(state => {
+    this.http.post<MashControllerState>(url, null).subscribe(state => {
       this.setState(state);
     });
 
@@ -87,7 +87,7 @@ export class MashControllerService {
 
   skipTemperatureControlProfileLevel(): void {
     const url = `${environment.mashControllerApiUrl}/profile/skip`;
-    this.http.get<MashControllerState>(url).subscribe(state => {
+    this.http.post<MashControllerState>(url, null).subscribe(state => {
       this.setState(state);
     });
 
@@ -95,7 +95,7 @@ export class MashControllerService {
 
   stopControl(): void {
     const url = `${environment.mashControllerApiUrl}/stop`;
-    this.http.get<MashControllerState>(url).subscribe(state => {
+    this.http.post<MashControllerState>(url, null).subscribe(state => {
       this.setState(state);
     });
   }
