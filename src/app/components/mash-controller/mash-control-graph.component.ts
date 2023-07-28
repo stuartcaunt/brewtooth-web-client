@@ -35,6 +35,7 @@ export class MashControlGraphComponent implements OnInit {
       temperature: {
         type: 'linear',
         position: 'left',
+        min: 15,
       },
       power: {
         type: 'linear',
